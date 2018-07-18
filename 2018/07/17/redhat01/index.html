@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>小红帽第一集 | 张硕&#39;s Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="小红帽第一集： 操作系统及Linux的基础知识">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小红帽第一集">
+<meta property="og:url" content="https://zhangdashuo.github.io/2018/07/17/redhat01/index.html">
+<meta property="og:site_name" content="张硕&#39;s Blogs">
+<meta property="og:description" content="小红帽第一集： 操作系统及Linux的基础知识">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/xunijijiegou.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/CPUring.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/oscengjijiegou.png">
+<meta property="og:updated_time" content="2018-07-18T06:35:38.447Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小红帽第一集">
+<meta name="twitter:description" content="小红帽第一集： 操作系统及Linux的基础知识">
+<meta name="twitter:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/xunijijiegou.png">
+  
+    <link rel="alternative" href="/atom.xml" title="张硕&#39;s Blogs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/head.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.png" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">业余Linux管理员</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">因为有了危机感，所以会义无反顾</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">归档</a></li>
+                        
+                            <li><a href="/about/">关于</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=ESMjKCMnJCEjKCNRYGA-cn58" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/zhangdashuo" title="github">github</a>
+                            
+                                <a class="fl rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                                <a class="fl QQ" target="_blank" href="/img/QQnumber.jpg" title="QQ">QQ</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/日常/" style="font-size: 10px;">日常</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.zhangshuocauc.cn">原博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">中国民航大学(天津.东丽区)2017级硕士研究生,控制工程专业(自动化类),方向：无人机控制。 性格内向，热爱编程。</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">业余Linux管理员</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">业余Linux管理员</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">因为有了危机感，所以会义无反顾</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">归档</a></li>
+                
+                    <li><a href="/about/">关于</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=ESMjKCMnJCEjKCNRYGA-cn58" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/zhangdashuo" title="github">github</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                        <a class="QQ" target="_blank" href="/img/QQnumber.jpg" title="QQ">QQ</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-redhat01" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/17/redhat01/" class="article-date">
+      <time datetime="2018-07-17T02:53:18.000Z" itemprop="datePublished">2018-07-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      小红帽第一集
+    </h1>
+  
+
+	
+	   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+	<span class="post-meta-item-text">  字数统计: </span>
+	<span class="post-count">3,460字</span>
+      </span>
+    </span>
+										
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	<i class="fa fa-hourglass-half"></i>
+	<span class="post-meta-item-text"> 阅读时长: </span>
+	<span class="post-count">12分</span>
+      </span>
+    </span>
+</div>
+
+	
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+           <br>
+	   <br>
+	
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/小红帽/">小红帽</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> 小红帽第一集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>操作系统及Linux的基础知识<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="操作系统及Linux基础知识"><a href="#操作系统及Linux基础知识" class="headerlink" title="操作系统及Linux基础知识"></a>操作系统及Linux基础知识</h2><h3 id="现代计算机设备的组成部分"><a href="#现代计算机设备的组成部分" class="headerlink" title="现代计算机设备的组成部分"></a>现代计算机设备的组成部分</h3><p>现代计算机的构架主要还是在冯诺·依曼架构之上完成的。主要由运算器、控制器、存储设备、输入设备和输出设备。在现代的制造工艺中将运算器与控制器集成在一片芯片之上叫做CPU。CPU又叫做中央处理器，是计算机的核心部分。同时CPU不是单独自己工作的它又需要与外界进行数据交互，与外界进行的数据交互是通过总线来进行数据的传输的。计算机中的总线有控制总线，数据总线，和地址总线。所谓总线（Bus），是指计算机设备和设备之间传输信息的公共数据通道。总线是连接计算机硬件系统内多种设备的通信线路，它的一个重要特征是由总线上的所有设备共享，可以将计算机系统内的多个部件连接到总线上进行通讯。如果是某两个设备或设备之间专用的信号连线，就不能称之为总线。微机中的总线分为数据总线、地址总线和控制总线3类。不同型号的CPU芯片，其数据总线、地址总线和控制总线的条数可能不同。  数据总线DB用来传送数据信息，是双向的。CPU既可通过DB从内存或输入设备读入数据，又可通过DB将内部数据送至内存或输出设备。DB的宽度决定了CPU和计算机其他设备之间每次交换数据的位数。  地址总线AB用于传送CPU发出的地址信息，是单向的。传送地址信息的目的是指明与CPU交换信息的内存单元或I/O设备。内存是编址的存储单元，所以每个存储单元都有一个固定地址，对于内存来说每8个字节叫做一个cell，要访问1MB存储器中的任一单元，需要给出1M个地址，即需要10位地址（2^10=1M）。因此，地址总线的宽度决定了CPU的最大寻址能力。  控制总线CB用来传送控制信号、时序信号和状态信息等。其中有的是CPU向内存或外部设备发出的信息，有的是内存或外部设备向CPU发出的信息。显然，CB中的每一条线的信息传送方向是一定的、单向的，但作为一个整体则是双向的。所以，在各种结构框图中，凡涉及到控制总线CB，均是以双向线表示。  总线的性能直接影响到整机系统的性能，而且任何系统的研制和外围模块的开发都必须依从所采用的总线规范。总线技术随着微机结构的改进而不断发展与完善。可见地址总线决定来CPU寻址的范围，由此可以看出对于32位的操作系统来说内存的最大寻址范围为32位也就是2的32位次方，也就是4G，由此对于32的计算机来说最大可识别内存也就是4G，对于64位操作系统来说也就是2的64方也就是4G个4G内存范围。</p>
+<h3 id="程序运行的局部性原理"><a href="#程序运行的局部性原理" class="headerlink" title="程序运行的局部性原理"></a>程序运行的局部性原理</h3><p>在程序运行时操作系统会为程序提供内存空间来运行需要执行的程序，在现在的计算机中通常CPU的运行速度要远快与IO设备，对于我的硬件来说我的CPU的运行速度为2.5GHZ但对于内存来说笔记本的内存速度也就是1600MHZ可见内存的速度要远低于CPU的运行速度。为了解决程序运行效率问题加入来缓存机制，缓存的速度是接近CPU的速度的，所以在CPU中会有一级缓存二级缓存和三级缓存，离CPU越近速度越快，但是成本就越高，这就是计算机的折中机制。这里说一下对于计算机的扩展有两种方式一种横向扩展一种纵向扩展横向扩展指的是用多个性能普通的计算机进行组合为一个功能强大的集群来完成复杂的计算功能，而纵向扩展指的是通过提过当个计算机的硬件性能，比如提高CPU的主频，增加内存，使用固态硬盘等方式来增加单个计算的计算性能。通常这种纵向扩展的方式性价比不高。程序界有一种说法为缓存为王，即cache is king 之所以这样说是因为程序运行时会遵循局部性原理，局部性原理表现为：时间局部性和空间局部性。时间局部性是指如果程序中的某条指令一旦执行，则不久之后该指令可能再次被执行；如果某数据被访问，则不久之后该数据可能再次被访问。空间局部性是指一旦程序访问了某个存储单元，则不久之后。其附近的存储单元也将被访问。根据程序的局部性原理我们就可以提前将需要的数据放入缓存中，这样便可以提高计算机的运行效率。</p>
+<h3 id="计算机的I-O设备"><a href="#计算机的I-O设备" class="headerlink" title="计算机的I/O设备"></a>计算机的I/O设备</h3><p>刚说到CPU不是独自工作的，需要与外界设备进行交换，通常这些外部设备就为IO设备。计算机中常见的IO设备有硬盘，网卡，键盘，鼠标，显示器等。</p>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><p>通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的完整计算机系统。虚拟机的结构如下</p>
+<p><img src="/2018/07/17/redhat01/xunijijiegou.png" alt=""></p>
+<p>对于cpu的虚拟化：其实在现代操作系统结构下cpu就是虚拟化的通过划分时间片的方式来进行任务或是程序的处理。对于cpu的虚拟化只需要指令能够提交给cpu进行运行就行。</p>
+<p>内存的虚拟化：现代操作系统对于内存的使用是采用线性地址空间的方式进行数据的存储的。这中内存的使用方式可以提高系统的安全性能。</p>
+<h2 id="Linux基础入门"><a href="#Linux基础入门" class="headerlink" title="Linux基础入门"></a>Linux基础入门</h2><h3 id="CPU中央处理器"><a href="#CPU中央处理器" class="headerlink" title="CPU中央处理器"></a>CPU中央处理器</h3><p>CPU由运算器和控制器组成，通常CPU要完成哪些运算，和其运算能力是根据其所支持的指令操作来完成的，这些CPU可用的指令叫做指令集。通常不同生厂商生产的CPU的指令集是不同的。（如果要查看自己CPU所支持的指令集可以使用 cat /proc/cpuinfo 命令查看自己CPU的相关信息）。在CPU设计时将CPU可运行的指令分成了四个环，通常我们叫做环0环1环2环3。CPU的环形结构如下：</p>
+<p><img src="/2018/07/17/redhat01/CPUring.png" alt=""></p>
+<p>环3上只能运行普通指令，而环0上运行的为特权指令。这样做是为了提高系统的安全性能，因为只有操作系统才可以运行特权指令。而普通用户的程序只能在环3上运行也就是之能运行普通指令，由于历史的原因环1和环2没有使用。有同学会说普通户也需要运行特权指令啊，比如新建文件等需要进行IO操作的指令等，是的没错普通用户是需要运行特权指令，但是当普通用户需要运行特权指令时会向操作系统发出请求即系统调用让操作系统帮忙来完成所需要的操作。</p>
+<h3 id="CPU的架构类型"><a href="#CPU的架构类型" class="headerlink" title="CPU的架构类型"></a>CPU的架构类型</h3><p>记得一次上课老师问计算机的构架是什么有同学说X86有同学说X64等等，其实这些都是概念没有搞清楚。当代计算机都还没有打破冯诺.依曼的架构。这里说CPU的架构吧，当前PC机中的CPU架构有X86即32位的CPU，X64即64位CPU，对于X86_64结构是英特尔和AMD兼容的CPU结构类型。还有现代比较流行的人手一个的手持智能终端设备中用的ARMCPU，这种ARM架构的CPU最大的特点就是省电，ARM这个公司很诡异，这个公司只卖版权，不生产CPU，生产是由高通，三星等这些公司。还有一些早些比较强悍的CPU比如moto公司的M68000,IBM的powerCPU，powerCPU是世界上第一个多核心第一个8核第一个16核，第一个主频突破4GHZ的CPU，但是IBM的制造工艺没有INTEL公司的制造工艺先进。还有简装版的power叫做powerPC的CPU，该CPU是由苹果，摩托罗拉，和IBM三家联合设计研发的CPU，这个CPU性能也很不错，当时苹果公司的电脑用的都是powerPC，因为CPU的指令集不同，所以早些时候MAC操作系统无法在普通的PC机上运行，后来INTEL公司的CPU性能慢慢也很不错，所以现在苹果公司用的也是intel的CPU，这也就导致了很多黑苹果的诞生。</p>
+<h3 id="操作系统（OS-Operating-System）"><a href="#操作系统（OS-Operating-System）" class="headerlink" title="操作系统（OS:Operating System）"></a>操作系统（OS:Operating System）</h3><p>操作系统是管理和控制计算机硬件与软件资源的计算机程序，是直接运行在“裸机”上的最基本的系统软件。说白了操作系统就是一个软件程序，但是这个软件程序是出于通用目将底层硬件的接口抽象出来的来提供硬件驱动、进程管理、内存管理、网络管理、安全管理等功能的通用软件。<br>当前主流的操作系统有windows，Linux，Unix等。<br>Windows是每个人都接触过的操作系统，这里就不多说了，但是这个系统属于那种入门简单鼠标点一点感觉很轻松但是深入却很难的一套操作系统。算算接触Windows也快20年了也就会操作系统的安装，软件的安装，Ctrl+Alt+Delete结束进程等很简单的操作。<br>Unix可以说是世界操作系统的鼻祖，如果有兴趣可以查一查关于windows是如何从乔布斯那里抄袭创意和乔布斯如何从Park实验室那里抄袭。可以看出伟大的人的创意都是抄袭的。Unix有两个重要分支，其中嫡出系统叫做system风格的Unix是由Bell实验室研发的。属于system风格的操作系统还有IBM公司的AIX，SUN公司的Solaris，HP公司的HP-UX等，另一个分支叫做庶出也就是小老婆生的叫做BSD，是由伯克利研究小组（BSRG）进行研发的叫做Berkeley System Distribution。其中基于BSD的流行的系统有<strong>NETBSD</strong>,<strong>OPENBSD</strong>,<strong>FREEBSD</strong>等。我们生活中对Unix不常见的原因在于Unix通常叫做贵族操作系统，之所以这样说是因为UNIX通常是在小型机上跑的操作系统，而一台小型机怎么也要二三十万左右的样子，不像Linux在2000块钱的主机上都可以跑的飞起。<br>在嫡出和庶出打仗的时候unix是收费的此时由MIT的Richard Stallman发起了软件共产主义运动，即GNU（GUN is not Unix）组织，和共产主义宣言即GPL（General Public License）协定。GNU组织的成立主要是因为UNIX从开源变为收费为了摆脱UNIX而成立的组织，但当时GNU叫做GUN is not Unix但是该组织中的开源程序还是基于Unix的这就陷入了一个尴尬的环境，此时GNU迫切需要一个自己的操作系统，就在此时1991年Linus的linux诞生了，当linux碰到GNU那就是山无棱,天地合,才敢与君绝，一拍即合。所以linux发展速度很快。Linux内核由1991的0.01版本迅速发展在1994年就发行了1.0版本。可见Linux的发展的迅速的。如果要查看最新内核的版本情况  <a href="https://www.kernel.org/" target="_blank" rel="noopener">点击这里</a> 。小时候看黑客帝国的时候就看的是大战母体的打斗的场景，那会还不了解Linux其实现在接触Linux才发现那是里面好多的工具都是我们常用的运维工具，比如matrix也就是母体用的Linux内核就是6.4版本的。</p>
+<h3 id="操作系统的层次结构"><a href="#操作系统的层次结构" class="headerlink" title="操作系统的层次结构"></a>操作系统的层次结构</h3><p>操作系统的层级结构如下：</p>
+<p><img src="/2018/07/17/redhat01/oscengjijiegou.png" alt=""></p>
+<p>从操作系统的层级结构下来说编程层次：</p>
+<p>程序员面对的编程对象不同分为如下：</p>
+<blockquote>
+<ul>
+<li>硬件规格 ：hardware specifiacation</li>
+<li>系统调用：目前linux内核支持的系统调用有400多个的样子</li>
+<li>库调用：library call</li>
+</ul>
+</blockquote>
+<p>对于操作系统来说肯定还会和人进行交互，此时操作系统就需要有用户交互程序，通常这个程序叫做shell是内核的壳程序。用户交互程序叫做UI：user interface 目前对于UI主要有两种风格，一种基于图形界面的典型代表为windows下的交互程序。这种交互程序叫做GUI(也有人叫做鬼谐音而已)：Graphic User Interface。另一种是基于命令行的交互程序，那就是Linux代表的一类接口。叫做CLI：Command Line Interface 。其实对于命令行接口来说可能入门较难但是效率通常会比图形界面下的执行效率要高很多。</p>
+<hr>
+<p>—EOF</p>
+
+      
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/17/redhat01/">小红帽第一集</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
+        <p><span>发布时间:</span>2018年07月17日 - 10时53分</p>
+        <p><span>最后更新:</span>2018年07月18日 - 14时35分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/17/redhat01/" title="小红帽第一集">https://zhangdashuo.github.io/2018/07/17/redhat01/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/17/redhat01/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">新的环境，新的博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作系统及Linux基础知识"><span class="toc-number">1.</span> <span class="toc-text">操作系统及Linux基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#现代计算机设备的组成部分"><span class="toc-number">1.1.</span> <span class="toc-text">现代计算机设备的组成部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序运行的局部性原理"><span class="toc-number">1.2.</span> <span class="toc-text">程序运行的局部性原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机的I-O设备"><span class="toc-number">1.3.</span> <span class="toc-text">计算机的I/O设备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟机"><span class="toc-number">1.4.</span> <span class="toc-text">虚拟机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础入门"><span class="toc-number">2.</span> <span class="toc-text">Linux基础入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU中央处理器"><span class="toc-number">2.1.</span> <span class="toc-text">CPU中央处理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU的架构类型"><span class="toc-number">2.2.</span> <span class="toc-text">CPU的架构类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作系统（OS-Operating-System）"><span class="toc-number">2.3.</span> <span class="toc-text">操作系统（OS:Operating System）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作系统的层次结构"><span class="toc-number">2.4.</span> <span class="toc-text">操作系统的层次结构</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'zhangdashuo',
+      repo: 'zhangdashuo.github.io',
+      oauth: {
+        client_id: '384114ef3052366070f7',
+        client_secret: 'ffef7463ac3154621c65dbcce6a82b0ddbb344bc',
+      },
+    })
+    gitment.render('gitments')
+</script>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/07/13/hello-world/" title="下一篇: 新的环境，新的博客">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/redhat01/">小红帽第一集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/hello-world/">新的环境，新的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 业余Linux管理员 - 津ICP备17009942号</a>
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
