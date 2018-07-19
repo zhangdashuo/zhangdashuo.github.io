@@ -13,10 +13,24 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第二集： OS Linux发行版，Linux系统基础使用入门，Linux命令帮助">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T14:03:35.297Z">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/oscengjijiegou.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/slackware.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/suse.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/opensuse.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/debian.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/ubuntu.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/mint.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/fedora.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/centos.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/archlinux.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/gentoo.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/android.png">
+<meta property="og:updated_time" content="2018-07-19T02:58:23.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第二集">
 <meta name="twitter:description" content="小红帽第二集： OS Linux发行版，Linux系统基础使用入门，Linux命令帮助">
+<meta name="twitter:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/oscengjijiegou.png">
   
     <link rel="alternative" href="/atom.xml" title="张硕&#39;s Blogs" type="application/atom+xml">
   
@@ -250,7 +264,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">25字</span>
+	<span class="post-count">2,310字</span>
       </span>
     </span>
 										
@@ -260,7 +274,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">1分</span>
+	<span class="post-count">8分</span>
       </span>
     </span>
 </div>
@@ -292,7 +306,88 @@
       
           
         <p><strong> 小红帽第二集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>OS Linux发行版，Linux系统基础使用入门，Linux命令帮助<br><a id="more"></a></excerpt></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="Linux基础入门（一）"><a href="#Linux基础入门（一）" class="headerlink" title="Linux基础入门（一）"></a>Linux基础入门（一）</h2><h3 id="POSIX规范"><a href="#POSIX规范" class="headerlink" title="POSIX规范"></a>POSIX规范</h3><p>POSIX表示可移植操作系统接口(Portable Operating System Interface of UNIX，缩写为 POSIX ），POSIX标准定义了操作系统应该为应用程序提供的接口标准，是IEEE为要在各种UNIX操作系统上运行的软件而定义的一系列API标准的总称，其正式称呼为IEEE 1003，而国际标准名称为ISO/IEC 9945。</p>
+<p>POSIX标准意在期望获得源代码级别的软件可移植性。换句话说，为一个POSIX兼容的操作系统编写的程序，应该可以在任何其它的POSIX操作系统（即使是来自另一个厂商）上编译执行。</p>
+<p>我们都知道window的程序是不可以在Linux系统下运行的（前段时间在Linux下安装微信或是QQ啥的，其实直接运行是不可以的，如果要运行QQ是需要wine叫做红酒杯的容器，在这个容器之上才可以运行特殊的windows程序）。我们都知道windows可执行程序的格式为EXE或是MSI格式，运行的库的格式为.dll(dynamic link library)，而在Linux下可执行的程序格式为ELF格式的（拿ls命令来说吧，在终端下直接运行file /bin/ls可以看到ls可执行文件的格式为ELF格式），Linux所运行的库的格式为.so（shard object 共享对象）。其实这两者的不同在上次已经说过叫做ABI接口不同。对于POSIX规范其实规定的是API接口的规范，如果windows和Linux的库调用方式相同（当然其内部的实现方式是可以不同的），这样程序员写出的程序就可以在不同的操作系统之间进行编译，实现了程序的移植性和通用性。</p>
+<h3 id="编程语言层级"><a href="#编程语言层级" class="headerlink" title="编程语言层级"></a>编程语言层级</h3><p>程序是由指令+数据组成的，通常指令都为只读的，而数据是可以读写的。其实程序的主要作用就是对我们所提供的原始数据进行加工，加工为我们所需要数据格式或是运行结果。所以也可以说程序是由算法+数据结构组成的。上一集也提到过操作系统的层级结构如图所示：</p>
+<p><img src="/2018/07/18/redhat02/oscengjijiegou.png" alt=""></p>
+<p>可以看到对于程序的编写可以面向系统调用层次，或是库调用层次进行编程。系统调用或是库调用是允许被调用的程序，他们只提供程序而不能提供数据，这样也是可以多个程序调用的保障。采用这种调用方式可以在内存中对相同调用的库只进行一次存储，这样就会极大的节省内存。对于这两种调用来说其实就是更底层的调用，系统调用和库调用（对于Linux下的库通常为glibc库）通常都是C写的性能很好但是需要程序员对内存或是运行精心的设计，这对程序员是一个很大的工作，同时对于程序来说也很可能有bug。对于网络中有一种攻击方式叫做缓冲区溢出，这种方式就是利用程序的bug来覆盖内存中的某些数据从而侵入其他系统的操作。但是这种更底层的方式通常运行效率比较高，但是程序不易开发。对于对性能要求较高的系统级程序比如MySQL这类数据库软件通常都是直接面向系统调用或是库调用开发完成的。由于这种程序开发方式过于底层，不易编程所以在此基础上出现了很多更高级的编程语言，这类语言是直接面向该种语言的解释器或是虚拟机编程的所以是高级的语言，比如JAVA PYTHON PHP等，这种方式因为要运行虚拟机或是解释器还要运行垃圾收集程序等所以这种语言编写的程序通常效率会比较低。但是对于那些对性能要求不高的终端程序的开发来说是非常高效的。由于这些语言是面向虚拟机或是解释器和硬件没有任何关系(当然解释器或是虚拟机也是由C语言编写的，需要考虑硬件的兼容性的)，这种编写的程序一般就是一次编写到处运行。</p>
+<p>编程语言层次总结如下：</p>
+<blockquote>
+<ul>
+<li><p>汇编语言：微码编程</p>
+<p>系统中某些与硬件相关的代码，驱动程序开发</p>
+</li>
+<li><p>高级语言：C或C++</p>
+<p>系统级应用，和对性能要求较高驱动程序开发等</p>
+</li>
+<li><p>高级应用：JAVA,Python，PHP</p>
+<p>开发应用程序，一次编写到处运行</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Linux的发行版"><a href="#Linux的发行版" class="headerlink" title="Linux的发行版"></a>Linux的发行版</h3><p>从操作系统的层级结构可以知道对于Linux操作系统来说由kernel，glibc，和一个人机交互的UI程序，通常Linux系统下的UI程序为bash（CLI），可以试想如果我们要想学Linux我们拿到的只有这些源程序。先不说学Linux就先将这些零件组装成一个可以运行的操作系统怎么也要需要半年或是更多的时间的吧。所以如果对于新手这样学Linux…我想这样能学Linux的人也就更少了。</p>
+<p>所以就有一些有能力的人从中看到商机，他们负责将这些源程序进行编译，组合在一张光盘内，而对于使用者可以直接将光盘插入电脑然后下一步下一步就能完成操作系统的安装。这样打包发行的企业叫做发行商，而他们所做的系统叫做发行版。目前主流的发行版有如下几个：</p>
+<blockquote>
+<ul>
+<li><p>SlackWare：<img src="/2018/07/18/redhat02/slackware.png" alt=""></p>
+<p>基于SlackWare的二次发行版：S.U.S.E  <img src="/2018/07/18/redhat02/suse.png" alt=""></p>
+<p>基于S.U.S.E的二次发行版：OpenSUSE <img src="/2018/07/18/redhat02/opensuse.png" alt=""></p>
+<p>对于suse（一只绿色的大蜥蜴）通常在欧洲国家比较流行，在国内对于华为公司他们在欧洲会有很多项目所以华为公司通常都会要求会S.U.S.E</p>
+</li>
+<li><p>debian：<img src="/2018/07/18/redhat02/debian.png" alt=""></p>
+<p>debian目前采用的还是社区维护方式，没有企业作为后台支持，但这也是最具有原汁原味的Linux发行版。</p>
+<p>基于debian的最著名的发行版，反正目前实验室用的全是这个版本：ubuntu <img src="/2018/07/18/redhat02/ubuntu.png" alt=""></p>
+<p>基于ubuntu的二次发行版，MINT这个版本作为桌面版确实漂亮，我再U盘中安装系统就是这个： <img src="/2018/07/18/redhat02/mint.png" alt=""></p>
+</li>
+<li><p>Redhat：<img src="/2018/07/18/redhat02/redhat.png" alt=""></p>
+<p>redhat1993年成立（和我一样大的岁数，这也是我为什么如此喜欢redhat的缘故），是目前最流行的服务器运行版本。因为在服务器上运行所以要求较高的稳定性，通常18个月发行一个新版本。</p>
+<p>redhat公司在 2003年成立Fedora（个人桌面版本）：<img src="/2018/07/18/redhat02/fedora.png" alt=""></p>
+<p>主要是测试新版本的bug和测试新软件，通常每6个月发行一个新版本。</p>
+<p>基于redhat的二次编译发行版 CentOS ：<img src="/2018/07/18/redhat02/centos.png" alt=""></p>
+<p>国内服务器目前使用最对的版本。我的虚拟机中安装的也是这个版本。</p>
+</li>
+<li><p>ArchLinux：<img src="/2018/07/18/redhat02/archlinux.png" alt=""></p>
+<p>最近出现的发行版，它的特点是有轻量级的系统和精巧的程序包管理器。</p>
+</li>
+<li><p>Gentoo：<img src="/2018/07/18/redhat02/gentoo.png" alt=""></p>
+<p>Gentoo是门槛比较高的操作系统，通常它的所有软件都需要自行编译安装，它认为这样才可以更好的发挥硬件的性能。</p>
+</li>
+<li><p>Android：<img src="/2018/07/18/redhat02/android.png" alt=""></p>
+<p>对于安卓肯定不陌生。它的组成是linux内核+busybox+java虚拟机组成，所以他也算是linux的一个版本吧。</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="开源协定"><a href="#开源协定" class="headerlink" title="开源协定"></a>开源协定</h3><p>GNU当初进行软件共产主义运动的目的就是实现软件的自由话，开源协定的目的就是实现软件的自由话，自由意味着对开源软件可以自由学习和修改（也就是支持任何打开方式）自由分发，自由创建衍生版。</p>
+<p>这里只介绍一些开源协定：</p>
+<blockquote>
+<ul>
+<li>GPL：</li>
+<li>LGPL：</li>
+<li>Apache：</li>
+<li>BSD：</li>
+</ul>
+</blockquote>
+<h3 id="Linux的哲学思想"><a href="#Linux的哲学思想" class="headerlink" title="Linux的哲学思想"></a>Linux的哲学思想</h3><p>了解Linux的哲学思想可以指导我们如何学习Linux，及如何更快的了解其本质。</p>
+<ul>
+<li><p>[x] 一切皆文件</p>
+<p>把几乎所资源包括硬件设备都组织为文件格式，可以对任意设备进行类似文件的操作，read，close，open，close等操作。</p>
+</li>
+<li><p>[x] 由众多单一目的的小程序组成</p>
+<p>一个程序只实现一个功能，而且要做好，组合小程序完成复杂任务。</p>
+</li>
+<li><p>[x] 尽量避免跟用户交互</p>
+<p>目标：实现脚本编程，可以自动完成某些功能。</p>
+</li>
+<li><p>[x] 使用纯文本文件保存配置信息</p>
+<p>目标：一款合用的文本编辑器即能完成系统的配置工作。</p>
+</li>
+</ul>
+<h3 id="或许Centos的发行版"><a href="#或许Centos的发行版" class="headerlink" title="或许Centos的发行版"></a>或许Centos的发行版</h3><p>通过国内的镜像文件即可获得Centos的发行版。</p>
+<p><a href="https://mirrors.aliyun.com/centos/" target="_blank" rel="noopener">阿里云镜像站</a></p>
+<p><a href="http://mirrors.163.com/" target="_blank" rel="noopener">163镜像站</a></p>
+<h2 id="Linux基础入门（二）"><a href="#Linux基础入门（二）" class="headerlink" title="Linux基础入门（二）"></a>Linux基础入门（二）</h2>
       
       
     </div>
@@ -304,7 +399,7 @@
         <p><span>本文标题:</span><a href="/2018/07/18/redhat02/">小红帽第二集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月18日 - 21时55分</p>
-        <p><span>最后更新:</span>2018年07月18日 - 22时03分</p>
+        <p><span>最后更新:</span>2018年07月19日 - 10时58分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/18/redhat02/" title="小红帽第二集">https://zhangdashuo.github.io/2018/07/18/redhat02/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/18/redhat02/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -333,7 +428,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础入门（一）"><span class="toc-number">1.</span> <span class="toc-text">Linux基础入门（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POSIX规范"><span class="toc-number">1.1.</span> <span class="toc-text">POSIX规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编程语言层级"><span class="toc-number">1.2.</span> <span class="toc-text">编程语言层级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux的发行版"><span class="toc-number">1.3.</span> <span class="toc-text">Linux的发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源协定"><span class="toc-number">1.4.</span> <span class="toc-text">开源协定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux的哲学思想"><span class="toc-number">1.5.</span> <span class="toc-text">Linux的哲学思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#或许Centos的发行版"><span class="toc-number">1.6.</span> <span class="toc-text">或许Centos的发行版</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础入门（二）"><span class="toc-number">2.</span> <span class="toc-text">Linux基础入门（二）</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
