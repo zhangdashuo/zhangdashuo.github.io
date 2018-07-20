@@ -26,7 +26,9 @@
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/archlinux.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/gentoo.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/android.png">
-<meta property="og:updated_time" content="2018-07-19T03:28:07.028Z">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/C:/Users/zhang/Desktop/我的博客/tty.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/C:/Users/zhang/Desktop/我的博客/pts.png">
+<meta property="og:updated_time" content="2018-07-20T05:01:59.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第二集">
 <meta name="twitter:description" content="小红帽第二集： OS Linux发行版，Linux系统基础使用入门，Linux命令帮助">
@@ -264,7 +266,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">2,310字</span>
+	<span class="post-count">7,284字</span>
       </span>
     </span>
 										
@@ -274,7 +276,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">8分</span>
+	<span class="post-count">28分</span>
       </span>
     </span>
 </div>
@@ -387,10 +389,221 @@
 <p>  目标：实现脚本编程，可以自动完成某些功能。</p>
 <p>  [x] 使用纯文本文件保存配置信息</p>
 <p>  目标：一款合用的文本编辑器即能完成系统的配置工作。</p>
-<h3 id="获取Centos的发行版"><a href="#获取Centos的发行版" class="headerlink" title="获取Centos的发行版"></a>获取Centos的发行版</h3><p>通过国内的镜像文件即可获得Centos的发行版。</p>
+<h3 id="获取Centos的发行版"><a href="#获取Centos的发行版" class="headerlink" title="获取Centos的发行版"></a>获取Centos的发行版</h3><p>通过国内的镜像站点即可获得Centos的发行版。</p>
 <p><a href="https://mirrors.aliyun.com/centos/" target="_blank" rel="noopener">阿里云镜像站</a></p>
 <p><a href="http://mirrors.163.com/" target="_blank" rel="noopener">163镜像站</a></p>
-<h2 id="Linux基础入门（二）"><a href="#Linux基础入门（二）" class="headerlink" title="Linux基础入门（二）"></a>Linux基础入门（二）</h2>
+<h2 id="Linux基础入门（二）"><a href="#Linux基础入门（二）" class="headerlink" title="Linux基础入门（二）"></a>Linux基础入门（二）</h2><h3 id="Linux的终端类型"><a href="#Linux的终端类型" class="headerlink" title="Linux的终端类型"></a>Linux的终端类型</h3><p>我们在使用Linux时其实经常和终端打交道。终端是用户与主机交互必然要用到的设备。在早些UNIX的时代那是的大型机为了实现多用户的方式就设置了分屏器，分屏器中有很多接口可以接入显示器设备和键盘设备。这样用户只要带着自己的显示器和键盘就可以登入系统。这就是UNIX的多用户多任务操作系统，在后来Linux也继承了UNIX的多任务多用户的模式，其实Linux叫做UNIX-Like操作系统，它的操作和UNIX还是非常像的。下面来说Linxu下的终端类型有如下几种：</p>
+<blockquote>
+<ul>
+<li>物理终端：直接接入本机的显示器和键盘设备。在现代的Linux系统下物理终端只在系统启动时的运行结果的输出，而当系统完全启动之后就不会再使用了。物理终端的设备文件为：/dev/console</li>
+<li>虚拟终端：附加在物理终端之上的以软件方式虚拟实现的终端，对于CentOS来说默认启动6个虚拟终端。按住Ctrl+Alt+F# #号的取值范围为[1,6]。虚拟终端的设备文件为：/dev/tty#。对于虚拟终端如图所示：<img src="/2018/07/18/redhat02/C:/Users\zhang\Desktop\我的博客\tty.png" alt=""></li>
+<li>图形终端：附加在物理终端之上的以软件方式虚拟实现的终端，额外会提供桌面环境。对于图像终端就是我们安装好Linux如果安装了KDE或是GNOME桌面环境，然后开机所看到的桌面环境。</li>
+<li>模拟终端：纯软件方式实现，而且不会附加在物理终端之上，而是附加在图形终端或远程终端。图形界面下打开的命令行接口，基于ssh协议或telnet协议等远程打开的界面都叫做模拟终端，模拟终端的设备路径为：/dev/pts/#。我这里使用的xshell登陆的服务器如图所示：<img src="/2018/07/18/redhat02/C:/Users\zhang\Desktop\我的博客\pts.png" alt=""></li>
+</ul>
+</blockquote>
+<h3 id="交互式接口"><a href="#交互式接口" class="headerlink" title="交互式接口"></a>交互式接口</h3><p>终端是一个软件但是不是交互软件，启动终端后，在终端设备附加一个交互式应用程序，这个应用程序叫做交互式接口。</p>
+<p>Linux下交互式接口有两类，一类为图形桌面（GUI），令一类为命令行接口（CLI）。</p>
+<blockquote>
+<ul>
+<li><p>GUI图形接口：</p>
+<p>就是我们启动Linux后的图形桌面，它是由X protocol，window manager，desktop（桌面系统）组成的。常见的Linux桌面系统主要有如下几种：</p>
+<ol>
+<li>GNOME：使用C语言在gtk下进行研发的（C,GTK）。</li>
+<li>KDE：使用C++语言在QT下就行研发的（C++,QT）。</li>
+<li>XFCE：轻量级桌面系统适用于嵌入式硬件资源比较差的环境，常见的ubuntu的xubutu的桌面环境就是XFCE。</li>
+</ol>
+</li>
+<li><p>CLI命令行接口：</p>
+<p>在命令行下我们登入系统系统就会给我们提供一个shell程序，shell程序是整个系统的外壳，通过它才可以和系统的内核打交道，所以起名为shell（壳，或是炮弹的壳）。常见的shell程序主要有如下几种：</p>
+<ol>
+<li>sh：由bourn研发，这个shell最早是unix的shell程序，因为它是最早的shell程序起名叫做shell牌shell。</li>
+<li>csh：使用C语言进行研发，相对于sh提供更多的特性和接口。</li>
+<li>ksh：由korn研发命名为ksh基于sh兼容csh的诸多特性，并提供更多的新特性。</li>
+<li>bash：（bourn again shell）是sh的升级版，遵守GPL协定即完全开源。bash是目前Linux的默认shell程序。</li>
+<li>zsh：虽然使用了最后一个字母，但是这个shell用的人很少。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="查看系统当前使用的shell"><a href="#查看系统当前使用的shell" class="headerlink" title="查看系统当前使用的shell"></a>查看系统当前使用的shell</h3><p>系统当前使用的shell会保存在SHELL环境变量下，所以直接读取SHELL环境变量的值则可以查看当前系统所用的shell。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ echo $SHELL</span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+<h3 id="显示当前系统所有可以使用的shell"><a href="#显示当前系统所有可以使用的shell" class="headerlink" title="显示当前系统所有可以使用的shell  "></a><span id="jump">显示当前系统所有可以使用的shell  </span></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ cat /etc/shells</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/bash</span><br><span class="line">/sbin/nologin</span><br><span class="line">/usr/bin/sh</span><br><span class="line">/usr/bin/bash</span><br><span class="line">/usr/sbin/nologin</span><br><span class="line">/bin/tcsh</span><br><span class="line">/bin/csh</span><br></pre></td></tr></table></figure>
+<h3 id="bash的命令提示符"><a href="#bash的命令提示符" class="headerlink" title="bash的命令提示符"></a>bash的命令提示符</h3><p>我们打开任何一个终端登入系统之后都会看到<code>[zhangshuo@localhost ~]$</code> 这样的字样，这就是prompt，首先对于<code>[zhangshuo@localhost ~]</code>这个显示样子是由bash提供的，是由一个叫做PS1环境变量所定义的，我们可以看一下PS1所定义的内容如下所示：</p>
+<p><code>[zhangshuo@localhost ~]$ echo $PS1</code><br><code>[\u@\h \W]\$</code></p>
+<p>对于这段不叫做提示符，这段后面的$符是真正的命令提示符。Linux的命令提示符有两种：</p>
+<ol>
+<li>普通用户的提示符：$</li>
+<li>管理员的的提示符：#</li>
+</ol>
+<h3 id="shell运行程序的过程"><a href="#shell运行程序的过程" class="headerlink" title="shell运行程序的过程"></a>shell运行程序的过程</h3><p>shell要运行程序只需要在命令提示符下输入命令，然后按回车键即可运行程序。提交程序的过程为提请shell程序找到键入命令所对应的可执行程序或代码，并由其分析后提交给内核分配资源并将其运行起来。程序其实是放在硬盘中的代码，但是程序在运行起来之后就表现为一个或多个进程。</p>
+<p>shell中可执行的命令有两类：</p>
+<ol>
+<li>内建命令：由shell自带的，而且通过某命令行形式提供。</li>
+<li>外部命令：在当前系统的某文件系统路径下有对应的可执行程序文件。对于外部命令可以使用which，whereis来查看该命令所在的位置（这个位置为可执行二进制程序所在的位置）。</li>
+</ol>
+<p><a href="#jump">区别内部命令或外部命令的命令：</a></p>
+<p><code>type COMMAND</code></p>
+<p>比如：</p>
+<p><code>[zhangshuo@localhost ~]$ type type</code><br><code>type is a shell builtin</code></p>
+<h3 id="运行命令格式"><a href="#运行命令格式" class="headerlink" title="运行命令格式"></a>运行命令格式</h3><p><code>COMMAND [OPTIONS] [ARGUMENTS]</code></p>
+<p>选项：用于启用或关闭命令的某个或某些功能，选项又分长选项和短选项。</p>
+<p>​    短选项：-c ，例如ls命令的 -l ，-h 多个短选项可以合并使用，例如<code>ls -l -h</code>可合并使用为 <code>ls -lh</code></p>
+<p>​    长选项：–word，例如ls命令的 –long,–human-readable</p>
+<p>参数：命令的作用对象（给命令提供的数据）</p>
+<p>注意：</p>
+<ol>
+<li>多个选项以及多个参数和命令之间都应该使用空白字符进行分割。</li>
+<li>取消命令执行：Ctrl+c</li>
+</ol>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>计算机中的文件都有两类数据：</p>
+<ol>
+<li>元数据：metadata 文件的文件名，时间戳，大小，路径等外围特征都为元数据。</li>
+<li>数据：data 就是文件中所存放的数据内容。</li>
+</ol>
+<h4 id="Linux下的文件格式"><a href="#Linux下的文件格式" class="headerlink" title="Linux下的文件格式"></a>Linux下的文件格式</h4><ol>
+<li>文件名严格区分字符大小写：file1，File1，FILE1三个文件表示三个不同的文件。</li>
+<li>文件名可使用除/以外的任意字符，不建议使用特殊字符。</li>
+<li>文件名长度最长不能超过255个字符。</li>
+<li>所有以.开头的文件都为隐藏文件。</li>
+</ol>
+<h4 id="Linux下的路径格式"><a href="#Linux下的路径格式" class="headerlink" title="Linux下的路径格式"></a>Linux下的路径格式</h4><ol>
+<li>绝对路径：从根目录起始的路径。</li>
+<li>相对路径：从当前位置起始的路径。当前位置的表示方式：（1）./（2）省略上述符号（3）..表示当前目录的上一级目录。</li>
+<li>当前目录：current directory，也称作working directory ，登入系统之后会一直处于某个目录下，当前所处的目录就为当前目录或工作目录。</li>
+</ol>
+<p>查看当前目录的命令为：<code>pwd</code> （printing working directory 的首字母缩写）。</p>
+<p>其实对于各个Linux的发行版来说它们的根目录的结构都很类似，因为他们都遵循LSB（Linux standard base）规范。目的是对于各个发行版都可以很快使用而保持linux的结构。</p>
+<h2 id="Linux的命令帮助"><a href="#Linux的命令帮助" class="headerlink" title="Linux的命令帮助"></a>Linux的命令帮助</h2><p>Linux下的命令有成千上万个我们不可能都记住每个命令，包括每个命令的选项所表示的内容。所以我们一般记得需要完成相应的工作所使用的对应的命令的名字就行，当然对于常用的命令的选项格式还是需要记得的。所以知道命令名称查看该命令的详细使用方式时就需要查看该命令的帮助文档。</p>
+<h3 id="对于内部命令帮助的获取"><a href="#对于内部命令帮助的获取" class="headerlink" title="对于内部命令帮助的获取"></a>对于内部命令帮助的获取</h3><p>使用：help COMMAND即可获取内部命令的使用帮助。</p>
+<h3 id="对于外部命令帮助的获取"><a href="#对于外部命令帮助的获取" class="headerlink" title="对于外部命令帮助的获取"></a>对于外部命令帮助的获取</h3><ol>
+<li>COMMAND –help 或是COMAND -h即可查看简要的帮助信息。</li>
+<li>使用手册（manual）。使用方式：man COMAND</li>
+<li>信息页。使用方式：info COMMAND</li>
+<li>程序自身的帮助文档。程序包中的README INSTALL CHANGLELOG等文件中可以查看。</li>
+<li>程序官方文档。</li>
+<li>发行版的官方文档。</li>
+<li>百度或是Google</li>
+</ol>
+<h3 id="程序运行过程和hash"><a href="#程序运行过程和hash" class="headerlink" title="程序运行过程和hash"></a>程序运行过程和hash</h3><p>上面的shell运行程序的过程也提到过，shell会寻找命令所在的位置然后运行。它的搜寻过程肯定不是在整个根目录下进行寻找，因为这样不仅浪费时间而且没有必要，因为通常可执行的文件一般都会放在固定的路径中，对于这些路径会在小红帽第三集中进行说明。所以shell寻找路径是有目的的寻找的，它只会在PATH环境变量中规定的路径进行搜索。查看自己的环境变量值可以使用<code>echo $PATH</code>来查看程序的搜索路径。</p>
+<p>注意：shell对于PATH环境变量中的路径是按着自左至右的顺序去寻找，如果找到则停止寻找。</p>
+<p>shell本身在查找到程序之后为了加速程序运行会将本次找到的命令路径结果会缓存至KV(KEY-VALUE，键值存储)中，当下次再次运行该命令时则直接在缓存中查找速度会更快。查看系统中的键值存储命令为：<code>hash</code>。如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ hash</span><br><span class="line">hits	COMMAND   1	/usr/bin/man</span><br><span class="line">   2	/usr/bin/ls</span><br><span class="line">   1	/usr/bin/free</span><br><span class="line">   7	/usr/bin/clear</span><br></pre></td></tr></table></figure>
+<p>注意：当某程序被哈希时，若此时移动该程序则再次运行该命令会找不到该命令，即使移动后的位置在PATH环境变量中，此时应该清楚hash后重新运行该程序。清楚哈希缓存的命令为：<code>hash -r</code></p>
+<h3 id="命令历史的管理"><a href="#命令历史的管理" class="headerlink" title="命令历史的管理"></a>命令历史的管理</h3><p>命令历史的作用是记录我们登陆系统之后所执行过的命令，登陆shell时，系统会读取命令历史文件中记录下的命令。历史文件为：~/.bash_history文件。登陆进shell后新执行的命令只会记录在缓存中，这些命令会在用户退出系统时追加至命令历史中。例如我的系统查看家目录下的.bash_history的内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ cat .bash_history </span><br><span class="line">ifconfig</span><br><span class="line">ping www.baidu.com</span><br><span class="line">shutdown -r now</span><br><span class="line">ifconfig</span><br><span class="line">su - root</span><br><span class="line">exit</span><br><span class="line">su - root</span><br><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+<p>查看目前缓存的命令为：<code>history</code>，我系统所缓存的结果为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ history </span><br><span class="line">1  ifconfig</span><br><span class="line">2  ping www.baidu.com</span><br><span class="line">3  shutdown -r now</span><br><span class="line">4  ifconfig</span><br></pre></td></tr></table></figure>
+<p>history命令的使用：</p>
+<p>-a：追加本次会话新执行的命令历史列表至命令历史文件中。</p>
+<p>-d：删除命令历史中指定偏移位置处的命令历史。</p>
+<p>-c：清空命令历史。</p>
+<h3 id="bash特性之一命令历史"><a href="#bash特性之一命令历史" class="headerlink" title="bash特性之一命令历史"></a>bash特性之一命令历史</h3><p>可以看到history命令的执行结果的命令都有序号，此时可以使用：!#:运行历史中第#条命令。!string：运行命令历史中最近一个以string开头的命令。!!:重复运行上一条执行的命令。</p>
+<h3 id="外部命令的获取详解"><a href="#外部命令的获取详解" class="headerlink" title="外部命令的获取详解"></a>外部命令的获取详解</h3><ol>
+<li>man COMMAND</li>
+</ol>
+<p>使用man命令查看所需命令的帮助文档，对于帮助文档大部分为纯文本文件，所以为了节省空间一般都是压缩存放，而man命令的作用就是找到对应的帮助文档然后解压缩后按着规定的样子进行显示。man的手册页在：/usr/share/man中存放。查看一下/usr/share/man中所存放的内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ ls /usr/share/man</span><br><span class="line">ca  de  fr  it  man0p  man1x  man3   man4   man5x  man7   man8x  mann       pt     sk  uk</span><br><span class="line">cs  en  hu  ja  man1   man2   man3p  man4x  man6   man7x  man9   overrides  pt_BR  sv  zh_CN</span><br><span class="line">da  es  id  ko  man1p  man2x  man3x  man5   man6x  man8   man9x  pl         ru     tr  zh_TW</span><br></pre></td></tr></table></figure>
+<p>可以看到有man1-man9这样几个文件夹。</p>
+<p>注意：有些命令在不止一个章节中存在帮助手册，要查看指定章节中的手册可以使用：<code>whatis COMMAND</code>来查看命令所存在的章节情况。例如查看read命令所在的man章节如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ whatis read</span><br><span class="line">read (1)             - bash built-in commands, see bash(1)</span><br><span class="line">read (1p)            - read a line from standard input</span><br><span class="line">read (2)             - read from a file descriptor</span><br><span class="line">read (3p)            - read from a file</span><br></pre></td></tr></table></figure>
+<p>常用的章节为man1-man8，各个章节所存放的内容如下，可以使用ls命令查看各个文件夹下所包含的内容：</p>
+<p>​    man1：用户命令<br>​    man2：系统调用<br>​    man3：库调用<br>​    man4：设备及特殊文件<br>​    man5：配置文件格式<br>​    man6：游戏<br>​    man7：杂项<br>​    man8：系统管理类命令</p>
+<p>man搜寻对应命令的帮助文件和shell查找所要运行的命令的原理类似，对于man的查找也是需要规定它的查找路径的，它的配置文件为：/etc/man_db.conf 该文件的首部内容可以使用cat命令来查看内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> This file is used by the man-db package to configure the man and cat paths.</span><br><span class="line"><span class="meta">#</span> It is also used to provide a manpath for those without one by examining</span><br><span class="line"><span class="meta">#</span> their PATH environment variable. For details see the manpath(5) man page.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> Lines beginning with `#' are comments and are ignored. Any combination of</span><br><span class="line"><span class="meta">#</span> tabs or spaces may be used as `whitespace' separators.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> There are three mappings allowed in this file:</span><br><span class="line"><span class="meta">#</span> --------------------------------------------------------</span><br><span class="line"><span class="meta">#</span> MANDATORY_MANPATH                     manpath_element</span><br><span class="line"><span class="meta">#</span> MANPATH_MAP           path_element    manpath_element</span><br><span class="line"><span class="meta">#</span> MANDB_MAP             global_manpath  [relative_catpath]</span><br><span class="line"><span class="meta">#</span>---------------------------------------------------------</span><br><span class="line"><span class="meta">#</span> every automatically generated MANPATH includes these fields</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span>MANDATORY_MANPATH                      /usr/src/pvm3/man</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">MANDATORY_MANPATH                       /usr/man</span><br><span class="line">MANDATORY_MANPATH                       /usr/share/man</span><br><span class="line">MANDATORY_MANPATH                       /usr/local/share/man</span><br><span class="line"><span class="meta">#</span>---------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<p>在配置文件中定义了MANDATORY_MANPATH的全局变量，该全局变量定义了man寻找帮助文档的路径。如果要加入新的man位置可以在此增加MANPATH的路径，或使用命令：<code>man -M /PATH/TO/SOMEWHERE COMMAND</code>指定man命令到该指定的路径下搜索COMMAND命令的手册页并显示之。</p>
+<p>使用man打开的帮助手册中的内容段落说明：</p>
+<p>​    NAME:名称</p>
+<p>​    SYSNOPSIS：命令的简要说明</p>
+<p>​        []:表示可选内容</p>
+<p>​        &lt;&gt;:表示必选内容</p>
+<p>​        a|b:二选一</p>
+<p>​        …:同一内容可以出现多次</p>
+<p>​    DESCRIPTION：命令的描述</p>
+<p>​    OPTIONS：选项</p>
+<p>​    EXAMPLES：例子</p>
+<p>​    AUTHOR：作者</p>
+<p>​    REPORTING BUGS：报告bug</p>
+<p>​    SEE ALSO：也可以查看</p>
+<p>​    </p>
+<ol start="2">
+<li>info</li>
+</ol>
+<p>info COMMAND ：查看信息页</p>
+<ol start="3">
+<li>程序自身的帮助文档</li>
+</ol>
+<p>对于程序自身的帮助文档一般会放在：/usr/share/doc/COMMAND-VERDION，所对应COMMAND的帮助文档，可以在此来查看关于该命令更多的帮助说明。</p>
+<h2 id="Linux基础命令（三）"><a href="#Linux基础命令（三）" class="headerlink" title="Linux基础命令（三）"></a>Linux基础命令（三）</h2><h3 id="关于时间的命令"><a href="#关于时间的命令" class="headerlink" title="关于时间的命令"></a>关于时间的命令</h3><p>date命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">date [OPTION]... [+FORMAT]：显示时间</span><br><span class="line">date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]：设置时间</span><br></pre></td></tr></table></figure>
+<p>FORMAT：用来显示的格式符号</p>
+<p>​    %D:获取日期</p>
+<p>​    %F:获取日期</p>
+<p>​    %T:获取时间</p>
+<p>命令效果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ date +%D</span><br><span class="line">07/20/18</span><br><span class="line">[zhangshuo@localhost ~]$ date +%F</span><br><span class="line">2018-07-20</span><br><span class="line">[zhangshuo@localhost ~]$ date +%T</span><br><span class="line">10:52:19</span><br><span class="line">[zhangshuo@localhost ~]$ date +"This year is %Y.%nToday is %d."</span><br><span class="line">This year is 2018.</span><br><span class="line">Today is 20.</span><br><span class="line">[zhangshuo@localhost ~]$</span><br></pre></td></tr></table></figure>
+<p>Linux的两种时钟：</p>
+<p>​    系统时钟：由Linux内核通过CPU的工作频率进行的计时</p>
+<p>​    硬件时钟：由板卡或是RTC硬件记录的时钟</p>
+<p>​    查看硬件时钟的命令为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ sudo hwclock</span><br><span class="line">[sudo] password for zhangshuo: </span><br><span class="line">Fri 20 Jul 2018 10:57:00 AM CST  -0.035020 seconds</span><br><span class="line">[zhangshuo@localhost ~]$ sudo clock</span><br><span class="line">Fri 20 Jul 2018 10:57:06 AM CST  -0.684968 seconds</span><br></pre></td></tr></table></figure>
+<p>注意：该命令需要管理员权限。</p>
+<p>如果两个时钟不同步时可以使用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hwclock -w :将系统时间同步到硬件时间</span><br><span class="line">hwclock -s :将硬件时间写入到系统时间</span><br></pre></td></tr></table></figure>
+<p>查看日历的命令：</p>
+<p><code>cal</code>可以查看当前的月历。使用如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ cal</span><br><span class="line">July 2018     </span><br><span class="line">Su Mo Tu We Th Fr Sa</span><br><span class="line">1  2  3  4  5  6  7</span><br><span class="line">8  9 10 11 12 13 14</span><br><span class="line">15 16 17 18 19 20 21</span><br><span class="line">22 23 24 25 26 27 28</span><br><span class="line">29 30 31</span><br></pre></td></tr></table></figure>
+<p>也可以使用：<code>cal 2018</code>来查看年历</p>
+<h3 id="目录相关的命令"><a href="#目录相关的命令" class="headerlink" title="目录相关的命令"></a>目录相关的命令</h3><p>对于家目录或主目录：</p>
+<p>​    管理员的家目录为：/root</p>
+<p>​    普通用户的家目录：/home/USERNAME  比如我的家目录为：/home/zhangshuo</p>
+<p>​    ~:表示用户的主目录。</p>
+<p>cd命令：change directory 改变目录</p>
+<p>​    使用cd或cd ~:回到当前用户的主目录</p>
+<p>​    cd ~USERNAME:切换至指定用户的主目录（只有管理员才有进入其他用户主目录的权限）</p>
+<p>​    cd -：在上一个目录和当前目录之间来回切换。（该技巧号称unux管理员惯用十大技巧之一）</p>
+<p>相关的环境变量：</p>
+<p>​    PWD：保存了当前工作目录的路径。可以使用 echo $PWD来查看此时PWD环境变量中所保存的内容。</p>
+<p>​    OLDPWD：保存了上一次所在目录的路径。当然也可以使用echo来查看。</p>
+<p>​    <code>pwd</code>命令可以显示当前目录的路径，使用如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ pwd</span><br><span class="line">/home/zhangshuo</span><br></pre></td></tr></table></figure>
+<p>ls命令：list 显示指定路径下的文件列表</p>
+<p>​    ls [OPTION]… [FILE]…</p>
+<p>​        -a,–all:显示所有文件，包括隐藏文件（以.开头的文件或文件夹）。</p>
+<p>​        -l,–long:以长格式显示，比如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost lftpfile]$ ll hexo.tar.bz2 </span><br><span class="line">-rw-rw-r--. 1 zhangshuo zhangshuo 105330699 Jul 18 09:55 hexo.tar.bz2</span><br></pre></td></tr></table></figure>
+<p>​            其中：-rw-rw-r–</p>
+<p>​            最左侧的第一位表示：文件类型，Linux下的文件类型有：-(普通文件),d(目录文件),l(符号链接),b(块设备),c(字符设备),p(管道文件),s(套接字)。</p>
+<p>​            后面的9位表示：访问权限（perm）。</p>
+<p>​            数字1表示：文件被硬链接的次数。</p>
+<p>​            左侧的zhangshuo表示：文件的属主。</p>
+<p>​            右侧的zhangshuo表示：文件的属组。</p>
+<p>​            105330699表示：文件的大小。</p>
+<p>​            Jul 18 09:55表示：文件最近一次被修改的时间。</p>
+<p>​            hexo.tar.bz2表示：文件名。</p>
+<p>​        -h：单位换算，以人类可读的方式显示。</p>
+<p>​        -d：显示目录自身的相关属性，通常要与-l一起使用。使用该命令组合可以查看文件夹的大小。</p>
+<p>​        -r,–reverse：逆序方式排列。</p>
+<p>​        -R,–recursive:递归显示</p>
+<h3 id="文件查看类命令-cat"><a href="#文件查看类命令-cat" class="headerlink" title="文件查看类命令 cat"></a>文件查看类命令 cat</h3><p>对于文件内容可以使用cat命令进行查看当然不止cat命令可以进行查看：cat - concatenate files and print on the standard output（链接并显示）</p>
+<p>​    cat [OPTION]… [FILE]…</p>
+<p>​        -E：显示行结束符。</p>
+<p>​        -T：显示制表符。</p>
+<p>​        -v：显示非打印字符。</p>
+<p>​        -n：显示行号。</p>
+<h3 id="文件内容类型查看命令-file"><a href="#文件内容类型查看命令-file" class="headerlink" title="文件内容类型查看命令 file"></a>文件内容类型查看命令 file</h3><p>命令：file /PATH/TO/SOMEFILE 即可查看文件内容所属类型，如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost lftpfile]$ file id_rsa.pub </span><br><span class="line">id_rsa.pub: OpenSSH RSA public key</span><br><span class="line">[zhangshuo@localhost lftpfile]$ file /etc/passwd</span><br><span class="line">/etc/passwd: ASCII text</span><br><span class="line">[zhangshuo@localhost lftpfile]$ file /bin/ls</span><br><span class="line">/bin/ls: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32, BuildID[sha1]=c5ad78cfc1de12b9bb6829207cececb990b3e987, stripped</span><br></pre></td></tr></table></figure>
+<h3 id="回显命令-echo"><a href="#回显命令-echo" class="headerlink" title="回显命令 echo"></a>回显命令 echo</h3><p>echo - display a line of text：显示一行文字</p>
+<p>​    -n：禁止自动添加换行符。</p>
+<p>​    -e：允许使用转义字符。</p>
+<p>​    使用实例如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[zhangshuo@localhost lftpfile]$ echo "how are you"</span><br><span class="line">how are you</span><br><span class="line">[zhangshuo@localhost lftpfile]$ echo -n "how are you"</span><br><span class="line">how are you[zhangshuo@localhost lftpfile]$ echo -e "how \n are you.\nhow old are you"</span><br><span class="line"> how </span><br><span class="line">are you.</span><br><span class="line">how old are you</span><br><span class="line">[zhangshuo@localhost lftpfile]$ echo "$PATH" #若引用，变量将以存储的内容显示</span><br><span class="line">/home/zhangshuo/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/node/bin:/home/zhangshuo/.local/bin:/home/zhangshuo/bin</span><br><span class="line">[zhangshuo@localhost lftpfile]$ echo '$PATH' #强引用，直接引用不显示变量的值</span><br><span class="line"><span class="meta">$</span>PATH</span><br></pre></td></tr></table></figure>
+<h3 id="系统管理类命令"><a href="#系统管理类命令" class="headerlink" title="系统管理类命令"></a>系统管理类命令</h3><p>关机：</p>
+<p>​    halt，poweroff，shutdown -h now，init 0</p>
+<p>重启：</p>
+<p>​    reboot，shutdown -r now，init 6</p>
+<p>用户登陆相关：</p>
+<p>​    who，whoami，w</p>
+
       
       
     </div>
@@ -402,7 +615,7 @@
         <p><span>本文标题:</span><a href="/2018/07/18/redhat02/">小红帽第二集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月18日 - 21时55分</p>
-        <p><span>最后更新:</span>2018年07月19日 - 11时28分</p>
+        <p><span>最后更新:</span>2018年07月20日 - 13时01分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/18/redhat02/" title="小红帽第二集">https://zhangdashuo.github.io/2018/07/18/redhat02/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/18/redhat02/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -431,7 +644,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础入门（一）"><span class="toc-number">1.</span> <span class="toc-text">Linux基础入门（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POSIX规范"><span class="toc-number">1.1.</span> <span class="toc-text">POSIX规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编程语言层级"><span class="toc-number">1.2.</span> <span class="toc-text">编程语言层级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux的发行版"><span class="toc-number">1.3.</span> <span class="toc-text">Linux的发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源协定"><span class="toc-number">1.4.</span> <span class="toc-text">开源协定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux的哲学思想"><span class="toc-number">1.5.</span> <span class="toc-text">Linux的哲学思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取Centos的发行版"><span class="toc-number">1.6.</span> <span class="toc-text">获取Centos的发行版</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础入门（二）"><span class="toc-number">2.</span> <span class="toc-text">Linux基础入门（二）</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础入门（一）"><span class="toc-number">1.</span> <span class="toc-text">Linux基础入门（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POSIX规范"><span class="toc-number">1.1.</span> <span class="toc-text">POSIX规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编程语言层级"><span class="toc-number">1.2.</span> <span class="toc-text">编程语言层级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux的发行版"><span class="toc-number">1.3.</span> <span class="toc-text">Linux的发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开源协定"><span class="toc-number">1.4.</span> <span class="toc-text">开源协定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux的哲学思想"><span class="toc-number">1.5.</span> <span class="toc-text">Linux的哲学思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取Centos的发行版"><span class="toc-number">1.6.</span> <span class="toc-text">获取Centos的发行版</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础入门（二）"><span class="toc-number">2.</span> <span class="toc-text">Linux基础入门（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux的终端类型"><span class="toc-number">2.1.</span> <span class="toc-text">Linux的终端类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交互式接口"><span class="toc-number">2.2.</span> <span class="toc-text">交互式接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看系统当前使用的shell"><span class="toc-number">2.3.</span> <span class="toc-text">查看系统当前使用的shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示当前系统所有可以使用的shell"><span class="toc-number">2.4.</span> <span class="toc-text">显示当前系统所有可以使用的shell  </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash的命令提示符"><span class="toc-number">2.5.</span> <span class="toc-text">bash的命令提示符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shell运行程序的过程"><span class="toc-number">2.6.</span> <span class="toc-text">shell运行程序的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行命令格式"><span class="toc-number">2.7.</span> <span class="toc-text">运行命令格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件系统"><span class="toc-number">2.8.</span> <span class="toc-text">文件系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux下的文件格式"><span class="toc-number">2.8.1.</span> <span class="toc-text">Linux下的文件格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux下的路径格式"><span class="toc-number">2.8.2.</span> <span class="toc-text">Linux下的路径格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux的命令帮助"><span class="toc-number">3.</span> <span class="toc-text">Linux的命令帮助</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对于内部命令帮助的获取"><span class="toc-number">3.1.</span> <span class="toc-text">对于内部命令帮助的获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于外部命令帮助的获取"><span class="toc-number">3.2.</span> <span class="toc-text">对于外部命令帮助的获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序运行过程和hash"><span class="toc-number">3.3.</span> <span class="toc-text">程序运行过程和hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令历史的管理"><span class="toc-number">3.4.</span> <span class="toc-text">命令历史的管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash特性之一命令历史"><span class="toc-number">3.5.</span> <span class="toc-text">bash特性之一命令历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外部命令的获取详解"><span class="toc-number">3.6.</span> <span class="toc-text">外部命令的获取详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux基础命令（三）"><span class="toc-number">4.</span> <span class="toc-text">Linux基础命令（三）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于时间的命令"><span class="toc-number">4.1.</span> <span class="toc-text">关于时间的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目录相关的命令"><span class="toc-number">4.2.</span> <span class="toc-text">目录相关的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件查看类命令-cat"><span class="toc-number">4.3.</span> <span class="toc-text">文件查看类命令 cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件内容类型查看命令-file"><span class="toc-number">4.4.</span> <span class="toc-text">文件内容类型查看命令 file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回显命令-echo"><span class="toc-number">4.5.</span> <span class="toc-text">回显命令 echo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统管理类命令"><span class="toc-number">4.6.</span> <span class="toc-text">系统管理类命令</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -653,5 +866,5 @@
 
 
   </div>
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"bottom":-10,"display":{"position":"right","width":93,"height":150},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":93,"height":150},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
