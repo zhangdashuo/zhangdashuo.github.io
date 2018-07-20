@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/android.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/tty.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/pts.png">
-<meta property="og:updated_time" content="2018-07-20T05:28:32.108Z">
+<meta property="og:updated_time" content="2018-07-20T05:55:10.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第二集">
 <meta name="twitter:description" content="小红帽第二集： OS Linux发行版，Linux系统基础使用入门，Linux命令帮助">
@@ -266,7 +266,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">7,176字</span>
+	<span class="post-count">7,181字</span>
       </span>
     </span>
 										
@@ -443,8 +443,8 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ type type</span><br><span class="line">type is a shell builtin</span><br></pre></td></tr></table></figure>
 <h3 id="运行命令格式"><a href="#运行命令格式" class="headerlink" title="运行命令格式"></a>运行命令格式</h3><p><code>COMMAND [OPTIONS] [ARGUMENTS]</code></p>
 <p>选项：用于启用或关闭命令的某个或某些功能，选项又分长选项和短选项。</p>
-<p>&emsp;短选项：-c ，例如ls命令的 -l ，-h 多个短选项可以合并使用，例如<code>ls -l -h</code>可合并使用为 <code>ls -lh</code></p>
-<p>&emsp;长选项：–word，例如ls命令的 –long,–human-readable</p>
+<p>&emsp;&emsp;短选项：-c ，例如ls命令的 -l ，-h 多个短选项可以合并使用，例如<code>ls -l -h</code>可合并使用为 <code>ls -lh</code></p>
+<p>&emsp;&emsp;长选项：–word，例如ls命令的 –long,–human-readable</p>
 <p>参数：命令的作用对象（给命令提供的数据）</p>
 <p>注意：</p>
 <ol>
@@ -483,16 +483,16 @@
 <h3 id="程序运行过程和hash"><a href="#程序运行过程和hash" class="headerlink" title="程序运行过程和hash"></a>程序运行过程和hash</h3><p>上面的shell运行程序的过程也提到过，shell会寻找命令所在的位置然后运行。它的搜寻过程肯定不是在整个根目录下进行寻找，因为这样不仅浪费时间而且没有必要，因为通常可执行的文件一般都会放在固定的路径中，对于这些路径会在小红帽第三集中进行说明。所以shell寻找路径是有目的的寻找的，它只会在PATH环境变量中规定的路径进行搜索。查看自己的环境变量值可以使用<code>echo $PATH</code>来查看程序的搜索路径。</p>
 <p>注意：shell对于PATH环境变量中的路径是按着自左至右的顺序去寻找，如果找到则停止寻找。</p>
 <p>shell本身在查找到程序之后为了加速程序运行会将本次找到的命令路径结果会缓存至KV(KEY-VALUE，键值存储)中，当下次再次运行该命令时则直接在缓存中查找速度会更快。查看系统中的键值存储命令为：<code>hash</code>。如下所示：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ hash</span><br><span class="line">hits	COMMAND   1	/usr/bin/man</span><br><span class="line">   2	/usr/bin/ls</span><br><span class="line">   1	/usr/bin/free</span><br><span class="line">   7	/usr/bin/clear</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ hash</span><br><span class="line">hits	COMMAND   </span><br><span class="line">   1	/usr/bin/man</span><br><span class="line">   2	/usr/bin/ls</span><br><span class="line">   1	/usr/bin/free</span><br><span class="line">   7	/usr/bin/clear</span><br></pre></td></tr></table></figure>
 <p>注意：当某程序被哈希时，若此时移动该程序则再次运行该命令会找不到该命令，即使移动后的位置在PATH环境变量中，此时应该清楚hash后重新运行该程序。清楚哈希缓存的命令为：<code>hash -r</code></p>
-<h3 id="命令历史的管理"><a href="#命令历史的管理" class="headerlink" title="命令历史的管理"></a>命令历史的管理</h3><p>命令历史的作用是记录我们登陆系统之后所执行过的命令，登陆shell时，系统会读取命令历史文件中记录下的命令。历史文件为：~/.bash_history文件。登陆进shell后新执行的命令只会记录在缓存中，这些命令会在用户退出系统时追加至命令历史中。例如我的系统查看家目录下的.bash_history的内容如下：</p>
+<h3 id="命令历史的管理"><a href="#命令历史的管理" class="headerlink" title="命令历史的管理"></a>命令历史的管理</h3><p>命令历史的作用是记录我们登陆系统之后所执行过的命令，登陆shell时，系统会读取命令历史文件中记录下的命令。历史文件为：<code>~/.bash_history</code>文件。登陆进shell后新执行的命令只会记录在缓存中，这些命令会在用户退出系统时追加至命令历史中。例如我的系统查看家目录下的.bash_history的内容如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ cat .bash_history </span><br><span class="line">ifconfig</span><br><span class="line">ping www.baidu.com</span><br><span class="line">shutdown -r now</span><br><span class="line">ifconfig</span><br><span class="line">su - root</span><br><span class="line">exit</span><br><span class="line">su - root</span><br><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
-<p>查看目前缓存的命令为：<code>history</code>，我系统所缓存的结果为：</p>
+<p>查看目前缓存的命令为：<code>history</code>，我系统部分缓存的结果为：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ history </span><br><span class="line">1  ifconfig</span><br><span class="line">2  ping www.baidu.com</span><br><span class="line">3  shutdown -r now</span><br><span class="line">4  ifconfig</span><br></pre></td></tr></table></figure>
 <p>history命令的使用：</p>
-<p>-a：追加本次会话新执行的命令历史列表至命令历史文件中。</p>
-<p>-d：删除命令历史中指定偏移位置处的命令历史。</p>
-<p>-c：清空命令历史。</p>
+<p>&emsp;&amp;emsp-a：追加本次会话新执行的命令历史列表至命令历史文件中。</p>
+<p>&emsp;&amp;emsp-d：删除命令历史中指定偏移位置处的命令历史。</p>
+<p>&emsp;&amp;emsp-c：清空命令历史。</p>
 <h3 id="bash特性之一命令历史"><a href="#bash特性之一命令历史" class="headerlink" title="bash特性之一命令历史"></a>bash特性之一命令历史</h3><p>可以看到history命令的执行结果的命令都有序号，此时可以使用：!#:运行历史中第#条命令。!string：运行命令历史中最近一个以string开头的命令。!!:重复运行上一条执行的命令。</p>
 <h3 id="外部命令的获取详解"><a href="#外部命令的获取详解" class="headerlink" title="外部命令的获取详解"></a>外部命令的获取详解</h3><ol>
 <li>man COMMAND</li>
@@ -508,39 +508,38 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> This file is used by the man-db package to configure the man and cat paths.</span><br><span class="line"><span class="meta">#</span> It is also used to provide a manpath for those without one by examining</span><br><span class="line"><span class="meta">#</span> their PATH environment variable. For details see the manpath(5) man page.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> Lines beginning with `#' are comments and are ignored. Any combination of</span><br><span class="line"><span class="meta">#</span> tabs or spaces may be used as `whitespace' separators.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> There are three mappings allowed in this file:</span><br><span class="line"><span class="meta">#</span> --------------------------------------------------------</span><br><span class="line"><span class="meta">#</span> MANDATORY_MANPATH                     manpath_element</span><br><span class="line"><span class="meta">#</span> MANPATH_MAP           path_element    manpath_element</span><br><span class="line"><span class="meta">#</span> MANDB_MAP             global_manpath  [relative_catpath]</span><br><span class="line"><span class="meta">#</span>---------------------------------------------------------</span><br><span class="line"><span class="meta">#</span> every automatically generated MANPATH includes these fields</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span>MANDATORY_MANPATH                      /usr/src/pvm3/man</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">MANDATORY_MANPATH                       /usr/man</span><br><span class="line">MANDATORY_MANPATH                       /usr/share/man</span><br><span class="line">MANDATORY_MANPATH                       /usr/local/share/man</span><br><span class="line"><span class="meta">#</span>---------------------------------------------------------</span><br></pre></td></tr></table></figure>
 <p>在配置文件中定义了MANDATORY_MANPATH的全局变量，该全局变量定义了man寻找帮助文档的路径。如果要加入新的man位置可以在此增加MANPATH的路径，或使用命令：<code>man -M /PATH/TO/SOMEWHERE COMMAND</code>指定man命令到该指定的路径下搜索COMMAND命令的手册页并显示之。</p>
 <p>使用man打开的帮助手册中的内容段落说明：</p>
-<p>​    NAME:名称</p>
-<p>​    SYSNOPSIS：命令的简要说明</p>
-<p>​        []:表示可选内容</p>
-<p>​        &lt;&gt;:表示必选内容</p>
-<p>​        a|b:二选一</p>
-<p>​        …:同一内容可以出现多次</p>
-<p>​    DESCRIPTION：命令的描述</p>
-<p>​    OPTIONS：选项</p>
-<p>​    EXAMPLES：例子</p>
-<p>​    AUTHOR：作者</p>
-<p>​    REPORTING BUGS：报告bug</p>
-<p>​    SEE ALSO：也可以查看</p>
-<p>​    </p>
+<p>&emsp;&emsp;NAME:名称</p>
+<p>&emsp;&emsp;SYSNOPSIS：命令的简要说明</p>
+<p>&emsp;&emsp;&emsp;&emsp;[]:表示可选内容</p>
+<p>&emsp;&emsp;&emsp;&emsp;&lt;&gt;:表示必选内容</p>
+<p>&emsp;&emsp;&emsp;&emsp;a|b:二选一</p>
+<p>&emsp;&emsp;&emsp;&emsp;…:同一内容可以出现多次</p>
+<p>&emsp;&emsp;DESCRIPTION：命令的描述</p>
+<p>&emsp;&emsp;OPTIONS：选项</p>
+<p>&emsp;&emsp;EXAMPLES：例子</p>
+<p>&emsp;&emsp;AUTHOR：作者</p>
+<p>&emsp;&emsp;REPORTING BUGS：报告bug</p>
+<p>&emsp;&emsp;SEE ALSO：也可以查看    </p>
 <ol start="2">
 <li>info</li>
 </ol>
-<p>info COMMAND ：查看信息页</p>
+<p>&emsp;&emsp;info COMMAND ：查看信息页</p>
 <ol start="3">
 <li>程序自身的帮助文档</li>
 </ol>
-<p>对于程序自身的帮助文档一般会放在：/usr/share/doc/COMMAND-VERDION，所对应COMMAND的帮助文档，可以在此来查看关于该命令更多的帮助说明。</p>
+<p>&emsp;&emsp;对于程序自身的帮助文档一般会放在：/usr/share/doc/COMMAND-VERDION，所对应COMMAND的帮助文档，可以在此来查看关于该命令更多的帮助说明。</p>
 <h2 id="Linux基础命令（三）"><a href="#Linux基础命令（三）" class="headerlink" title="Linux基础命令（三）"></a>Linux基础命令（三）</h2><h3 id="关于时间的命令"><a href="#关于时间的命令" class="headerlink" title="关于时间的命令"></a>关于时间的命令</h3><p>date命令：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">date [OPTION]... [+FORMAT]：显示时间</span><br><span class="line">date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]：设置时间</span><br></pre></td></tr></table></figure>
 <p>FORMAT：用来显示的格式符号</p>
-<p>​    %D:获取日期</p>
-<p>​    %F:获取日期</p>
-<p>​    %T:获取时间</p>
+<p>&emsp;&emsp;%D:获取日期</p>
+<p>&emsp;&emsp;%F:获取日期</p>
+<p>&emsp;&emsp;%T:获取时间</p>
 <p>命令效果如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ date +%D</span><br><span class="line">07/20/18</span><br><span class="line">[zhangshuo@localhost ~]$ date +%F</span><br><span class="line">2018-07-20</span><br><span class="line">[zhangshuo@localhost ~]$ date +%T</span><br><span class="line">10:52:19</span><br><span class="line">[zhangshuo@localhost ~]$ date +"This year is %Y.%nToday is %d."</span><br><span class="line">This year is 2018.</span><br><span class="line">Today is 20.</span><br><span class="line">[zhangshuo@localhost ~]$</span><br></pre></td></tr></table></figure>
 <p>Linux的两种时钟：</p>
-<p>​    系统时钟：由Linux内核通过CPU的工作频率进行的计时</p>
-<p>​    硬件时钟：由板卡或是RTC硬件记录的时钟</p>
-<p>​    查看硬件时钟的命令为：</p>
+<p>&emsp;&emsp;系统时钟：由Linux内核通过CPU的工作频率进行的计时</p>
+<p>&emsp;&emsp;硬件时钟：由板卡或是RTC硬件记录的时钟</p>
+<p>&emsp;&emsp;查看硬件时钟的命令为：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ sudo hwclock</span><br><span class="line">[sudo] password for zhangshuo: </span><br><span class="line">Fri 20 Jul 2018 10:57:00 AM CST  -0.035020 seconds</span><br><span class="line">[zhangshuo@localhost ~]$ sudo clock</span><br><span class="line">Fri 20 Jul 2018 10:57:06 AM CST  -0.684968 seconds</span><br></pre></td></tr></table></figure>
 <p>注意：该命令需要管理员权限。</p>
 <p>如果两个时钟不同步时可以使用：</p>
@@ -550,55 +549,56 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ cal</span><br><span class="line">July 2018     </span><br><span class="line">Su Mo Tu We Th Fr Sa</span><br><span class="line">1  2  3  4  5  6  7</span><br><span class="line">8  9 10 11 12 13 14</span><br><span class="line">15 16 17 18 19 20 21</span><br><span class="line">22 23 24 25 26 27 28</span><br><span class="line">29 30 31</span><br></pre></td></tr></table></figure>
 <p>也可以使用：<code>cal 2018</code>来查看年历</p>
 <h3 id="目录相关的命令"><a href="#目录相关的命令" class="headerlink" title="目录相关的命令"></a>目录相关的命令</h3><p>对于家目录或主目录：</p>
-<p>​    管理员的家目录为：/root</p>
-<p>​    普通用户的家目录：/home/USERNAME  比如我的家目录为：/home/zhangshuo</p>
-<p>​    ~:表示用户的主目录。</p>
+<p>&emsp;&emsp;管理员的家目录为：/root</p>
+<p>&emsp;&emsp;普通用户的家目录：/home/USERNAME  比如我的家目录为：/home/zhangshuo</p>
+<p>&emsp;&emsp;~:表示用户的主目录。</p>
 <p>cd命令：change directory 改变目录</p>
-<p>​    使用cd或cd ~:回到当前用户的主目录</p>
-<p>​    cd ~USERNAME:切换至指定用户的主目录（只有管理员才有进入其他用户主目录的权限）</p>
-<p>​    cd -：在上一个目录和当前目录之间来回切换。（该技巧号称unux管理员惯用十大技巧之一）</p>
+<p>&emsp;&emsp;使用cd或cd ~:回到当前用户的主目录</p>
+<p>&emsp;&emsp;cd ~USERNAME:切换至指定用户的主目录（只有管理员才有进入其他用户主目录的权限）</p>
+<p>&emsp;&emsp;cd -：在上一个目录和当前目录之间来回切换。（该技巧号称unux管理员惯用十大技巧之一）</p>
 <p>相关的环境变量：</p>
-<p>​    PWD：保存了当前工作目录的路径。可以使用 echo $PWD来查看此时PWD环境变量中所保存的内容。</p>
-<p>​    OLDPWD：保存了上一次所在目录的路径。当然也可以使用echo来查看。</p>
-<p>​    <code>pwd</code>命令可以显示当前目录的路径，使用如下：</p>
+<p>&emsp;&emsp;PWD：保存了当前工作目录的路径。可以使用 echo $PWD来查看此时PWD环境变量中所保存的内容。</p>
+<p>&emsp;&emsp;OLDPWD：保存了上一次所在目录的路径。当然也可以使用echo来查看。</p>
+<p>&emsp;&emsp;<code>pwd</code>命令可以显示当前目录的路径，使用如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ pwd</span><br><span class="line">/home/zhangshuo</span><br></pre></td></tr></table></figure>
 <p>ls命令：list 显示指定路径下的文件列表</p>
-<p>​    ls [OPTION]… [FILE]…</p>
-<p>​        -a,–all:显示所有文件，包括隐藏文件（以.开头的文件或文件夹）。</p>
-<p>​        -l,–long:以长格式显示，比如</p>
+<p>&emsp;&emsp;ls [OPTION]… [FILE]…</p>
+<p>&emsp;&emsp;&emsp;&emsp;-a,–all:显示所有文件，包括隐藏文件（以.开头的文件或文件夹）。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-l,–long:以长格式显示，比如</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost lftpfile]$ ll hexo.tar.bz2 </span><br><span class="line">-rw-rw-r--. 1 zhangshuo zhangshuo 105330699 Jul 18 09:55 hexo.tar.bz2</span><br></pre></td></tr></table></figure>
-<p>​            其中：-rw-rw-r–</p>
-<p>​            最左侧的第一位表示：文件类型，Linux下的文件类型有：-(普通文件),d(目录文件),l(符号链接),b(块设备),c(字符设备),p(管道文件),s(套接字)。</p>
-<p>​            后面的9位表示：访问权限（perm）。</p>
-<p>​            数字1表示：文件被硬链接的次数。</p>
-<p>​            左侧的zhangshuo表示：文件的属主。</p>
-<p>​            右侧的zhangshuo表示：文件的属组。</p>
-<p>​            105330699表示：文件的大小。</p>
-<p>​            Jul 18 09:55表示：文件最近一次被修改的时间。</p>
-<p>​            hexo.tar.bz2表示：文件名。</p>
-<p>​        -h：单位换算，以人类可读的方式显示。</p>
-<p>​        -d：显示目录自身的相关属性，通常要与-l一起使用。使用该命令组合可以查看文件夹的大小。</p>
-<p>​        -r,–reverse：逆序方式排列。</p>
-<p>​        -R,–recursive:递归显示</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;其中：-rw-rw-r–</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;最左侧的第一位表示：文件类型，Linux下的文件类型有：-(普通文件),d(目录文件),l(符号链接),b(块设备),c(字符设备),p(管道文件),s(套接字)。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;后面的9位表示：访问权限（perm）。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;数字1表示：文件被硬链接的次数。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;左侧的zhangshuo表示：文件的属主。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;右侧的zhangshuo表示：文件的属组。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;105330699表示：文件的大小。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Jul 18 09:55表示：文件最近一次被修改的时间。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;hexo.tar.bz2表示：文件名。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-h：单位换算，以人类可读的方式显示。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-d：显示目录自身的相关属性，通常要与-l一起使用。使用该命令组合可以查看文件夹的大小。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-r,–reverse：逆序方式排列。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-R,–recursive:递归显示</p>
 <h3 id="文件查看类命令-cat"><a href="#文件查看类命令-cat" class="headerlink" title="文件查看类命令 cat"></a>文件查看类命令 cat</h3><p>对于文件内容可以使用cat命令进行查看当然不止cat命令可以进行查看：cat - concatenate files and print on the standard output（链接并显示）</p>
-<p>​    cat [OPTION]… [FILE]…</p>
-<p>​        -E：显示行结束符。</p>
-<p>​        -T：显示制表符。</p>
-<p>​        -v：显示非打印字符。</p>
-<p>​        -n：显示行号。</p>
+<p>&emsp;&emsp;cat [OPTION]… [FILE]…</p>
+<p>&emsp;&emsp;&emsp;&emsp;-E：显示行结束符。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-T：显示制表符。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-v：显示非打印字符。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-n：显示行号。</p>
 <h3 id="文件内容类型查看命令-file"><a href="#文件内容类型查看命令-file" class="headerlink" title="文件内容类型查看命令 file"></a>文件内容类型查看命令 file</h3><p>命令：file /PATH/TO/SOMEFILE 即可查看文件内容所属类型，如下所示：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost lftpfile]$ file id_rsa.pub </span><br><span class="line">id_rsa.pub: OpenSSH RSA public key</span><br><span class="line">[zhangshuo@localhost lftpfile]$ file /etc/passwd</span><br><span class="line">/etc/passwd: ASCII text</span><br><span class="line">[zhangshuo@localhost lftpfile]$ file /bin/ls</span><br><span class="line">/bin/ls: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32, BuildID[sha1]=c5ad78cfc1de12b9bb6829207cececb990b3e987, stripped</span><br></pre></td></tr></table></figure>
 <h3 id="回显命令-echo"><a href="#回显命令-echo" class="headerlink" title="回显命令 echo"></a>回显命令 echo</h3><p>echo - display a line of text：显示一行文字</p>
-<p>​    -n：禁止自动添加换行符。</p>
-<p>​    -e：允许使用转义字符。</p>
-<p>​    使用实例如下所示：</p>
+<p>&emsp;&emsp;-n：禁止自动添加换行符。</p>
+<p>&emsp;&emsp;-e：允许使用转义字符。</p>
+<p>使用实例如下所示：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost lftpfile]$ echo "how are you"</span><br><span class="line">how are you</span><br><span class="line">[zhangshuo@localhost lftpfile]$ echo -n "how are you"</span><br><span class="line">how are you[zhangshuo@localhost lftpfile]$ echo -e "how \n are you.\nhow old are you"</span><br><span class="line"> how </span><br><span class="line">are you.</span><br><span class="line">how old are you</span><br><span class="line">[zhangshuo@localhost lftpfile]$ echo "$PATH" #若引用，变量将以存储的内容显示</span><br><span class="line">/home/zhangshuo/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/node/bin:/home/zhangshuo/.local/bin:/home/zhangshuo/bin</span><br><span class="line">[zhangshuo@localhost lftpfile]$ echo '$PATH' #强引用，直接引用不显示变量的值</span><br><span class="line"><span class="meta">$</span>PATH</span><br></pre></td></tr></table></figure>
 <h3 id="系统管理类命令"><a href="#系统管理类命令" class="headerlink" title="系统管理类命令"></a>系统管理类命令</h3><p>关机：</p>
-<p>​    halt，poweroff，shutdown -h now，init 0</p>
+<p>&emsp;&emsp;halt，poweroff，shutdown -h now，init 0</p>
 <p>重启：</p>
-<p>​    reboot，shutdown -r now，init 6</p>
+<p>&emsp;&emsp;reboot，shutdown -r now，init 6</p>
 <p>用户登陆相关：</p>
-<p>​    who，whoami，w</p>
+<p>&emsp;&emsp;who，whoami，w</p>
+<p>-EOF</p>
 
       
       
@@ -611,7 +611,7 @@
         <p><span>本文标题:</span><a href="/2018/07/18/redhat02/">小红帽第二集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月18日 - 21时55分</p>
-        <p><span>最后更新:</span>2018年07月20日 - 13时28分</p>
+        <p><span>最后更新:</span>2018年07月20日 - 13时55分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/18/redhat02/" title="小红帽第二集">https://zhangdashuo.github.io/2018/07/18/redhat02/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/18/redhat02/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
