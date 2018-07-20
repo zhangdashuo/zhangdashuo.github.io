@@ -26,9 +26,9 @@
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/archlinux.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/gentoo.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/android.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/C:/Users/zhang/Desktop/我的博客/tty.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/C:/Users/zhang/Desktop/我的博客/pts.png">
-<meta property="og:updated_time" content="2018-07-20T05:01:59.939Z">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/tty.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/pts.png">
+<meta property="og:updated_time" content="2018-07-20T05:08:12.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第二集">
 <meta name="twitter:description" content="小红帽第二集： OS Linux发行版，Linux系统基础使用入门，Linux命令帮助">
@@ -396,26 +396,22 @@
 <blockquote>
 <ul>
 <li>物理终端：直接接入本机的显示器和键盘设备。在现代的Linux系统下物理终端只在系统启动时的运行结果的输出，而当系统完全启动之后就不会再使用了。物理终端的设备文件为：/dev/console</li>
-<li>虚拟终端：附加在物理终端之上的以软件方式虚拟实现的终端，对于CentOS来说默认启动6个虚拟终端。按住Ctrl+Alt+F# #号的取值范围为[1,6]。虚拟终端的设备文件为：/dev/tty#。对于虚拟终端如图所示：<img src="/2018/07/18/redhat02/C:/Users\zhang\Desktop\我的博客\tty.png" alt=""></li>
+<li>虚拟终端：附加在物理终端之上的以软件方式虚拟实现的终端，对于CentOS来说默认启动6个虚拟终端。按住Ctrl+Alt+F# #号的取值范围为[1,6]。虚拟终端的设备文件为：/dev/tty#。对于虚拟终端如图所示：<img src="/2018/07/18/redhat02/tty.png" alt=""></li>
 <li>图形终端：附加在物理终端之上的以软件方式虚拟实现的终端，额外会提供桌面环境。对于图像终端就是我们安装好Linux如果安装了KDE或是GNOME桌面环境，然后开机所看到的桌面环境。</li>
-<li>模拟终端：纯软件方式实现，而且不会附加在物理终端之上，而是附加在图形终端或远程终端。图形界面下打开的命令行接口，基于ssh协议或telnet协议等远程打开的界面都叫做模拟终端，模拟终端的设备路径为：/dev/pts/#。我这里使用的xshell登陆的服务器如图所示：<img src="/2018/07/18/redhat02/C:/Users\zhang\Desktop\我的博客\pts.png" alt=""></li>
+<li>模拟终端：纯软件方式实现，而且不会附加在物理终端之上，而是附加在图形终端或远程终端。图形界面下打开的命令行接口，基于ssh协议或telnet协议等远程打开的界面都叫做模拟终端，模拟终端的设备路径为：/dev/pts/#。我这里使用的xshell登陆的服务器如图所示：<img src="/2018/07/18/redhat02/pts.png" alt=""></li>
 </ul>
 </blockquote>
 <h3 id="交互式接口"><a href="#交互式接口" class="headerlink" title="交互式接口"></a>交互式接口</h3><p>终端是一个软件但是不是交互软件，启动终端后，在终端设备附加一个交互式应用程序，这个应用程序叫做交互式接口。</p>
 <p>Linux下交互式接口有两类，一类为图形桌面（GUI），令一类为命令行接口（CLI）。</p>
 <blockquote>
 <ul>
-<li><p>GUI图形接口：</p>
-<p>就是我们启动Linux后的图形桌面，它是由X protocol，window manager，desktop（桌面系统）组成的。常见的Linux桌面系统主要有如下几种：</p>
-<ol>
+<li>GUI图形接口：<br>就是我们启动Linux后的图形桌面，它是由X protocol，window manager，desktop（桌面系统）组成的。常见的Linux桌面系统主要有如下几种：<ol>
 <li>GNOME：使用C语言在gtk下进行研发的（C,GTK）。</li>
 <li>KDE：使用C++语言在QT下就行研发的（C++,QT）。</li>
 <li>XFCE：轻量级桌面系统适用于嵌入式硬件资源比较差的环境，常见的ubuntu的xubutu的桌面环境就是XFCE。</li>
 </ol>
 </li>
-<li><p>CLI命令行接口：</p>
-<p>在命令行下我们登入系统系统就会给我们提供一个shell程序，shell程序是整个系统的外壳，通过它才可以和系统的内核打交道，所以起名为shell（壳，或是炮弹的壳）。常见的shell程序主要有如下几种：</p>
-<ol>
+<li>CLI命令行接口：<br>在命令行下我们登入系统系统就会给我们提供一个shell程序，shell程序是整个系统的外壳，通过它才可以和系统的内核打交道，所以起名为shell（壳，或是炮弹的壳）。常见的shell程序主要有如下几种：<ol>
 <li>sh：由bourn研发，这个shell最早是unix的shell程序，因为它是最早的shell程序起名叫做shell牌shell。</li>
 <li>csh：使用C语言进行研发，相对于sh提供更多的特性和接口。</li>
 <li>ksh：由korn研发命名为ksh基于sh兼容csh的诸多特性，并提供更多的新特性。</li>
@@ -615,7 +611,7 @@
         <p><span>本文标题:</span><a href="/2018/07/18/redhat02/">小红帽第二集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月18日 - 21时55分</p>
-        <p><span>最后更新:</span>2018年07月20日 - 13时01分</p>
+        <p><span>最后更新:</span>2018年07月20日 - 13时08分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/18/redhat02/" title="小红帽第二集">https://zhangdashuo.github.io/2018/07/18/redhat02/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/18/redhat02/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
