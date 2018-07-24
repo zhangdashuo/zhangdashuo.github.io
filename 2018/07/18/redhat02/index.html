@@ -13,26 +13,26 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第二集： OS Linux发行版，Linux系统基础使用入门，Linux命令帮助">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/oscengjijiegou.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/slackware.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/suse.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/opensuse.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/debian.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/ubuntu.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/mint.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/redhat.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/fedora.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/centos.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/archlinux.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/gentoo.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/android.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/tty.png">
-<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/pts.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/oscengjijiegou.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/slackware.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/suse.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/opensuse.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/debian.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/ubuntu.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/mint.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/fedora.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/centos.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/archlinux.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/gentoo.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/android.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/tty.png">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/pts.png">
 <meta property="og:updated_time" content="2018-07-20T06:02:05.089Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第二集">
 <meta name="twitter:description" content="小红帽第二集： OS Linux发行版，Linux系统基础使用入门，Linux命令帮助">
-<meta name="twitter:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/redhat02/oscengjijiegou.png">
+<meta name="twitter:image" content="https://zhangdashuo.github.io/2018/07/18/redhat02/oscengjijiegou.png">
   
     <link rel="alternative" href="/atom.xml" title="张硕&#39;s Blogs" type="application/atom+xml">
   
@@ -321,7 +321,7 @@
 <p>POSIX标准意在期望获得源代码级别的软件可移植性。换句话说，为一个POSIX兼容的操作系统编写的程序，应该可以在任何其它的POSIX操作系统（即使是来自另一个厂商）上编译执行。</p>
 <p>我们都知道window的程序是不可以在Linux系统下运行的（前段时间在Linux下安装微信或是QQ啥的，其实直接运行是不可以的，如果要运行QQ是需要wine叫做红酒杯的容器，在这个容器之上才可以运行特殊的windows程序）。我们都知道windows可执行程序的格式为EXE或是MSI格式，运行的库的格式为.dll(dynamic link library)，而在Linux下可执行的程序格式为ELF格式的（拿ls命令来说吧，在终端下直接运行<strong>file /bin/ls</strong>可以看到ls可执行文件的格式为ELF格式），Linux所运行的库的格式为.so（shard object 共享对象）。其实这两者的不同在上次已经说过叫做ABI接口不同。对于POSIX规范其实规定的是API接口的规范，如果windows和Linux的库调用方式相同（当然其内部的实现方式是可以不同的），这样程序员写出的程序就可以在不同的操作系统之间进行编译，实现了程序的移植性和通用性。</p>
 <h3 id="编程语言层级"><a href="#编程语言层级" class="headerlink" title="编程语言层级"></a>编程语言层级</h3><p>程序是由指令+数据组成的，通常指令都为只读的，而数据是可以读写的。其实程序的主要作用就是对我们所提供的原始数据进行加工，加工为我们所需要数据格式或是运行结果。所以也可以说程序是由算法+数据结构组成的。上一集也提到过操作系统的层级结构如图所示：</p>
-<p><img src="redhat02/oscengjijiegou.png" alt=""></p>
+<p><img src="/2018/07/18/redhat02/oscengjijiegou.png" alt=""></p>
 <p>可以看到对于程序的编写可以面向系统调用层次，或是库调用层次进行编程。系统调用或是库调用是允许被调用的程序，他们只提供程序而不能提供数据，这样也是可以多个程序调用的保障。采用这种调用方式可以在内存中对相同调用的库只进行一次存储，这样就会极大的节省内存。对于这两种调用来说其实就是更底层的调用，系统调用和库调用（对于Linux下的库通常为glibc库）通常都是C写的性能很好但是需要程序员对内存或是运行精心的设计，这对程序员是一个很大的工作，同时对于程序来说也很可能有bug。对于网络中有一种攻击方式叫做缓冲区溢出，这种方式就是利用程序的bug来覆盖内存中的某些数据从而侵入其他系统的操作。但是这种更底层的方式通常运行效率比较高，但是程序不易开发。对于对性能要求较高的系统级程序比如MySQL这类数据库软件通常都是直接面向系统调用或是库调用开发完成的。由于这种程序开发方式过于底层，不易编程所以在此基础上出现了很多更高级的编程语言，这类语言是直接面向该种语言的解释器或是虚拟机编程的所以是高级的语言，比如JAVA PYTHON PHP等，这种方式因为要运行虚拟机或是解释器还要运行垃圾收集程序等所以这种语言编写的程序通常效率会比较低。但是对于那些对性能要求不高的终端程序的开发来说是非常高效的。由于这些语言是面向虚拟机或是解释器和硬件没有任何关系(当然解释器或是虚拟机也是由C语言编写的，需要考虑硬件的兼容性的)，这种编写的程序一般就是一次编写到处运行。</p>
 <p>编程语言层次总结如下：</p>
 <blockquote>
@@ -344,35 +344,35 @@
 <p>所以就有一些有能力的人从中看到商机，他们负责将这些源程序进行编译，组合在一张光盘内，而对于使用者可以直接将光盘插入电脑然后下一步下一步就能完成操作系统的安装。这样打包发行的企业叫做发行商，而他们所做的系统叫做发行版。目前主流的发行版有如下几个：</p>
 <blockquote>
 <ul>
-<li>SlackWare：<img src="redhat02\slackware.png" alt=""><ul>
-<li>基于SlackWare的二次发行版：S.U.S.E  <img src="redhat02\suse.png" alt=""></li>
-<li>基于S.U.S.E的二次发行版：OpenSUSE <img src="redhat02\opensuse.png" alt=""></li>
+<li>SlackWare：<img src="/2018/07/18/redhat02/slackware.png" alt=""><ul>
+<li>基于SlackWare的二次发行版：S.U.S.E  <img src="/2018/07/18/redhat02/suse.png" alt=""></li>
+<li>基于S.U.S.E的二次发行版：OpenSUSE <img src="/2018/07/18/redhat02/opensuse.png" alt=""></li>
 <li>对于suse（一只绿色的大蜥蜴）通常在欧洲国家比较流行，在国内对于华为公司他们在欧洲会有很多项目所以华为公司通常都会要求会S.U.S.E</li>
 </ul>
 </li>
-<li>debian：<img src="redhat02\debian.png" alt=""><ul>
+<li>debian：<img src="/2018/07/18/redhat02/debian.png" alt=""><ul>
 <li>debian目前采用的还是社区维护方式，没有企业作为后台支持，但这也是最具有原汁原味的Linux发行版。</li>
-<li>基于debian的最著名的发行版，反正目前实验室用的全是这个版本：ubuntu <img src="redhat02\ubuntu.png" alt=""></li>
-<li>基于ubuntu的二次发行版，MINT这个版本作为桌面版确实漂亮，我在U盘中安装系统就是这个： <img src="redhat02\mint.png" alt=""></li>
+<li>基于debian的最著名的发行版，反正目前实验室用的全是这个版本：ubuntu <img src="/2018/07/18/redhat02/ubuntu.png" alt=""></li>
+<li>基于ubuntu的二次发行版，MINT这个版本作为桌面版确实漂亮，我在U盘中安装系统就是这个： <img src="/2018/07/18/redhat02/mint.png" alt=""></li>
 </ul>
 </li>
-<li>Redhat：<img src="redhat02\redhat.png" alt=""><ul>
+<li>Redhat：<img src="/2018/07/18/redhat02/redhat.png" alt=""><ul>
 <li>redhat1993年成立（和我一样大的岁数，这也是我为什么如此喜欢redhat的缘故），是目前最流行的服务器运行版本。因为在服务器上运行所以要求较高的稳定性，通常18个月发行一个新版本。</li>
-<li>redhat公司在 2003年成立Fedora（个人桌面版本）：<img src="redhat02\fedora.png" alt=""></li>
+<li>redhat公司在 2003年成立Fedora（个人桌面版本）：<img src="/2018/07/18/redhat02/fedora.png" alt=""></li>
 <li>主要是测试新版本的bug和测试新软件，通常每6个月发行一个新版本。</li>
-<li>基于redhat的二次编译发行版 CentOS ：<img src="redhat02\centos.png" alt=""></li>
+<li>基于redhat的二次编译发行版 CentOS ：<img src="/2018/07/18/redhat02/centos.png" alt=""></li>
 <li>国内服务器目前使用最对的版本。我的虚拟机中安装的也是这个版本。</li>
 </ul>
 </li>
-<li>ArchLinux：<img src="redhat02\archlinux.png" alt=""><ul>
+<li>ArchLinux：<img src="/2018/07/18/redhat02/archlinux.png" alt=""><ul>
 <li>最近出现的发行版，它的特点是有轻量级的系统和精巧的程序包管理器。</li>
 </ul>
 </li>
-<li>Gentoo：<img src="redhat02\gentoo.png" alt=""><ul>
+<li>Gentoo：<img src="/2018/07/18/redhat02/gentoo.png" alt=""><ul>
 <li>Gentoo是门槛比较高的操作系统，通常它的所有软件都需要自行编译安装，它认为这样才可以更好的发挥硬件的性能。</li>
 </ul>
 </li>
-<li>Android：<img src="redhat02\android.png" alt=""><ul>
+<li>Android：<img src="/2018/07/18/redhat02/android.png" alt=""><ul>
 <li>对于安卓肯定不陌生。它的组成是linux内核+busybox+java虚拟机组成，所以他也算是linux的一个版本吧。</li>
 </ul>
 </li>
@@ -404,9 +404,9 @@
 <blockquote>
 <ul>
 <li>物理终端：直接接入本机的显示器和键盘设备。在现代的Linux系统下物理终端只在系统启动时的运行结果的输出，而当系统完全启动之后就不会再使用了。物理终端的设备文件为：/dev/console</li>
-<li>虚拟终端：附加在物理终端之上的以软件方式虚拟实现的终端，对于CentOS来说默认启动6个虚拟终端。按住Ctrl+Alt+F# #号的取值范围为[1,6]。虚拟终端的设备文件为：/dev/tty#。对于虚拟终端如图所示：<img src="redhat02\tty.png" alt=""></li>
+<li>虚拟终端：附加在物理终端之上的以软件方式虚拟实现的终端，对于CentOS来说默认启动6个虚拟终端。按住Ctrl+Alt+F# #号的取值范围为[1,6]。虚拟终端的设备文件为：/dev/tty#。对于虚拟终端如图所示：<img src="/2018/07/18/redhat02/tty.png" alt=""></li>
 <li>图形终端：附加在物理终端之上的以软件方式虚拟实现的终端，额外会提供桌面环境。对于图像终端就是我们安装好Linux如果安装了KDE或是GNOME桌面环境，然后开机所看到的桌面环境。</li>
-<li>模拟终端：纯软件方式实现，而且不会附加在物理终端之上，而是附加在图形终端或远程终端。图形界面下打开的命令行接口，基于ssh协议或telnet协议等远程打开的界面都叫做模拟终端，模拟终端的设备路径为：/dev/pts/#。我这里使用的xshell登陆的服务器如图所示：<img src="redhat02\pts.png" alt=""></li>
+<li>模拟终端：纯软件方式实现，而且不会附加在物理终端之上，而是附加在图形终端或远程终端。图形界面下打开的命令行接口，基于ssh协议或telnet协议等远程打开的界面都叫做模拟终端，模拟终端的设备路径为：/dev/pts/#。我这里使用的xshell登陆的服务器如图所示：<img src="/2018/07/18/redhat02/pts.png" alt=""></li>
 </ul>
 </blockquote>
 <h3 id="交互式接口"><a href="#交互式接口" class="headerlink" title="交互式接口"></a>交互式接口</h3><p>终端是一个软件但是不是交互软件，启动终端后，在终端设备附加一个交互式应用程序，这个应用程序叫做交互式接口。</p>
