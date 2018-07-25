@@ -2976,7 +2976,7 @@ a.gitment-editor-footer-tip:hover {
 }
 .article img {
   max-width: 100%;
-  vertical-align: -webkit-baseline-middle;
+  margin: 0.5em auto;
 }
 @-webkit-keyframes cd-bounce-1 {
   0% {
