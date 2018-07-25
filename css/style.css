@@ -5095,7 +5095,7 @@ pre .link_url {
     margin: 0;
   }
 }
-.image-size-200 img {
-  width: 120px;
-  height: 120px;
+.image-size-300 img {
+  width: 300px;
+  height: 300px;
 }
