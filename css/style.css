@@ -5096,5 +5096,6 @@ pre .link_url {
   }
 }
 .image-size-200 img {
-  width: 200px;
+  width: 120px;
+  height: 120px;
 }
