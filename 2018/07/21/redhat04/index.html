@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第四集： Linux的文件管理，管道，用户组管理，用户权限管理">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-21T02:57:33.022Z">
+<meta property="og:updated_time" content="2018-07-27T06:41:06.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第四集">
 <meta name="twitter:description" content="小红帽第四集： Linux的文件管理，管道，用户组管理，用户权限管理">
@@ -258,7 +258,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">35字</span>
+	<span class="post-count">5,281字</span>
       </span>
     </span>
 										
@@ -268,7 +268,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">1分</span>
+	<span class="post-count">21分</span>
       </span>
     </span>
 </div>
@@ -301,7 +301,326 @@
           
         <p><strong> 小红帽第四集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>Linux的文件管理，管道，用户组管理，用户权限管理<br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h2 id="文件管理，命令别名和glob"><a href="#文件管理，命令别名和glob" class="headerlink" title="文件管理，命令别名和glob"></a>文件管理，命令别名和glob</h2>
+<h2 id="文件管理，命令别名和glob"><a href="#文件管理，命令别名和glob" class="headerlink" title="文件管理，命令别名和glob"></a>文件管理，命令别名和glob</h2><h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p>相关命令：cp，mv，rm</p>
+<p>复制命令：cp</p>
+<p>&emsp;&emsp;cp [OPTION]… [-T] SOURCE DEST</p>
+<p>&emsp;&emsp;&emsp;&emsp;cp [OPTION]… SOURCE… DIRECTORY</p>
+<p>&emsp;&emsp;&emsp;&emsp;cp [OPTION]… -t DIRECTORY SOURCE…</p>
+<p>&emsp;&emsp;cp SRC DEST ：SRC是文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;如果目标不存在：新建DEST，并将SRC中内容填充至DEST中。</p>
+<p>&emsp;&emsp;&emsp;&emsp;如果目标存在：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1、如果DEST是文件：将SRC中的内容覆盖至DEST中，此时建议为cp命令使用-i选项。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2、如果DEST是目录：在DEST下新建与原文件同名的文件，并将SRC中内容填充至新文件中。</p>
+<p>&emsp;&emsp;cp SRC DEST ：SRC…为多个文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;DEST必须存在且要为目录，其它情况均会报错。</p>
+<p>&emsp;&emsp;cp SRC DEST ：SRC是目录</p>
+<p>&emsp;&emsp;&emsp;&emsp;对于源为目录时，要使用：-r选项进行递归复制。</p>
+<p>&emsp;&emsp;&emsp;&emsp;1、如果DEST不存在，则创建指定目录，复制SRC目录中所有文件至DEST中。</p>
+<p>&emsp;&emsp;&emsp;&emsp;2、如果DEST存在，如果DEST是文件，则报错。如果DEST是目录则将所有文件复制至DEST中。</p>
+<p>&emsp;&emsp;常用选项：</p>
+<p>&emsp;&emsp;&emsp;&emsp;-i, –interactive：交互式提醒。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-R, -r, –recursive：递归复制目录及内部的所有数据。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-a, –archive（归档）：该选项主要用来做备份。same as -dR –preserve=all。</p>
+<p>&emsp;&emsp;&emsp;&emsp;–preserve[=ATTR_LIST]：保持某些属性</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;default: mode(权限),ownership(属主,属组),timestamps(时间戳)。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;additional attributes: context(安全上下文), links(符号链接), xattr(扩展属性), all(所有属性)。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-d     same as –no-dereference –preserve=links ：不追踪符号链接文件。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-p     same as –preserve=mode,ownership,timestamps ：保留文件的基本属性。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-v, –verbose：显示详细的过程信息。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-t, –target-directory=DIRECTORY ：源和目标倒过来。</p>
+<p>移动命令：mv 该命令和cp很是类似就不展开了</p>
+<p>&emsp;&emsp;mv [OPTION]… [-T] SOURCE DEST</p>
+<p>&emsp;&emsp;&emsp;&emsp;mv [OPTION]… SOURCE… DIRECTORY</p>
+<p>&emsp;&emsp;&emsp;&emsp;mv [OPTION]… -t DIRECTORY SOURCE…</p>
+<p>&emsp;&emsp;常用选项：</p>
+<p>&emsp;&emsp;&emsp;&emsp;-i, –interactive：交互式提醒。</p>
+<p>&emsp;&emsp;&emsp;&emsp;-f, –force：do not prompt before overwriting</p>
+<p>删除命令：rm</p>
+<p>&emsp;&emsp;rm [OPTION]… FILE…</p>
+<p>&emsp;&emsp;常用选项：</p>
+<p>&emsp;&emsp;&emsp;&emsp;-i：交互式</p>
+<p>&emsp;&emsp;&emsp;&emsp;-f：强制删除不提醒</p>
+<p>&emsp;&emsp;&emsp;&emsp;-r：递归删除</p>
+<p>&emsp;&emsp;&emsp;&emsp;删除目录时常用：rm -rf DRC</p>
+<h3 id="文本编辑器：nano"><a href="#文本编辑器：nano" class="headerlink" title="文本编辑器：nano"></a>文本编辑器：nano</h3><p>&emsp;&emsp;全屏编辑器，类似windows下的记事本，简单易用，但是效率不高，后面会有vim的描述。</p>
+<h3 id="bash的基础特性（二）"><a href="#bash的基础特性（二）" class="headerlink" title="bash的基础特性（二）"></a>bash的基础特性（二）</h3><p>1、命令别名（alias）</p>
+<p>&emsp;&emsp;通过alias命令实现：</p>
+<p>&emsp;&emsp;&emsp;&emsp;(1)直接运行alias命令可查看当前系统所有定义的别名。</p>
+<p>&emsp;&emsp;&emsp;&emsp;(2)alias NAME=’VALUE’ 定义别名NAME，其相当于执行命令VALUE</p>
+<p>&emsp;&emsp;注意：在命令行中定义的别名仅对当前shell进程有效，如果想永久有效，要定义在配置文件中：</p>
+<p>&emsp;&emsp;配置文件有两种：</p>
+<p>&emsp;&emsp;&emsp;&emsp;【1】仅对当前用户有效：~./bashrc</p>
+<p>&emsp;&emsp;&emsp;&emsp;【2】所有用户都有效：/etc/bashrc</p>
+<p>&emsp;&emsp;注意：编辑配置文件给出的新配置不会立即生效，如果要生效需要让bash重读配置文件。</p>
+<p>&emsp;&emsp;bash重新读去配置文件的方法：</p>
+<p>&emsp;&emsp;&emsp;&emsp;source /path/to/config-file</p>
+<p>&emsp;&emsp;&emsp;&emsp;. /path/to/config-file</p>
+<p>&emsp;&emsp;撤销定义的命令别名：unalias</p>
+<p>&emsp;&emsp;&emsp;&emsp;unalias [-a] name [name …]：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-a：取消所有别名。</p>
+<p>&emsp;&emsp;注意：如果别名同原命令的名称，则如果要执行原命令可使用”\ command”。</p>
+<p>2、glob（globbing）</p>
+<p>&emsp;&emsp;bash中用于实现文件名通配的机制</p>
+<p>&emsp;&emsp;glob中的通配符：*,?,[]</p>
+<p>&emsp;&emsp;(1)*：表示任意长度的任意字符。</p>
+<p>&emsp;&emsp;&emsp;&emsp;比如：a*b：aab，ab，a123b都可以被a*b匹配到</p>
+<p>&emsp;&emsp;(2)?：表示任意单个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;比如：a?b：aab，abb</p>
+<p>&emsp;&emsp;(3)[]：表示匹配制定范围内的任意单个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;比如：[abc],[0-9],[a-z],[A-Z]等。</p>
+<p>&emsp;&emsp;(4)[^]：表示匹配指定范围外的任意单个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;比如： [ ^0-9]:除数字    [^0-9a-z]:只保留特殊字符</p>
+<p>&emsp;&emsp;专用字符集合如下：</p>
+<p>&emsp;&emsp;&emsp;&emsp;[:alnum:]：任意数字或字母    [:alpha:]：任意大小写字母    [:blank:]：空白</p>
+<p>&emsp;&emsp;&emsp;&emsp;[:cntrl:]：控制字符            [:digit:]：任意数字相当于0-9    [:graph:]：图片</p>
+<p>&emsp;&emsp;&emsp;&emsp;[:lower:]：任意小写字母        [:print:]：打印字符            [:punct:]：标点符号</p>
+<p>&emsp;&emsp;&emsp;&emsp;[:space:]：空格            [:upper:]：任意大写字母        [:xdigit:]：16进制数字</p>
+<p>&emsp;&emsp;glob的应用举例如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost test]$ #显示/tmp/test目录下所有以L开头，以一个小写字母结尾，且中间出现至少一位数字的文件或目录</span><br><span class="line">[zhangshuo@localhost test]$ pwd</span><br><span class="line">/tmp/test</span><br><span class="line">[zhangshuo@localhost test]$ ls -ld  L*[0-9]*[[:lower:]]</span><br><span class="line">-rw-rw-r--. 1 zhangshuo zhangshuo 0 Jul 27 13:28 Ljj778l</span><br><span class="line">drwxrwxr-x. 2 zhangshuo zhangshuo 6 Jul 27 13:29 Ljkjkj8lll</span><br><span class="line">[zhangshuo@localhost test]$</span><br><span class="line">[zhangshuo@localhost test]$ #显示/tpm/test目录下，以任意一位数字开口，且以非数字结尾的文件或目录</span><br><span class="line">[zhangshuo@localhost test]$ ls</span><br><span class="line">8jkjkj6  8kjkkj  Ljj778l  Ljkjkj  Ljkjkj8lll</span><br><span class="line">[zhangshuo@localhost test]$ ls -ld [0-9]*[^0-9]</span><br><span class="line">-rw-rw-r--. 1 zhangshuo zhangshuo 0 Jul 27 13:34 8kjkkj</span><br><span class="line">[zhangshuo@localhost test]$ #显示/tmp/test目录下以非字母开头，后面跟了一个字母的文件或目录</span><br><span class="line">[zhangshuo@localhost test]$ ls -ld [^[:alpha:]][[:alpha:]]*</span><br><span class="line">-rw-rw-r--. 1 zhangshuo zhangshuo 0 Jul 27 13:35 8jkjkj6</span><br><span class="line">-rw-rw-r--. 1 zhangshuo zhangshuo 0 Jul 27 13:34 8kjkkj</span><br></pre></td></tr></table></figure>
+<p>3、bash的快捷键</p>
+<p>&emsp;&emsp;Ctrl+l：清屏，相当于clear命令。</p>
+<p>&emsp;&emsp;Ctrl+a：跳转到命令开始处，即命令行行首。</p>
+<p>&emsp;&emsp;Ctrl+e：跳转至命令结尾处。</p>
+<p>&emsp;&emsp;Ctrl+c：取消命令的执行。</p>
+<p>&emsp;&emsp;Ctrl+u：删除命令行首至光标所在处的所有内容。</p>
+<p>&emsp;&emsp;Ctrl+k：删除光标所在处至命令行尾部的所有内容。</p>
+<p>&emsp;&emsp;Ctrl+左右箭头：一次跳一个单词。</p>
+<h2 id="IO重定向、管道及文本处理工具"><a href="#IO重定向、管道及文本处理工具" class="headerlink" title="IO重定向、管道及文本处理工具"></a>IO重定向、管道及文本处理工具</h2><h3 id="IO重定向"><a href="#IO重定向" class="headerlink" title="IO重定向"></a>IO重定向</h3><p>计算机中的程序是由指令加数据组成的。程序在运行时总要读取数据，和计算的数据结果也要进行输出。读取数据的来源可以是键盘，文件，网络等。输出结果的方式也很多比如打印机，显示器，以文件形式输出等，但对于输入来说从键盘读去数据，和输出至屏幕的方式无疑是最好的交互方式和最廉价的数据读去和输入方式。</p>
+<p>上面提过Linux的哲学思想中有一条就是一切皆文件，在文件系统描述那一章也提过Linux的文件类型等，比如-，b，l，c，d，p，s等，有不同的文件类型，对于文件类型我们可以使用file命令进行查看。其实Linux下对于每个文件都有自己的描述符，这里叫做fd（file descriptor），通常文件描述符会在文件的首部前几个字节中。所以对于输出设备输入设备等也都是以文件形式描述，所以这些设备也应该有自己的描述符。</p>
+<p>标准输入：keyborad，描述符用0表示。比如cat命令就默认从键盘读去数据。</p>
+<p>标准输出：monitor，描述符用1表示。</p>
+<p>标准错误输出：monitor，描述符用2表示。（犯错的人一般都比较2，你懂的）</p>
+<p>IO重定向的作用：改变标准输入输出位置，对输入输出重新定义。</p>
+<p>输出重定向：COMMAND &gt; NEW_POS，COMMAND &gt; NEW_POS。</p>
+<p>&emsp;&emsp;\ &gt;：覆盖重定向，目标文件中的原有内容会被清除。</p>
+<p>&emsp;&emsp;>&gt;：追加重定向，新内容会追加至目标文件尾部。</p>
+<p>&emsp;&emsp;对于覆盖重定向的操作是比较危险的，因为这样很可能造成重大的事故或重要数据的丢失。比如 echo “hello world” &gt; /dev/sda 这个操作是在/dev/sda设备的开头处写入hello world并清除整个设备。这个操作的结果就是整个磁盘的分区表没有了。所以整个磁盘数据也就丢失了。所以Linux下可以通过某些设置来保护对于有数据的文件不会被覆盖重定向。设置的方式如下。</p>
+<p>&emsp;&emsp;#<code>set -C</code>：禁止将内容覆盖输出至已有文件中。</p>
+<p>&emsp;&emsp;&emsp;&emsp;当该功能设置时，如果你很确定我确实是要执行覆盖重定向，可以使用 &gt;| 即可。</p>
+<p>&emsp;&emsp;#<code>set +C</code>：关闭该功能。    </p>
+<p>&emsp;&emsp;2&gt;：覆盖重定向错误输出数据流。</p>
+<p>&emsp;&emsp;2&gt;&gt;：追加重定向错误输出数据流。</p>
+<p>&emsp;&emsp;对于一个操作，同时对标准输出和错误输出进行重定向到不同的位置时可以使用：</p>
+<p>&emsp;&emsp;&emsp;&emsp;COMMAND &gt; /path/to/file.out 2&gt; /path/to/error.out</p>
+<p>&emsp;&emsp;合并标准输出和错误输出为同一个数据流进行重定向：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&amp;&gt;：覆盖重定向双输出流至同一个文件。</p>
+<p>&emsp;&emsp;&emsp;&emsp;&amp;&gt;&gt;：追加重定向双数据流至同一个文件。</p>
+<p>&emsp;&emsp;&emsp;&emsp;COMMAND &gt; /path/to/file.out 2&gt; &amp;1</p>
+<p>&emsp;&emsp;&emsp;&emsp;COMMAND &gt;&gt; /path/to/file.out 2&gt;&gt; &amp;1</p>
+<p>输入重定向：&lt;</p>
+<p>&emsp;&emsp;tr命令：转换或删除字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;tr [OPTION]… SET1 [SET2]</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-d<strong>, </strong>–delete：删除指定字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;对于tr命令来说，是直接从标准输入读去字符然后按参数进行转换的比如：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ tr abc ABC</span><br><span class="line">ni hao ya ha ha ha</span><br><span class="line">ni hAo yA hA hA hA</span><br><span class="line">[zhangshuo@localhost ~]$ tr -d abc</span><br><span class="line">how are you</span><br><span class="line">how re you</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;&emsp;&emsp;对tr命令进行输入重定向，即从文件读取数据进行处理如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ tr [a-z] [A-Z] &lt; /etc/passwd | tail -2</span><br><span class="line">VBOXADD:X:987:1::/VAR/RUN/VBOXADD:/BIN/FALSE</span><br><span class="line">GLUSTER:X:986:980:GLUSTERFS DAEMONS:/VAR/RUN/GLUSTER:/SBIN/NOLOGIN</span><br></pre></td></tr></table></figure>
+<p>Here documentation：&lt;&lt; 该符号不是表示追加输入重定向，而是表示在此处生成文档。</p>
+<p>&emsp;&emsp;对于cat命令默认为标准输入读去数据，这里使用cat命令进行文档生成和保存文件，用法如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost test]$ pwd</span><br><span class="line">/tmp/test</span><br><span class="line">[zhangshuo@localhost test]$ cat &gt;&gt; ./cattest.txt &lt;&lt;EOF</span><br><span class="line"><span class="meta">&gt;</span> how are you</span><br><span class="line"><span class="meta">&gt;</span> how old are you</span><br><span class="line"><span class="meta">&gt;</span> EOF</span><br><span class="line">[zhangshuo@localhost test]$ cat cattest.txt </span><br><span class="line">how are you</span><br><span class="line">how old are you</span><br><span class="line">[zhangshuo@localhost test]$</span><br></pre></td></tr></table></figure>
+<h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3><p>对于管道又体现了Linux的哲学思想之一，那就是可实现组合小程序来完成复杂任务。</p>
+<p>用法：COMMAND 1| COMMAND 2 | COMMAND 3 | …：前一个命令的输出，作为后一个命令的输入</p>
+<p>Note：最后一个命令会在当前shell进程的子进程中执行，比如：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ echo "$PATH" | tr [a-z] [A-Z] | tr -d 'U'</span><br><span class="line">/HOME/ZHANGSHO/.NPM-GLOBAL/BIN:/SR/LOCAL/BIN:/SR/BIN:/SR/LOCAL/SBIN:/SR/SBIN:/SR/LOCAL/NODE/BIN:/HOME/ZHANGSHO/.LOCAL/BIN:/HOME/ZHANGSHO/BIN</span><br><span class="line">[zhangshuo@localhost ~]$ echo $PATH</span><br><span class="line">/home/zhangshuo/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/node/bin:/home/zhangshuo/.local/bin:/home/zhangshuo/bin</span><br></pre></td></tr></table></figure>
+<p>上面说到的重定向的方法中，都可以将输出流定义到其它位置，而有时我们又需要一边在屏幕上的输出数据又需要将数据保存至文件便于后期分析，此时管道就可以完美解决问题。</p>
+<p>tee命令：</p>
+<p>&emsp;&emsp;tee [OPTION]… [FILE]… </p>
+<p>用法举例：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost test]$ pwd</span><br><span class="line">/tmp/test</span><br><span class="line">[zhangshuo@localhost test]$ tee tee.out</span><br><span class="line">first line:</span><br><span class="line">first line:</span><br><span class="line">second line:</span><br><span class="line">second line:</span><br><span class="line">^C</span><br><span class="line">[zhangshuo@localhost test]$ cat tee.out </span><br><span class="line">first line:</span><br><span class="line">second line:</span><br><span class="line">[zhangshuo@localhost test]$ echo $PATH | tee tee.path.out</span><br><span class="line">/home/zhangshuo/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/node/bin:/home/zhangshuo/.local/bin:/home/zhangshuo/bin</span><br><span class="line">[zhangshuo@localhost test]$ cat tee.path.out </span><br><span class="line">/home/zhangshuo/.npm-global/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/usr/local/node/bin:/home/zhangshuo/.local/bin:/home/zhangshuo/bin</span><br></pre></td></tr></table></figure>
+<h3 id="文本处理工具"><a href="#文本处理工具" class="headerlink" title="文本处理工具"></a>文本处理工具</h3><p>命令：wc，cut，sort，uniq</p>
+<p>wc命令：统计文件的行数，单词数，和字符数等信息</p>
+<p>&emsp;&emsp;wc [OPTION]… [FILE]… </p>
+<p>&emsp;&emsp;&emsp;&emsp;-l<strong>, </strong>–lines：行数</p>
+<p>&emsp;&emsp;&emsp;&emsp;-w<strong>, </strong>–words：单词数</p>
+<p>&emsp;&emsp;&emsp;&emsp;-c<strong>, </strong>–bytes：字节数</p>
+<p>cut命令：remove sections from each line of files（感觉还是英文解释更地道，我翻译过来是对文件中每行中部分内容移动）</p>
+<p>&emsp;&emsp;cut OPTION… [FILE]… </p>
+<p>&emsp;&emsp;&emsp;&emsp;-d<strong>, </strong>–delimiter=DELIMITER：指定字段分隔符</p>
+<p>&emsp;&emsp;&emsp;&emsp;-f<strong>, </strong>–fields=LIST：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;#：第#个字段</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;#,#：离散的多个字段，例如：1,7,9,</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;#-#：连续的多个字段</p>
+<p>&emsp;&emsp;&emsp;&emsp;–output-delimiter=STRING：输出时将分隔符替换为STRING</p>
+<p>sort命令：</p>
+<p>&emsp;&emsp;sort [OPTION]… [FILE]…</p>
+<p>&emsp;&emsp;常用选项：</p>
+<p>&emsp;&emsp;&emsp;&emsp;-f, –ignore-case：忽略字符大小写</p>
+<p>&emsp;&emsp;&emsp;&emsp;-r, –reverse：逆序排序</p>
+<p>&emsp;&emsp;&emsp;&emsp;-t, –field-separator=SEP：指明字段分割符</p>
+<p>&emsp;&emsp;&emsp;&emsp;-k, –key=KEYDEF：以指定字段为标准排序</p>
+<p>&emsp;&emsp;&emsp;&emsp;-n, –numeric-sort：以数值大小写进行排序</p>
+<p>&emsp;&emsp;&emsp;&emsp;-u, –unique：排序后去重，相同的内容只显示一次</p>
+<p>uniq命令：</p>
+<p>&emsp;&emsp;uniq [OPTION]… [INPUT [OUTPUT]]</p>
+<p>&emsp;&emsp;常用选项：</p>
+<p>&emsp;&emsp;&emsp;&emsp;-c, –count：显示每行重复出现的次数</p>
+<p>&emsp;&emsp;&emsp;&emsp;-d, –repeated：仅显示重复过的行</p>
+<p>&emsp;&emsp;&emsp;&emsp;-u, –unique：仅显示未重复的行</p>
+<p>举例如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ #取出/etc/passwd文件的第6至第10行，并将这些信息按第3个字段的数值大小进行排序，最后仅显示各自的第一个字段</span><br><span class="line">[zhangshuo@localhost ~]$ head -10 /etc/passwd | tail -4 | sort -n -t : -k 3 | cut -d : -f 1</span><br><span class="line">shutdown</span><br><span class="line">halt</span><br><span class="line">mail</span><br><span class="line">operator</span><br></pre></td></tr></table></figure>
+<h2 id="用户及组管理"><a href="#用户及组管理" class="headerlink" title="用户及组管理"></a>用户及组管理</h2><p>计算机的资源是非常宝贵的，通常对于主机来说应该是只允许那些有那能力或是有需要的人进行登陆，而且Linux就是一个多用户，多任务的操作系统，所以需要对登陆用户的身份进行验证，验证通过之后方可准许登陆系统。这就是Linux的用户认证机制。用户认证机制的主要作用是为了实现将有限的计算机资源分配给特定的人。</p>
+<p>通常对于用户需要进行如下认证：</p>
+<p>&emsp;&emsp;1、Authentication：认证（目的是是否允许登陆系统）</p>
+<p>&emsp;&emsp;2、Authorization：授权（是否允许用户有管理员权限）</p>
+<p>&emsp;&emsp;3、Accoating：审计（对于管理员来说能力越大就责任越大，所以对于管理员的权限是需要审计的）</p>
+<p>Linux下的用户：</p>
+<p>&emsp;&emsp;管理员：root，UID：0，命令提示符：#</p>
+<p>&emsp;&emsp;普通用户：UID：1-65535，命令提示符：$</p>
+<p>&emsp;&emsp;&emsp;&emsp;系统用户：UID：1-999。作用：守护进程获取资源进行权限分配</p>
+<p>&emsp;&emsp;&emsp;&emsp;登陆用户：UID：1000+</p>
+<p>Linux下的组：</p>
+<p>&emsp;&emsp;组的作用是实现授权某类用户具有权限</p>
+<p>&emsp;&emsp;管理员组：root，GID：0</p>
+<p>&emsp;&emsp;普通组：GID:1-65535</p>
+<p>&emsp;&emsp;&emsp;&emsp;管理员组：GID：1-999</p>
+<p>&emsp;&emsp;&emsp;&emsp;普通用户组：GID：1000+</p>
+<p>Linux的安全上下文：</p>
+<p>&emsp;&emsp;计算机上运行中的程序叫做进程（process），进程是以发起者的身份运行程序的，进程所能够访问的所有资源的权限取决于进程的发起者的身份。就是Linux下的安全上下文。</p>
+<p>Linux用户组的类别：</p>
+<p>&emsp;&emsp;用户的基本组（主组）：在用户创建文件时，默认将以主组的身份进行创建。</p>
+<p>&emsp;&emsp;用户的私有组：组名同用户名，且仅包含该用户的用户的私有组</p>
+<p>&emsp;&emsp;用户的附加组：用户额外加入的组</p>
+<p>Linux用户和组相关的配置文件</p>
+<p>&emsp;&emsp;/etc/passwd：保存用户及其属性信息</p>
+<p>&emsp;&emsp;/etc/group：组及其属性信息</p>
+<p>&emsp;&emsp;/etc/shadow：用户密码及其相关属性</p>
+<p>&emsp;&emsp;/etc/gshadow：组密码及其相关属性</p>
+<p>&emsp;&emsp;/etc/passwd：</p>
+<p>&emsp;&emsp;&emsp;&emsp;name：password：UID：GID：GECOS：Directory：shell</p>
+<p>&emsp;&emsp;&emsp;&emsp;用户：密码占位符x：UID：GID：用户的完整信息：用户的家目录：用户的默认shell</p>
+<p>&emsp;&emsp;/etc/group：</p>
+<p>&emsp;&emsp;&emsp;&emsp;group_name：password：GID：user_list</p>
+<p>&emsp;&emsp;&emsp;&emsp;组名：组密码：GID：以当前组为附加组的用户列表（以逗号为分隔符）</p>
+<p>&emsp;&emsp;/etc/shadow：</p>
+<p>&emsp;&emsp;&emsp;&emsp;该文件是由：进行分割的9段组成</p>
+<p>&emsp;&emsp;&emsp;&emsp;用户名：加密了的密码：最近一次更改密码的日期：密码的最小使用期限：密码的最大使用期限：密码的警告时间：密码禁用期：账户过期日期：保留字段</p>
+<p>&emsp;&emsp;单向加密：这里的密码加密机制是使用单向加密算法进行加密的，即提取数据指纹，常用于数据完整性校验。</p>
+<p>&emsp;&emsp;1、雪崩效应：初始条件的微小改变将会引起结果的巨大改变</p>
+<p>&emsp;&emsp;2、定长输出：</p>
+<p>&emsp;&emsp;&emsp;&emsp;md5：message digest 128位定长输出</p>
+<p>&emsp;&emsp;&emsp;&emsp;sha1：secure hash algorithm 160位定长输出</p>
+<p>&emsp;&emsp;&emsp;&emsp;sha224：224位  sha256：256位  sha384：384位  sha512：512位</p>
+<p>&emsp;&emsp;密码的复杂性策略</p>
+<p>&emsp;&emsp;&emsp;&emsp;1、使用数字，大写字码，小写字母及特殊字符中至少3种</p>
+<p>&emsp;&emsp;&emsp;&emsp;2、密码的长度要足够长</p>
+<p>&emsp;&emsp;&emsp;&emsp;3、使用随机密码</p>
+<p>&emsp;&emsp;&emsp;&emsp;4、定期更换：不要使用最近曾经使用过的密码</p>
+<h2 id="用户管理及权限管理"><a href="#用户管理及权限管理" class="headerlink" title="用户管理及权限管理"></a>用户管理及权限管理</h2><h3 id="用户创建命令：useradd"><a href="#用户创建命令：useradd" class="headerlink" title="用户创建命令：useradd"></a>用户创建命令：useradd</h3><p>&emsp;&emsp;useradd [options] LOGIN</p>
+<p>&emsp;&emsp;&emsp;&emsp;-u, –uid UID：指定用户的UID。范围为[UID_MIN,UID_MAX]，该区间定义在/etc/login.defs</p>
+<p>&emsp;&emsp;&emsp;&emsp;-g, –gid GROUP：指定用户的基本组，可以为组名，也可以为GID，但是如果要指定组时，该组必须事先存在</p>
+<p>&emsp;&emsp;&emsp;&emsp;-c, –comment COMMENT：用户的注释信息</p>
+<p>&emsp;&emsp;&emsp;&emsp;-d, –home-dir HOME_DIR：指定用户的家目录位置</p>
+<p>&emsp;&emsp;&emsp;&emsp;-s, –shell SHELL：指定用户的默认shell程序，可用列表在/etc/shells文件中，默认定义在/etc/default/useradd文件中</p>
+<p>&emsp;&emsp;&emsp;&emsp;-r, –system：创建系统用户</p>
+<p>&emsp;&emsp;&emsp;&emsp;-G, –groups GROUP1[,GROUP2,…[,GROUPN]]]：为用户指定附加组，在此之前组必须事先存在</p>
+<p>&emsp;&emsp;useradd -D [options] ：修改添加用户时的默认属性</p>
+<p>&emsp;&emsp;&emsp;&emsp;-s：shell</p>
+<h3 id="组创建命令：groupadd"><a href="#组创建命令：groupadd" class="headerlink" title="组创建命令：groupadd"></a>组创建命令：groupadd</h3><p>&emsp;&emsp;groupadd [options] group</p>
+<p>&emsp;&emsp;&emsp;&emsp;-g, –gid GID：指定组的GID号，同样GID：[GID_MIN,GID_MAX]</p>
+<p>&emsp;&emsp;&emsp;&emsp;-r, –system：创建系统组</p>
+<h3 id="查看用户相关的ID信息：id"><a href="#查看用户相关的ID信息：id" class="headerlink" title="查看用户相关的ID信息：id"></a>查看用户相关的ID信息：id</h3><p>&emsp;&emsp;id [OPTION]… [USER]</p>
+<p>&emsp;&emsp;&emsp;&emsp;-u, –user：显示用户的UID</p>
+<p>&emsp;&emsp;&emsp;&emsp;-g, –group：显示用户的GID</p>
+<p>&emsp;&emsp;&emsp;&emsp;-G, –groups：显示用户的附加组</p>
+<h3 id="切换用户或以其他用户身份执行命令：su"><a href="#切换用户或以其他用户身份执行命令：su" class="headerlink" title="切换用户或以其他用户身份执行命令：su"></a>切换用户或以其他用户身份执行命令：su</h3><p>&emsp;&emsp;su [options…][-][user [args…]]</p>
+<p>&emsp;&emsp;&emsp;&emsp;切换用户的方式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;su USERNAME：非登陆式切换，即不会读取目标用户的配置文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;su - USERNAME：登陆式切换，会读取目标用户的配置文件，完全切换</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：root su至其他用户无需密码，非root用户切换时需要密码</p>
+<p>&emsp;&emsp;&emsp;&emsp;以其他用户执行命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;su [-] USERNAME -c ‘COMMAND’：不切换用户，仅以该用户身份运行命令</p>
+<h3 id="用户属性修改：usermod"><a href="#用户属性修改：usermod" class="headerlink" title="用户属性修改：usermod"></a>用户属性修改：usermod</h3><p>&emsp;&emsp;usermod [options] LOGIN</p>
+<p>&emsp;&emsp;&emsp;&emsp;-u, –uid UID：新的UID</p>
+<p>&emsp;&emsp;&emsp;&emsp;-g, –gid GROUP：新的GID，即基本组ID</p>
+<p>&emsp;&emsp;&emsp;&emsp;-G, –groups GROUP1[,GROUP2,…[,GROUPN]]]：新附加组，原来的附加组会被覆盖，若保留原有，则要同时使用-a选项表示增加</p>
+<p>&emsp;&emsp;&emsp;&emsp;-s, –shell SHELL：新的默认shell</p>
+<p>&emsp;&emsp;&emsp;&emsp;-c, –comment COMMENT：新的注释信息</p>
+<p>&emsp;&emsp;&emsp;&emsp;-d, –home HOME_DIR：新的家目录，原有家目录中的文件不会同时移动至新的家目录下，若要移动，则同时使用-m选项</p>
+<p>&emsp;&emsp;&emsp;&emsp;-l, –login NEW_LOGIN：新的用户名</p>
+<p>&emsp;&emsp;&emsp;&emsp;-L, –lock：锁定用户</p>
+<p>&emsp;&emsp;&emsp;&emsp;-U, –unlock：解锁用户</p>
+<h3 id="给用户添加密码：passwd"><a href="#给用户添加密码：passwd" class="headerlink" title="给用户添加密码：passwd"></a>给用户添加密码：passwd</h3><p>&emsp;&emsp;passwd USERNAME：修改指定用户的密码，仅root用户有权限</p>
+<p>&emsp;&emsp;passwd：修改自己的密码</p>
+<p>&emsp;&emsp;&emsp;&emsp;常用选项：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-l, –lock：锁定指定用户</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-u, –unlock：解锁指定用户</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-n, –minimum DAYS：指定密码最短使用期限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-x, –maximum DAYS：指定密码最长使用期限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-w, –warning DAYS：提前多少天开始警告用户修改密码</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-i, –inactive DAYS：非活动期限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;–stdin：从标准输入接收用户密码</p>
+<p>&emsp;&emsp;&emsp;&emsp;echo “PASSWORD” | passwd –stdin USERNAME</p>
+<h3 id="删除用户：userdel"><a href="#删除用户：userdel" class="headerlink" title="删除用户：userdel"></a>删除用户：userdel</h3><p>&emsp;&emsp;userdel [options] LOGIN</p>
+<p>&emsp;&emsp;&emsp;&emsp;-r, –remove：删除用户家目录</p>
+<h3 id="组属性修改：groupmod"><a href="#组属性修改：groupmod" class="headerlink" title="组属性修改：groupmod"></a>组属性修改：groupmod</h3><p>&emsp;&emsp;groupmod [options] GROUP</p>
+<p>&emsp;&emsp;&emsp;&emsp;-n, –new-name NEW_GROUP：新的组名</p>
+<p>&emsp;&emsp;&emsp;&emsp;-g, –gid GID：重新定义组的GID</p>
+<h3 id="组删除：groupdel"><a href="#组删除：groupdel" class="headerlink" title="组删除：groupdel"></a>组删除：groupdel</h3><p>&emsp;&emsp;groupdel [options] GROUP</p>
+<h3 id="组密码管理：gpasswd"><a href="#组密码管理：gpasswd" class="headerlink" title="组密码管理：gpasswd"></a>组密码管理：gpasswd</h3><p>&emsp;&emsp;gpasswd [option] group</p>
+<p>&emsp;&emsp;&emsp;&emsp;-a, –add user：将user添加至指定组中</p>
+<p>&emsp;&emsp;&emsp;&emsp;-d, –delete user：删除用户user的附加组</p>
+<p>&emsp;&emsp;&emsp;&emsp;-A, –administrators user1，user2…：设置有管理权限的用户列表</p>
+<p>&emsp;&emsp;newgrp命令：临时切换基本组</p>
+<p>&emsp;&emsp;&emsp;&emsp;如果用户本不属于此组，则需要组密码。</p>
+<h3 id="检查用户完整性：pwck"><a href="#检查用户完整性：pwck" class="headerlink" title="检查用户完整性：pwck"></a>检查用户完整性：pwck</h3><h3 id="修改用户属性"><a href="#修改用户属性" class="headerlink" title="修改用户属性"></a>修改用户属性</h3><p>&emsp;&emsp;chage [options] LOGIN</p>
+<p>&emsp;&emsp;&emsp;&emsp;-d, –lastday LAST_DAY：最近一次的修改时间</p>
+<p>&emsp;&emsp;&emsp;&emsp;-E, –expiredate EXPIRE_DATE：过期时间</p>
+<p>&emsp;&emsp;&emsp;&emsp;-I, –inactive INACTIVE：非活动时间</p>
+<p>&emsp;&emsp;&emsp;&emsp;-m, –mindays MIN_DAYS：密码最短使用时间</p>
+<p>&emsp;&emsp;&emsp;&emsp;-M, –maxdays MAX_DAYS：密码最长使用时间</p>
+<p>&emsp;&emsp;&emsp;&emsp;-W, –warndays WARN_DAYS：警告时间</p>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><p>&emsp;&emsp;chfn：修改用户的注释信息。chsh：更改shell。finger：显示用户的信息。</p>
+<h3 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h3><p>文件的权限主要针对三类对象进行定义：</p>
+<p>&emsp;&emsp;owner：属主，用u表示</p>
+<p>&emsp;&emsp;group：属组，用g表示</p>
+<p>&emsp;&emsp;other：其它，用o表示</p>
+<p>同时每个文件对每类访问者都定义了三种权限：</p>
+<p>&emsp;&emsp;r：可读</p>
+<p>&emsp;&emsp;w：可写</p>
+<p>&emsp;&emsp;x：可执行的</p>
+<p>&emsp;&emsp;对于文件来说：</p>
+<p>&emsp;&emsp;&emsp;&emsp;r：表示可以使用文件查看类工具获取其内容</p>
+<p>&emsp;&emsp;&emsp;&emsp;w：可修改其内容，即可对文件进行编辑</p>
+<p>&emsp;&emsp;&emsp;&emsp;x：可以把该文件提请给内核执行并启动为一个进程</p>
+<p>&emsp;&emsp;对于目录来说：</p>
+<p>&emsp;&emsp;&emsp;&emsp;r：表示可以使用ls来查看此目录中文件列表</p>
+<p>&emsp;&emsp;&emsp;&emsp;w：可在此目录中创建文件，也可以删除此目录中的文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：如果某用户对某目录有w权限，但对该目录下某个文件没有w权限，该用户是可以将没有w权限的文件进行删除的</p>
+<p>&emsp;&emsp;&emsp;&emsp;x：可以使用ls -l查看此目录文件列表，可以cd进入此目录</p>
+<h3 id="修改文件权限：chmod"><a href="#修改文件权限：chmod" class="headerlink" title="修改文件权限：chmod"></a>修改文件权限：chmod</h3><p>&emsp;&emsp;chmod [OPTION]… OCTAL-MODE FILE…：直接修改某个文件为指定的权限</p>
+<p>&emsp;&emsp;&emsp;&emsp;-R, –recursive：递归修改权限</p>
+<p>&emsp;&emsp;chmod [OPTION]… MODE[,MODE]… FILE…</p>
+<p>&emsp;&emsp;&emsp;&emsp;MODE：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;修改一类用户的所有权限：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;u=rx,g=r,o=</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;修改一类用户某位或某些位权限：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;u+x</p>
+<p>&emsp;&emsp;chmod [OPTION]… –reference=RFILE FILE…</p>
+<p>&emsp;&emsp;&emsp;&emsp;参考RFILE文件的权限，将FILE的修改为同RFILE</p>
+<h3 id="修改文件的属主和属组（仅root可用）"><a href="#修改文件的属主和属组（仅root可用）" class="headerlink" title="修改文件的属主和属组（仅root可用）"></a>修改文件的属主和属组（仅root可用）</h3><p>&emsp;&emsp;修改文件的属主：chwon</p>
+<p>&emsp;&emsp;&emsp;&emsp;chown [OPTION]… [OWNER][:[GROUP]] FILE…</p>
+<p>&emsp;&emsp;&emsp;&emsp;用法：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;OWNER</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;OWNER:GROUP</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:GROUP</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：命令中的冒号可以用.替换</p>
+<p>&emsp;&emsp;&emsp;&emsp;-R：递归修改</p>
+<p>&emsp;&emsp;&emsp;&emsp;chown [OPTION]… –reference=RFILE FILE…：参考修改</p>
+<p>&emsp;&emsp;修改文件的属组：chgrp</p>
+<p>&emsp;&emsp;&emsp;&emsp;chgrp [OPTION]… GROUP FILE…</p>
+<p>&emsp;&emsp;&emsp;&emsp;chgrp [OPTION]… –reference=RFILE FILE…</p>
+<p>&emsp;&emsp;&emsp;&emsp;-R：递归修改</p>
+<h3 id="文件或目录创建时的遮罩码：umask"><a href="#文件或目录创建时的遮罩码：umask" class="headerlink" title="文件或目录创建时的遮罩码：umask"></a>文件或目录创建时的遮罩码：umask</h3><p>&emsp;&emsp;对于文件来说创建文件默认权限为：666-umask</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：如果某类用户的权限减得的结果中存在x权限，则将其权限+1。</p>
+<p>&emsp;&emsp;&emsp;&emsp;root用户默认uamsk：022</p>
+<p>&emsp;&emsp;&emsp;&emsp;普通用户：002</p>
+<p>&emsp;&emsp;对于目录来说创建时的默认权限为：777-umask</p>
+<p>&emsp;&emsp;命令umask</p>
+<p>&emsp;&emsp;&emsp;&emsp;umask ：查看当前的umask值</p>
+<p>&emsp;&emsp;&emsp;&emsp;umask #：设定当前umask值</p>
+<p>&emsp;&emsp;注意：umask的默认定义在/etc/profile文件中，在命令行中定义的关闭终端不会保存</p>
+<p>-EOF</p>
+
       
       
     </div>
@@ -313,7 +632,7 @@
         <p><span>本文标题:</span><a href="/2018/07/21/redhat04/">小红帽第四集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月21日 - 10时49分</p>
-        <p><span>最后更新:</span>2018年07月21日 - 10时57分</p>
+        <p><span>最后更新:</span>2018年07月27日 - 14时41分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/21/redhat04/" title="小红帽第四集">https://zhangdashuo.github.io/2018/07/21/redhat04/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/21/redhat04/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -342,7 +661,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理，命令别名和glob"><span class="toc-number">1.</span> <span class="toc-text">文件管理，命令别名和glob</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件管理，命令别名和glob"><span class="toc-number">1.</span> <span class="toc-text">文件管理，命令别名和glob</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件管理"><span class="toc-number">1.1.</span> <span class="toc-text">文件管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本编辑器：nano"><span class="toc-number">1.2.</span> <span class="toc-text">文本编辑器：nano</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash的基础特性（二）"><span class="toc-number">1.3.</span> <span class="toc-text">bash的基础特性（二）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO重定向、管道及文本处理工具"><span class="toc-number">2.</span> <span class="toc-text">IO重定向、管道及文本处理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IO重定向"><span class="toc-number">2.1.</span> <span class="toc-text">IO重定向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管道"><span class="toc-number">2.2.</span> <span class="toc-text">管道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本处理工具"><span class="toc-number">2.3.</span> <span class="toc-text">文本处理工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户及组管理"><span class="toc-number">3.</span> <span class="toc-text">用户及组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户管理及权限管理"><span class="toc-number">4.</span> <span class="toc-text">用户管理及权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户创建命令：useradd"><span class="toc-number">4.1.</span> <span class="toc-text">用户创建命令：useradd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组创建命令：groupadd"><span class="toc-number">4.2.</span> <span class="toc-text">组创建命令：groupadd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看用户相关的ID信息：id"><span class="toc-number">4.3.</span> <span class="toc-text">查看用户相关的ID信息：id</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换用户或以其他用户身份执行命令：su"><span class="toc-number">4.4.</span> <span class="toc-text">切换用户或以其他用户身份执行命令：su</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户属性修改：usermod"><span class="toc-number">4.5.</span> <span class="toc-text">用户属性修改：usermod</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#给用户添加密码：passwd"><span class="toc-number">4.6.</span> <span class="toc-text">给用户添加密码：passwd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除用户：userdel"><span class="toc-number">4.7.</span> <span class="toc-text">删除用户：userdel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组属性修改：groupmod"><span class="toc-number">4.8.</span> <span class="toc-text">组属性修改：groupmod</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组删除：groupdel"><span class="toc-number">4.9.</span> <span class="toc-text">组删除：groupdel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组密码管理：gpasswd"><span class="toc-number">4.10.</span> <span class="toc-text">组密码管理：gpasswd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查用户完整性：pwck"><span class="toc-number">4.11.</span> <span class="toc-text">检查用户完整性：pwck</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改用户属性"><span class="toc-number">4.12.</span> <span class="toc-text">修改用户属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他命令"><span class="toc-number">4.13.</span> <span class="toc-text">其他命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#权限管理"><span class="toc-number">4.14.</span> <span class="toc-text">权限管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改文件权限：chmod"><span class="toc-number">4.15.</span> <span class="toc-text">修改文件权限：chmod</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改文件的属主和属组（仅root可用）"><span class="toc-number">4.16.</span> <span class="toc-text">修改文件的属主和属组（仅root可用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件或目录创建时的遮罩码：umask"><span class="toc-number">4.17.</span> <span class="toc-text">文件或目录创建时的遮罩码：umask</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -489,7 +808,7 @@
                     </span>
                 
 		<span>, </span>
-		<span class="post-count">  本站文章总字数: <font color="#FFF">15.3k</span>
+		<span class="post-count">  本站文章总字数: <font color="#FFF">20.5k</span>
             </div>
         
     </div>
