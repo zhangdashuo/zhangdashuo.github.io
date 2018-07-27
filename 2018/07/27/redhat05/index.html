@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第五集： shell编程初步及正则表达式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-27T06:49:15.145Z">
+<meta property="og:updated_time" content="2018-07-27T13:27:28.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第五集">
 <meta name="twitter:description" content="小红帽第五集： shell编程初步及正则表达式">
@@ -258,7 +258,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">25字</span>
+	<span class="post-count">1,154字</span>
       </span>
     </span>
 										
@@ -268,7 +268,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">1分</span>
+	<span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -301,7 +301,74 @@
           
         <p><strong> 小红帽第五集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>shell编程初步及正则表达式<br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<h2 id="bash基础及shell编程初步"><a href="#bash基础及shell编程初步" class="headerlink" title="bash基础及shell编程初步"></a>bash基础及shell编程初步</h2>
+<h2 id="bash基础及shell编程初步"><a href="#bash基础及shell编程初步" class="headerlink" title="bash基础及shell编程初步"></a>bash基础及shell编程初步</h2><h3 id="bash基础特性回顾"><a href="#bash基础特性回顾" class="headerlink" title="bash基础特性回顾"></a>bash基础特性回顾</h3><p>&emsp;&emsp;命令行展开：~,{}</p>
+<p>&emsp;&emsp;命令别名：alias/unalias</p>
+<p>&emsp;&emsp;命令历史：history</p>
+<p>&emsp;&emsp;命令和路径补全：$PATH</p>
+<p>&emsp;&emsp;glob：*,?,[]</p>
+<p>&emsp;&emsp;快捷键：ctrl+{a,e,u,k,c,l,&lt;–,–&gt;}</p>
+<p>&emsp;&emsp;命令hash：hash</p>
+<h3 id="bash的基础特性（3）"><a href="#bash的基础特性（3）" class="headerlink" title="bash的基础特性（3）"></a>bash的基础特性（3）</h3><p>提供了编程环境</p>
+<p>&emsp;&emsp;程序：由指令加数据组成（这个概念已经提过好多好多次了呜呜）</p>
+<p>&emsp;&emsp;程序编程风格：</p>
+<p>&emsp;&emsp;&emsp;&emsp;过程式：以指令为中心，数据服务于指令</p>
+<p>&emsp;&emsp;&emsp;&emsp;对象式：以数据为中心，指令服务于数据</p>
+<p>&emsp;&emsp;shell程序：提供了编程能力，解释执行，主要是调用当前系统上的可用二进制程序，组织罗列解释执行</p>
+<p>shell脚本：文本文件</p>
+<p>对于shell脚本来说，第一行开头要写#!/bin/bash这样的代码，这个代码就做shebang。shebang的意义在于对于内核来说只能运行二进制文件，脚本文件中都为接近人类语言的代码，所以如果直接提交给内核运行内核是无法识别的。所以当shell脚本提交内核之后发现shebang标志符则会将代码交由shell解释器去执行，让shell解释器将代码解释为二进制程序再提交给内核进行运行，这就是shebnag的意义。通常对于shell脚本文件来说，也有自己的magic number（魔数），内核也可以通过魔数来分析该文件为shell脚本文件。</p>
+<p>运行脚本：</p>
+<p>&emsp;&emsp;1、给予执行权限，通过具体的文件路径指定文件执行</p>
+<p>&emsp;&emsp;2、直接运行解释器，将脚本作为解释器程序的参数运行</p>
+<p>程序中的变量：</p>
+<p>&emsp;&emsp;变量：命名的内存空间</p>
+<p>&emsp;&emsp;数据存储方式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;字符型：</p>
+<p>&emsp;&emsp;&emsp;&emsp;数值型：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;整形</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;浮点型</p>
+<p>&emsp;&emsp;对于shell脚本语言来说，shell为弱类型的编程语言即某一个变量被定义类型，该变量可以根据环境变化自动进行转换，不需要经过显性强制转换。同时shell会把所有要存储的数据全部当作字符串来进行，同时shell不支持浮点数，可以看出shell的作用是命令的堆砌，而不是要进行复杂的数值运算的语言。</p>
+<h2 id="grep及正则表达式"><a href="#grep及正则表达式" class="headerlink" title="grep及正则表达式"></a>grep及正则表达式</h2><h3 id="grep："><a href="#grep：" class="headerlink" title="grep："></a>grep：</h3><p>&emsp;&emsp;Linux上文本处理三剑客：</p>
+<p>&emsp;&emsp;&emsp;&emsp;grep：文本过滤工具（基于模式：pattern）</p>
+<p>&emsp;&emsp;&emsp;&emsp;sed：stream editor 文本编辑工具</p>
+<p>&emsp;&emsp;&emsp;&emsp;awk：Linux上的实现gawk，文本报告生成器</p>
+<p>&emsp;&emsp;grep：Global search REgular expression and Print out the line</p>
+<p>&emsp;&emsp;&emsp;&emsp;作用：文本搜索工具，根据用户指定的模式，对目标文本逐行进行匹配检查，并打印匹配到的行</p>
+<p>&emsp;&emsp;&emsp;&emsp;模式：由正则表达式字符及文本字符所编写的过滤条件</p>
+<p>&emsp;&emsp;&emsp;&emsp;REGEXP（正则表达式）：由一类特殊字符及文本字符所编写的模式，其中有些字符不表示字符字面意义，而表示控制或通配的功能。</p>
+<p>&emsp;&emsp;&emsp;&emsp;正则表达式有两类：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;基本的正则表达式：BRE</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;扩展的正则表达式：ERE，可以使用grep -E ，或egrep来实现</p>
+<p>&emsp;&emsp;&emsp;&emsp;正则表达式引擎：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;grep [OPTIONS] PATTERN [FILE…]</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;–color=auto：对匹配到的文本着色显示</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-v, –invert-match：显示不能被pattern匹配到的行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-i, –ignore-case：忽略字符大小写</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-o, –only-matching：仅显示匹配到的字符串</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-q, –quiet：静默模式，不输出任何信息</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-A #：affter，后#行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-B #：before，前#行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-C #：context，前后各#行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-E ：使用扩展的正则表达式</p>
+<h3 id="基本正则表达式元字符"><a href="#基本正则表达式元字符" class="headerlink" title="基本正则表达式元字符"></a>基本正则表达式元字符</h3><p>&emsp;&emsp;字符匹配：</p>
+<p>&emsp;&emsp;&emsp;&emsp;.：匹配任意单个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;[]：匹配指定范围内的任意单个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;[^]：匹配指定范围外的任意单个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：这里的字符即合和glob的模式是一样的</p>
+<p>&emsp;&emsp;匹配次数（默认工作在贪婪模式下）：用在要指定次数的字符后面，用于指定前面的字符要出现的次数</p>
+<p>&emsp;&emsp;&emsp;&emsp;*：匹配前面的字符任意次</p>
+<p>&emsp;&emsp;&emsp;&emsp;.*：表示任意长度的任意字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;\?：匹配前面的字符0次或1次，即前面的字符可有可无</p>
+<p>&emsp;&emsp;&emsp;&emsp;+：匹配其前面的字符至少1次</p>
+<p>&emsp;&emsp;&emsp;&emsp;{m\}：匹配其前面的字符m次</p>
+<p>&emsp;&emsp;&emsp;&emsp;{m,n\}：匹配其前面的字符至少m次，至多n次</p>
+<p>&emsp;&emsp;&emsp;&emsp;{0,n\}：匹配前面的字符至多n次</p>
+<p>&emsp;&emsp;&emsp;&emsp;{m,\}：匹配前面的字符至少m次</p>
+<p>&emsp;&emsp;位置锚定：</p>
+<p>&emsp;&emsp;&emsp;&emsp;^：行首锚定，用于模式的最左侧</p>
+<p>&emsp;&emsp;&emsp;&emsp;$：行尾锚定，用于模式的最右侧</p>
+<p>&emsp;&emsp;&emsp;&emsp;^PATTERN$：用于模式匹配整行</p>
+<p>&emsp;&emsp;&emsp;&emsp;^$：匹配空白行</p>
+
       
       
     </div>
@@ -313,7 +380,7 @@
         <p><span>本文标题:</span><a href="/2018/07/27/redhat05/">小红帽第五集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月27日 - 14时46分</p>
-        <p><span>最后更新:</span>2018年07月27日 - 14时49分</p>
+        <p><span>最后更新:</span>2018年07月27日 - 21时27分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/27/redhat05/" title="小红帽第五集">https://zhangdashuo.github.io/2018/07/27/redhat05/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/27/redhat05/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -342,7 +409,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bash基础及shell编程初步"><span class="toc-number">1.</span> <span class="toc-text">bash基础及shell编程初步</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bash基础及shell编程初步"><span class="toc-number">1.</span> <span class="toc-text">bash基础及shell编程初步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bash基础特性回顾"><span class="toc-number">1.1.</span> <span class="toc-text">bash基础特性回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bash的基础特性（3）"><span class="toc-number">1.2.</span> <span class="toc-text">bash的基础特性（3）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep及正则表达式"><span class="toc-number">2.</span> <span class="toc-text">grep及正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#grep："><span class="toc-number">2.1.</span> <span class="toc-text">grep：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本正则表达式元字符"><span class="toc-number">2.2.</span> <span class="toc-text">基本正则表达式元字符</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -489,7 +556,7 @@
                     </span>
                 
 		<span>, </span>
-		<span class="post-count">  本站文章总字数: <font color="#FFF">20.5k</span>
+		<span class="post-count">  本站文章总字数: <font color="#FFF">21.7k</span>
             </div>
         
     </div>
