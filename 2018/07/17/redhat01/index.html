@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>小红帽第一集 | 张硕&#39;s Blogs</title>
+  <title>小红帽第1集 | 张硕&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="小红帽第一集： 操作系统及Linux的基础知识">
+  <meta name="description" content="小红帽第1集： 操作系统及Linux的基础知识">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小红帽第一集">
+<meta property="og:title" content="小红帽第1集">
 <meta property="og:url" content="https://zhangdashuo.github.io/2018/07/17/redhat01/index.html">
 <meta property="og:site_name" content="张硕&#39;s Blogs">
-<meta property="og:description" content="小红帽第一集： 操作系统及Linux的基础知识">
+<meta property="og:description" content="小红帽第1集： 操作系统及Linux的基础知识">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/xunijijiegou.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/CPUring.png">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/qiehuan.jpg">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/oscengjijiegou.png">
-<meta property="og:updated_time" content="2018-07-18T14:35:01.268Z">
+<meta property="og:updated_time" content="2018-07-27T13:33:20.163Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小红帽第一集">
-<meta name="twitter:description" content="小红帽第一集： 操作系统及Linux的基础知识">
+<meta name="twitter:title" content="小红帽第1集">
+<meta name="twitter:description" content="小红帽第1集： 操作系统及Linux的基础知识">
 <meta name="twitter:image" content="https://zhangdashuo.github.io/2018/07/17/redhat01/xunijijiegou.png">
   
     <link rel="alternative" href="/atom.xml" title="张硕&#39;s Blogs" type="application/atom+xml">
@@ -253,7 +253,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      小红帽第一集
+      小红帽第1集
     </h1>
   
 
@@ -304,7 +304,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong> 小红帽第一集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>操作系统及Linux的基础知识<br><a id="more"></a></excerpt></p>
+        <p><strong> 小红帽第1集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>操作系统及Linux的基础知识<br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
 <h2 id="操作系统及Linux基础知识"><a href="#操作系统及Linux基础知识" class="headerlink" title="操作系统及Linux基础知识"></a>操作系统及Linux基础知识</h2><h3 id="现代计算机设备的组成部分"><a href="#现代计算机设备的组成部分" class="headerlink" title="现代计算机设备的组成部分"></a>现代计算机设备的组成部分</h3><p>现代计算机的构架主要还是在冯诺·依曼架构之上完成的。主要由运算器、控制器、存储设备、输入设备和输出设备。在现代的制造工艺中将运算器与控制器集成在一片芯片之上叫做CPU。CPU又叫做中央处理器，是计算机的核心部分。同时CPU不是单独自己工作的它又需要与外界进行数据交互，与外界进行的数据交互是通过总线来进行数据的传输的。计算机中的总线有控制总线，数据总线，和地址总线。所谓总线（Bus），是指计算机设备和设备之间传输信息的公共数据通道。总线是连接计算机硬件系统内多种设备的通信线路，它的一个重要特征是由总线上的所有设备共享，可以将计算机系统内的多个部件连接到总线上进行通讯。如果是某两个设备或设备之间专用的信号连线，就不能称之为总线。微机中的总线分为数据总线、地址总线和控制总线3类。不同型号的CPU芯片，其数据总线、地址总线和控制总线的条数可能不同。  数据总线DB用来传送数据信息，是双向的。CPU既可通过DB从内存或输入设备读入数据，又可通过DB将内部数据送至内存或输出设备。DB的宽度决定了CPU和计算机其他设备之间每次交换数据的位数。  地址总线AB用于传送CPU发出的地址信息，是单向的。传送地址信息的目的是指明与CPU交换信息的内存单元或I/O设备。内存是编址的存储单元，所以每个存储单元都有一个固定地址，对于内存来说每8个字节叫做一个cell，要访问1MB存储器中的任一单元，需要给出1M个地址，即需要10位地址（2^10=1M）。因此，地址总线的宽度决定了CPU的最大寻址能力。  控制总线CB用来传送控制信号、时序信号和状态信息等。其中有的是CPU向内存或外部设备发出的信息，有的是内存或外部设备向CPU发出的信息。显然，CB中的每一条线的信息传送方向是一定的、单向的，但作为一个整体则是双向的。所以，在各种结构框图中，凡涉及到控制总线CB，均是以双向线表示。  总线的性能直接影响到整机系统的性能，而且任何系统的研制和外围模块的开发都必须依从所采用的总线规范。总线技术随着微机结构的改进而不断发展与完善。可见地址总线决定来CPU寻址的范围，由此可以看出对于32位的操作系统来说内存的最大寻址范围为32位也就是2的32位次方，也就是4G，由此对于32的计算机来说最大可识别内存也就是4G，对于64位操作系统来说也就是2的64方也就是4G个4G内存范围。</p>
 <h3 id="程序运行的局部性原理"><a href="#程序运行的局部性原理" class="headerlink" title="程序运行的局部性原理"></a>程序运行的局部性原理</h3><p>在程序运行时操作系统会为程序提供内存空间来运行需要执行的程序，在现在的计算机中通常CPU的运行速度要远快与IO设备，对于我的硬件来说我的CPU的运行速度为2.5GHZ但对于内存来说笔记本的内存速度也就是1600MHZ可见内存的速度要远低于CPU的运行速度。为了解决程序运行效率问题加入来缓存机制，缓存的速度是接近CPU的速度的，所以在CPU中会有一级缓存二级缓存和三级缓存，离CPU越近速度越快，但是成本就越高，这就是计算机的折中机制。这里说一下对于计算机的扩展有两种方式一种横向扩展一种纵向扩展横向扩展指的是用多个性能普通的计算机进行组合为一个功能强大的集群来完成复杂的计算功能，而纵向扩展指的是通过提过当个计算机的硬件性能，比如提高CPU的主频，增加内存，使用固态硬盘等方式来增加单个计算的计算性能。通常这种纵向扩展的方式性价比不高。程序界有一种说法为缓存为王，即cache is king 之所以这样说是因为程序运行时会遵循局部性原理，局部性原理表现为：时间局部性和空间局部性。时间局部性是指如果程序中的某条指令一旦执行，则不久之后该指令可能再次被执行；如果某数据被访问，则不久之后该数据可能再次被访问。空间局部性是指一旦程序访问了某个存储单元，则不久之后。其附近的存储单元也将被访问。根据程序的局部性原理我们就可以提前将需要的数据放入缓存中，这样便可以提高计算机的运行效率。</p>
@@ -343,12 +343,12 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/07/17/redhat01/">小红帽第一集</a></p>
+        <p><span>本文标题:</span><a href="/2018/07/17/redhat01/">小红帽第1集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月17日 - 10时53分</p>
-        <p><span>最后更新:</span>2018年07月18日 - 22时35分</p>
+        <p><span>最后更新:</span>2018年07月27日 - 21时33分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/07/17/redhat01/" title="小红帽第一集">https://zhangdashuo.github.io/2018/07/17/redhat01/</a>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/17/redhat01/" title="小红帽第1集">https://zhangdashuo.github.io/2018/07/17/redhat01/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/17/redhat01/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
@@ -366,7 +366,7 @@
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          小红帽第二集
+          小红帽第2集
         
       </div>
     </a>
@@ -451,7 +451,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/07/18/redhat02/" title="上一篇: 小红帽第二集">
+            <a href="/2018/07/18/redhat02/" title="上一篇: 小红帽第2集">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -462,7 +462,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat05/">小红帽第五集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/redhat04/">小红帽第四集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/redhat03/">小红帽第三集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/redhat02/">小红帽第二集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/redhat01/">小红帽第一集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/hello-world/">新的环境，新的博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat06/">小红帽第6集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat05/">小红帽第5集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/redhat04/">小红帽第4集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/redhat03/">小红帽第3集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/redhat02/">小红帽第2集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/redhat01/">小红帽第1集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/hello-world/">新的环境，新的博客</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
