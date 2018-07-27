@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于 | 张硕&#39;s Blogs</title>
+  <title>小红帽第五集 | 张硕&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="张硕’s Blogs 个人简介张硕，男，1993年出生，河北保定人。爱好编程，爱好看电影，爱好游戏。我的爱好不多但对于自己的爱好可以全身心的投入，乐此不疲。个人性格比较内向，喜欢孤独，不易相处。对于技术追求完美或许这是处女座的优势吧。 联系方式可以点击博客左侧或顶部的侧边栏的联系图标来联系我 教育背景2012.09-2016.06（本科） 就读于北华航天工业学院（NCIAE 河北.廊坊）机械工程系">
-<meta name="keywords" content="Linux 嵌入式">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https://zhangdashuo.github.io/about/index.html">
+  <meta name="description" content="小红帽第五集： shell编程初步及正则表达式">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小红帽第五集">
+<meta property="og:url" content="https://zhangdashuo.github.io/2018/07/27/redhat05/index.html">
 <meta property="og:site_name" content="张硕&#39;s Blogs">
-<meta property="og:description" content="张硕’s Blogs 个人简介张硕，男，1993年出生，河北保定人。爱好编程，爱好看电影，爱好游戏。我的爱好不多但对于自己的爱好可以全身心的投入，乐此不疲。个人性格比较内向，喜欢孤独，不易相处。对于技术追求完美或许这是处女座的优势吧。 联系方式可以点击博客左侧或顶部的侧边栏的联系图标来联系我 教育背景2012.09-2016.06（本科） 就读于北华航天工业学院（NCIAE 河北.廊坊）机械工程系">
+<meta property="og:description" content="小红帽第五集： shell编程初步及正则表达式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-18T06:29:13.774Z">
+<meta property="og:updated_time" content="2018-07-27T06:49:15.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于">
-<meta name="twitter:description" content="张硕’s Blogs 个人简介张硕，男，1993年出生，河北保定人。爱好编程，爱好看电影，爱好游戏。我的爱好不多但对于自己的爱好可以全身心的投入，乐此不疲。个人性格比较内向，喜欢孤独，不易相处。对于技术追求完美或许这是处女座的优势吧。 联系方式可以点击博客左侧或顶部的侧边栏的联系图标来联系我 教育背景2012.09-2016.06（本科） 就读于北华航天工业学院（NCIAE 河北.廊坊）机械工程系">
+<meta name="twitter:title" content="小红帽第五集">
+<meta name="twitter:description" content="小红帽第五集： shell编程初步及正则表达式">
   
     <link rel="alternative" href="/atom.xml" title="张硕&#39;s Blogs" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -231,11 +231,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-redhat05" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/about/index.html" class="article-date">
-      <time datetime="2018-07-13T14:39:45.000Z" itemprop="datePublished">2018-07-13</time>
+      <a href="/2018/07/27/redhat05/" class="article-date">
+      <time datetime="2018-07-27T06:46:18.000Z" itemprop="datePublished">2018-07-27</time>
 </a>
     </div>
   
@@ -248,7 +248,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      关于
+      小红帽第五集
     </h1>
   
 
@@ -258,7 +258,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">501字</span>
+	<span class="post-count">25字</span>
       </span>
     </span>
 										
@@ -268,7 +268,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">2分</span>
+	<span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -282,8 +282,16 @@
 	   <br>
 	
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/小红帽/">小红帽</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -291,63 +299,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta {
-        display: none;
-    }
-    #container .article .article-title {
-        padding-right: 0;
-    }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover {
-        border-left: none;
-    }
-    .article-title {
-        font-size: 1.6em
-    }
-    .article-meta {
-        display: none;
-    }
-    .article-entry hr {
-        margin: 0;
-    }
-    #container .article-info-post.article-info {
-      display: none;
-      }
-    #container .article .article-title {
-    padding: 0;
-    }
-</style>
-
-
-          
-        <h2 id="张硕’s-Blogs"><a href="#张硕’s-Blogs" class="headerlink" title="张硕’s Blogs"></a><strong>张硕’s Blogs</strong></h2><hr>
-<h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a><strong>个人简介</strong></h2><p>张硕，男，1993年出生，河北保定人。爱好编程，爱好看电影，爱好游戏。我的爱好不多但对于自己的爱好可以全身心的投入，乐此不疲。个人性格比较内向，喜欢孤独，不易相处。对于技术追求完美或许这是处女座的优势吧。</p>
-<h2 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h2><p>可以点击博客左侧或顶部的侧边栏的联系图标来联系我</p>
-<h2 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h2><p>2012.09-2016.06（本科） 就读于北华航天工业学院（NCIAE 河北.廊坊）机械工程系 测控技术与仪器专业。</p>
-<p>2017.09-至今 （硕士研究生） 就读于中国民航大学（CAUC 中国.天津）电子信息与自动化学院 控制工程专业。</p>
-<h2 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h2><p>2016.03-2016.09 北京创新在线有限公司（ICGOO 河北.廊坊）</p>
-<blockquote>
-<ul>
-<li>学习Linux，熟练使用Linux基本操作命令，学习了正则表达式。</li>
-<li>主要工作开发树莓派，为公司实验室建设做基础</li>
-<li>为公司销售提供嵌入式硬件的技术支持</li>
-</ul>
-</blockquote>
-<p>2017.02-2017.09 维高时代科技有限公司 （vgtimes 中国.北京）</p>
-<blockquote>
-<ul>
-<li>负责陀螺自稳定摇臂摄影车的控制软件设计， 所用 技术：MATLAB 拟合曲线、仿真。CANOPEN局域网总线，422、232通讯 。控制方式：模糊 PID 控制，串级PID控制等常用控制算法。</li>
-<li>自主项目：CPU记忆板卡设计。硬件方面：设计硬件电路。板层：4层。软件方面：FATFS文件系统，CANOpen局域网络控制系统。</li>
-</ul>
-</blockquote>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>对于本博客的所有文章全部代表个人意见，如果有问题可以在博客或是通过我的联系方式联系我，这将是我的荣幸。该博客在于学习过程的记录和承载分享知识。希望能够有更多的人加入到该行列中，写出更多质量高的文章。</p>
-
+        <p><strong> 小红帽第五集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>shell编程初步及正则表达式<br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="bash基础及shell编程初步"><a href="#bash基础及shell编程初步" class="headerlink" title="bash基础及shell编程初步"></a>bash基础及shell编程初步</h2>
       
       
     </div>
@@ -355,10 +309,67 @@
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/07/27/redhat05/">小红帽第五集</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
+        <p><span>发布时间:</span>2018年07月27日 - 14时46分</p>
+        <p><span>最后更新:</span>2018年07月27日 - 14时49分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/07/27/redhat05/" title="小红帽第五集">https://zhangdashuo.github.io/2018/07/27/redhat05/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/27/redhat05/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/21/redhat04/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小红帽第四集</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bash基础及shell编程初步"><span class="toc-number">1.</span> <span class="toc-text">bash基础及shell编程初步</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
 
 
 
@@ -395,6 +406,37 @@
     
 
 
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/07/21/redhat04/" title="下一篇: 小红帽第四集">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat05/">小红帽第五集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/redhat04/">小红帽第四集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/redhat03/">小红帽第三集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/redhat02/">小红帽第二集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/redhat01/">小红帽第一集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/hello-world/">新的环境，新的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
 
