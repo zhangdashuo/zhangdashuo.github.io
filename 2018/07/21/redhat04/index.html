@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第四集： Linux的文件管理，管道，用户组管理，用户权限管理">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-27T06:44:05.339Z">
+<meta property="og:updated_time" content="2018-07-27T12:03:46.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第四集">
 <meta name="twitter:description" content="小红帽第四集： Linux的文件管理，管道，用户组管理，用户权限管理">
@@ -258,7 +258,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">5,281字</span>
+	<span class="post-count">5,262字</span>
       </span>
     </span>
 										
@@ -386,7 +386,7 @@
 <p>&emsp;&emsp;Ctrl+k：删除光标所在处至命令行尾部的所有内容。</p>
 <p>&emsp;&emsp;Ctrl+左右箭头：一次跳一个单词。</p>
 <h2 id="IO重定向、管道及文本处理工具"><a href="#IO重定向、管道及文本处理工具" class="headerlink" title="IO重定向、管道及文本处理工具"></a>IO重定向、管道及文本处理工具</h2><h3 id="IO重定向"><a href="#IO重定向" class="headerlink" title="IO重定向"></a>IO重定向</h3><p>计算机中的程序是由指令加数据组成的。程序在运行时总要读取数据，和计算的数据结果也要进行输出。读取数据的来源可以是键盘，文件，网络等。输出结果的方式也很多比如打印机，显示器，以文件形式输出等，但对于输入来说从键盘读去数据，和输出至屏幕的方式无疑是最好的交互方式和最廉价的数据读去和输入方式。</p>
-<p>上面提过Linux的哲学思想中有一条就是一切皆文件，在文件系统描述那一章也提过Linux的文件类型等，比如-，b，l，c，d，p，s等，有不同的文件类型，对于文件类型我们可以使用file命令进行查看。其实Linux下对于每个文件都有自己的描述符，这里叫做fd（file descriptor），通常文件描述符会在文件的首部前几个字节中。所以对于输出设备输入设备等也都是以文件形式描述，所以这些设备也应该有自己的描述符。</p>
+<p>上面提过Linux的哲学思想中有一条就是一切皆文件，在文件系统描述那一章也提过Linux的文件类型等，比如-，b，l，c，d，p，s等，有不同的文件类型，对于文件类型我们可以使用file命令进行查看。Linux下对于每个打开的文件都有自己的描述符，这里叫做fd（file descriptor）。所以对于输出设备输入设备等也都是以文件形式描述，所以这些设备也应该有自己的描述符。</p>
 <p>标准输入：keyborad，描述符用0表示。比如cat命令就默认从键盘读去数据。</p>
 <p>标准输出：monitor，描述符用1表示。</p>
 <p>标准错误输出：monitor，描述符用2表示。（犯错的人一般都比较2，你懂的）</p>
@@ -632,7 +632,7 @@
         <p><span>本文标题:</span><a href="/2018/07/21/redhat04/">小红帽第四集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月21日 - 10时49分</p>
-        <p><span>最后更新:</span>2018年07月27日 - 14时44分</p>
+        <p><span>最后更新:</span>2018年07月27日 - 20时03分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/21/redhat04/" title="小红帽第四集">https://zhangdashuo.github.io/2018/07/21/redhat04/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/21/redhat04/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -819,7 +819,7 @@
                     </span>
                 
 		<span>, </span>
-		<span class="post-count">  本站文章总字数: <font color="#FFF">20.6k</span>
+		<span class="post-count">  本站文章总字数: <font color="#FFF">20.5k</span>
             </div>
         
     </div>
