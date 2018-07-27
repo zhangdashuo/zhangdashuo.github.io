@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第四集： Linux的文件管理，管道，用户组管理，用户权限管理">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-27T06:41:06.038Z">
+<meta property="og:updated_time" content="2018-07-27T06:44:05.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第四集">
 <meta name="twitter:description" content="小红帽第四集： Linux的文件管理，管道，用户组管理，用户权限管理">
@@ -415,7 +415,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ tr abc ABC</span><br><span class="line">ni hao ya ha ha ha</span><br><span class="line">ni hAo yA hA hA hA</span><br><span class="line">[zhangshuo@localhost ~]$ tr -d abc</span><br><span class="line">how are you</span><br><span class="line">how re you</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;&emsp;&emsp;对tr命令进行输入重定向，即从文件读取数据进行处理如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ tr [a-z] [A-Z] &lt; /etc/passwd | tail -2</span><br><span class="line">VBOXADD:X:987:1::/VAR/RUN/VBOXADD:/BIN/FALSE</span><br><span class="line">GLUSTER:X:986:980:GLUSTERFS DAEMONS:/VAR/RUN/GLUSTER:/SBIN/NOLOGIN</span><br></pre></td></tr></table></figure>
-<p>Here documentation：&lt;&lt; 该符号不是表示追加输入重定向，而是表示在此处生成文档。</p>
+<p>&emsp;&emsp;Here documentation：&lt;&lt; 该符号不是表示追加输入重定向，而是表示在此处生成文档。</p>
 <p>&emsp;&emsp;对于cat命令默认为标准输入读去数据，这里使用cat命令进行文档生成和保存文件，用法如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost test]$ pwd</span><br><span class="line">/tmp/test</span><br><span class="line">[zhangshuo@localhost test]$ cat &gt;&gt; ./cattest.txt &lt;&lt;EOF</span><br><span class="line"><span class="meta">&gt;</span> how are you</span><br><span class="line"><span class="meta">&gt;</span> how old are you</span><br><span class="line"><span class="meta">&gt;</span> EOF</span><br><span class="line">[zhangshuo@localhost test]$ cat cattest.txt </span><br><span class="line">how are you</span><br><span class="line">how old are you</span><br><span class="line">[zhangshuo@localhost test]$</span><br></pre></td></tr></table></figure>
 <h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3><p>对于管道又体现了Linux的哲学思想之一，那就是可实现组合小程序来完成复杂任务。</p>
@@ -632,7 +632,7 @@
         <p><span>本文标题:</span><a href="/2018/07/21/redhat04/">小红帽第四集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月21日 - 10时49分</p>
-        <p><span>最后更新:</span>2018年07月27日 - 14时41分</p>
+        <p><span>最后更新:</span>2018年07月27日 - 14时44分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/21/redhat04/" title="小红帽第四集">https://zhangdashuo.github.io/2018/07/21/redhat04/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/21/redhat04/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
