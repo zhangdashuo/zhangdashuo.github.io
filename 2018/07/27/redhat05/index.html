@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第5集： shell编程初步及正则表达式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-27T13:32:33.504Z">
+<meta property="og:updated_time" content="2018-07-29T01:48:26.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第5集">
 <meta name="twitter:description" content="小红帽第5集： shell编程初步及正则表达式">
@@ -258,7 +258,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">1,154字</span>
+	<span class="post-count">1,976字</span>
       </span>
     </span>
 										
@@ -268,7 +268,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">4分</span>
+	<span class="post-count">8分</span>
       </span>
     </span>
 </div>
@@ -367,7 +367,18 @@
 <p>&emsp;&emsp;&emsp;&emsp;^：行首锚定，用于模式的最左侧</p>
 <p>&emsp;&emsp;&emsp;&emsp;$：行尾锚定，用于模式的最右侧</p>
 <p>&emsp;&emsp;&emsp;&emsp;^PATTERN$：用于模式匹配整行</p>
-<p>&emsp;&emsp;&emsp;&emsp;^$：匹配空白行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;^$：匹配空白行<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;^[[:space:]]*$：匹配只有空白的行</p>
+<p>&emsp;&emsp;&emsp;&emsp;\&lt;或\b：词首锚定，用于单次模式的左侧</p>
+<p>&emsp;&emsp;&emsp;&emsp;>或\b：词尾锚定，用于单次模式的右侧</p>
+<p>&emsp;&emsp;&emsp;&emsp;\&lt;PATTERN>：匹配整个单次</p>
+<p>&emsp;&emsp;分组：\(\)：将一个或多个字符捆绑再一起当作一个整体进行处理</p>
+<p>&emsp;&emsp;&emsp;&emsp;比如：”\(xy\)\+”表示匹配一个或多个xy字符串</p>
+<p>&emsp;&emsp;&emsp;&emsp;后向引用：引用前面的分组括号中的模式所匹配字符（而非模式本身）</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：分组括号中的模式匹配到的内容会被正则表达式引擎记录于内部的变量中，这些变量的命名方式为：\1，\2，\3，…</p>
+<p>&emsp;&emsp;&emsp;&emsp;\1：表示从左侧起，第一个左括号以及与之匹配的右括号之间的模式所匹配到的字符</p>
+<p>&emsp;&emsp;正则表达式举例：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ #1、显示/proc/meminfo文件中以大小s开头的行（使用两种方式）</span><br><span class="line">[zhangshuo@localhost ~]$ grep -i "^s" /proc/meminfo </span><br><span class="line">SwapCached:            0 kB</span><br><span class="line">SwapTotal:       2097148 kB</span><br><span class="line">SwapFree:        2097148 kB</span><br><span class="line">Shmem:              7304 kB</span><br><span class="line">Slab:              50244 kB</span><br><span class="line">SReclaimable:      23724 kB</span><br><span class="line">SUnreclaim:        26520 kB</span><br><span class="line">[zhangshuo@localhost ~]$ grep "^[Ss]" /proc/meminfo </span><br><span class="line">SwapCached:            0 kB</span><br><span class="line">SwapTotal:       2097148 kB</span><br><span class="line">SwapFree:        2097148 kB</span><br><span class="line">Shmem:              7304 kB</span><br><span class="line">Slab:              50244 kB</span><br><span class="line">SReclaimable:      23724 kB</span><br><span class="line">SUnreclaim:        26520 kB</span><br><span class="line">[zhangshuo@localhost ~]$ #2、显示/etc/passwd文件中不以/bin/bash结尾的行</span><br><span class="line">[zhangshuo@localhost ~]$ grep -v "/bin/bash$" /etc/passwd</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin</span><br><span class="line">lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin</span><br><span class="line">sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">[zhangshuo@localhost ~]$ #3、显示/etc/passwd文件中ID号最大的用户的用户名</span><br><span class="line">[zhangshuo@localhost ~]$ sort -n -t : -k 3 /etc/passwd | tail -1 | cut -d : -f 1</span><br><span class="line">nfsnobody</span><br><span class="line">[zhangshuo@localhost ~]$ #4、如果用户root存在，显示其默认的shell程序</span><br><span class="line">[zhangshuo@localhost ~]$ id root &amp;&gt; /dev/null &amp;&amp; grep "^\&lt;root\&gt;" /etc/passwd </span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">[zhangshuo@localhost ~]$ id root &amp;&gt; /dev/null &amp;&amp; grep "^\&lt;root\&gt;" /etc/passwd | cut -d : -f 7</span><br><span class="line">/bin/bash</span><br><span class="line">[zhangshuo@localhost ~]$ #5、找出/etc/passwd中的两位或三位数</span><br><span class="line">[zhangshuo@localhost ~]$ grep "\&lt;[0-9]\&#123;2,3\&#125;\&gt;" /etc/passwd</span><br><span class="line">mail:x:8:12:mail:/var/spool/mail:/sbin/nologin</span><br><span class="line">operator:x:11:0:operator:/root:/sbin/nologin</span><br><span class="line">games:x:12:100:games:/usr/games:/sbin/nologin</span><br><span class="line">ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin</span><br><span class="line">nobody:x:99:99:Nobody:/:/sbin/nologin</span><br><span class="line">[zhangshuo@localhost ~]$ #6、显示/etc/grub2.cfg文件中，至少以一个空白字符开头的且后面存在非空白字符的行</span><br><span class="line">[root@localhost ~]# grep "^[[:space:]]\+[^[:space:]]" /etc/grub2.cfg</span><br><span class="line">  load_env</span><br><span class="line">   set default="$&#123;next_entry&#125;"</span><br><span class="line">   set next_entry=</span><br><span class="line">   save_env next_entry</span><br><span class="line">   set boot_once=true</span><br><span class="line">   set default="$&#123;saved_entry&#125;"</span><br><span class="line">  menuentry_id_option="--id"</span><br><span class="line">  menuentry_id_option=""</span><br><span class="line">[zhangshuo@localhost ~]$ #7、找出“netstat -tan”命令的结果中以“LISTEN”后跟0个1个或多个空白字符结尾的行</span><br><span class="line">[zhangshuo@localhost ~]$ netstat -tan | grep "LISTEN[[:space:]]*$"</span><br><span class="line">tcp        0      0 192.168.122.1:53        0.0.0.0:*               LISTEN     </span><br><span class="line">tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN     </span><br><span class="line">tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     </span><br><span class="line">tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN     </span><br><span class="line">tcp6       0      0 :::21                   :::*                    LISTEN     </span><br><span class="line">tcp6       0      0 :::22                   :::*                    LISTEN     </span><br><span class="line">tcp6       0      0 ::1:631                 :::*                    LISTEN     </span><br><span class="line">tcp6       0      0 ::1:25                  :::*                    LISTEN     </span><br><span class="line">[zhangshuo@localhost ~]$ #8、添加用户bash，testbash，basher以及nologin（其shell为/sbin/nologin）而后找出/etc/passwd文件中用户名同shell名的行</span><br><span class="line">[zhangshuo@localhost ~]$ #首先找用户名</span><br><span class="line">[zhangshuo@localhost ~]$ grep "^[[:alnum:]]\+\&gt;" /etc/passwd</span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin</span><br><span class="line">lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin</span><br><span class="line">sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">[zhangshuo@localhost ~]$ #再找用户名同shell名的行</span><br><span class="line">[zhangshuo@localhost ~]$ grep "^\([[:alnum:]]\+\&gt;\).*\1$" /etc/passwd</span><br><span class="line">sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown</span><br><span class="line">halt:x:7:0:halt:/sbin:/sbin/halt</span><br></pre></td></tr></table></figure>
+<p>-EOF</p>
 
       
       
@@ -380,7 +391,7 @@
         <p><span>本文标题:</span><a href="/2018/07/27/redhat05/">小红帽第5集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月27日 - 14时46分</p>
-        <p><span>最后更新:</span>2018年07月27日 - 21时32分</p>
+        <p><span>最后更新:</span>2018年07月29日 - 09时48分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/27/redhat05/" title="小红帽第5集">https://zhangdashuo.github.io/2018/07/27/redhat05/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/27/redhat05/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -567,7 +578,7 @@
                     </span>
                 
 		<span>, </span>
-		<span class="post-count">  本站文章总字数: <font color="#FFF">21.7k</span>
+		<span class="post-count">  本站文章总字数: <font color="#FFF">22.5k</span>
             </div>
         
     </div>
