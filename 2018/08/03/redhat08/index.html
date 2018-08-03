@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>书籍 | 张硕&#39;s Blogs</title>
+  <title>小红帽第8集 | 张硕&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="声明：本站所有图书均来自互联网，仅为学习使用，并非商业目的，如果对该图书比较喜欢建议购买正版。如有侵权请联系我,将会在第一时间进行删除。  Linux根文件系统描述（fhs-2.3）     	      	     鸟哥的Linux私房菜 基础学习篇(第三版).pdf     	      	     鸟哥的Linux私房菜服务器架设篇(第三版).pdf">
-<meta name="keywords" content="Linux 嵌入式">
-<meta property="og:type" content="website">
-<meta property="og:title" content="书籍">
-<meta property="og:url" content="https://zhangdashuo.github.io/pdf/index.html">
+  <meta name="description" content="小红帽第8集： 文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小红帽第8集">
+<meta property="og:url" content="https://zhangdashuo.github.io/2018/08/03/redhat08/index.html">
 <meta property="og:site_name" content="张硕&#39;s Blogs">
-<meta property="og:description" content="声明：本站所有图书均来自互联网，仅为学习使用，并非商业目的，如果对该图书比较喜欢建议购买正版。如有侵权请联系我,将会在第一时间进行删除。  Linux根文件系统描述（fhs-2.3）     	      	     鸟哥的Linux私房菜 基础学习篇(第三版).pdf     	      	     鸟哥的Linux私房菜服务器架设篇(第三版).pdf">
+<meta property="og:description" content="小红帽第8集： 文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-25T02:34:10.846Z">
+<meta property="og:updated_time" content="2018-08-03T02:23:32.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="书籍">
-<meta name="twitter:description" content="声明：本站所有图书均来自互联网，仅为学习使用，并非商业目的，如果对该图书比较喜欢建议购买正版。如有侵权请联系我,将会在第一时间进行删除。  Linux根文件系统描述（fhs-2.3）     	      	     鸟哥的Linux私房菜 基础学习篇(第三版).pdf     	      	     鸟哥的Linux私房菜服务器架设篇(第三版).pdf">
+<meta name="twitter:title" content="小红帽第8集">
+<meta name="twitter:description" content="小红帽第8集： 文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用">
   
     <link rel="alternative" href="/atom.xml" title="张硕&#39;s Blogs" type="application/atom+xml">
   
@@ -42,7 +42,7 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -231,11 +231,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-redhat08" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/pdf/index.html" class="article-date">
-      <time datetime="2018-07-21T03:07:45.000Z" itemprop="datePublished">2018-07-21</time>
+      <a href="/2018/08/03/redhat08/" class="article-date">
+      <time datetime="2018-08-03T02:09:42.000Z" itemprop="datePublished">2018-08-03</time>
 </a>
     </div>
   
@@ -248,18 +248,50 @@
         
   
     <h1 class="article-title" itemprop="name">
-      书籍
+      小红帽第8集
     </h1>
   
+
+	
+	   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+	<span class="post-meta-item-text">  字数统计: </span>
+	<span class="post-count">36字</span>
+      </span>
+    </span>
+										
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	<i class="fa fa-hourglass-half"></i>
+	<span class="post-meta-item-text"> 阅读时长: </span>
+	<span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
 
 	
       </header>
       
       <div class="article-info article-info-post">
         
+           <br>
+	   <br>
+	
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/小红帽/">小红帽</a>
+    </div>
+
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -267,80 +299,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta {
-        display: none;
-    }
-    #container .article .article-title {
-        padding-right: 0;
-    }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover {
-        border-left: none;
-    }
-    .article-title {
-        font-size: 1.6em
-    }
-    .article-meta {
-        display: none;
-    }
-    .article-entry hr {
-        margin: 0;
-    }
-    #container .article-info-post.article-info {
-      display: none;
-      }
-    #container .article .article-title {
-    padding: 0;
-    }
-</style>
+        <p><strong> 小红帽第8集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用<br><a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
 
-
-          
-        <div align="center"><br>声明：本站所有图书均来自互联网，仅为学习使用，并非商业目的，如果对该图书比较喜欢建议购买正版。如有侵权请联系我,将会在第一时间进行删除。<br></div>
-
-<center><strong>Linux根文件系统描述（fhs-2.3）</strong></center>
-
-<p><br></p>
-
-
-	<div class="row">
-    <embed src="index/fhs-2.3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-<p><br></p>
-<center><strong>鸟哥的Linux私房菜 基础学习篇(第三版).pdf</strong></center>
-
-<p><br></p>
-
-
-	<div class="row">
-    <embed src="index/niaogejichu3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-<p><br></p>
-<center><strong>鸟哥的Linux私房菜服务器架设篇(第三版).pdf</strong></center>
-
-<p><br></p>
-
-
-	<div class="row">
-    <embed src="index/niaogeservice3.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-<p><br></p>
-
+<h2 id="文件系统挂载与管理工具"><a href="#文件系统挂载与管理工具" class="headerlink" title="文件系统挂载与管理工具"></a>文件系统挂载与管理工具</h2></the>
       
       
     </div>
@@ -348,10 +310,67 @@
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/08/03/redhat08/">小红帽第8集</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
+        <p><span>发布时间:</span>2018年08月03日 - 10时09分</p>
+        <p><span>最后更新:</span>2018年08月03日 - 10时23分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/03/redhat08/" title="小红帽第8集">https://zhangdashuo.github.io/2018/08/03/redhat08/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/08/03/redhat08/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/03/redhat07/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">小红帽第7集</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件系统挂载与管理工具"><span class="toc-number">1.</span> <span class="toc-text">文件系统挂载与管理工具</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
 
 
 
@@ -388,6 +407,37 @@
     
 
 
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/08/03/redhat07/" title="下一篇: 小红帽第7集">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/redhat08/">小红帽第8集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/redhat07/">小红帽第7集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat06/">小红帽第6集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat05/">小红帽第5集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/redhat04/">小红帽第4集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/redhat03/">小红帽第3集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/redhat02/">小红帽第2集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/redhat01/">小红帽第1集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/hello-world/">新的环境，新的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
 
 
 

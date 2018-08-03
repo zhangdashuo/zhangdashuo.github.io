@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdashuo.github.io/"/>
-  <updated>2018-07-31T05:29:44.654Z</updated>
+  <updated>2018-08-03T02:23:32.320Z</updated>
   <id>https://zhangdashuo.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小红帽第8集</title>
+    <link href="https://zhangdashuo.github.io/2018/08/03/redhat08/"/>
+    <id>https://zhangdashuo.github.io/2018/08/03/redhat08/</id>
+    <published>2018-08-03T02:09:42.000Z</published>
+    <updated>2018-08-03T02:23:32.320Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong> 小红帽第8集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用<br><a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><h2 id="文件系统挂载与管理工具"><a href="#文件系统挂载与管理工具" class="headerlink" title="文件系统挂载与管理工具"></a>文件系统挂载与管理工具</h2></the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt; 小红帽第8集：&lt;/strong&gt; &lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用&lt;br&gt;&lt;/excerpt&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="小红帽" scheme="https://zhangdashuo.github.io/categories/%E5%B0%8F%E7%BA%A2%E5%B8%BD/"/>
+    
+    
+      <category term="Linux" scheme="https://zhangdashuo.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小红帽第7集</title>
+    <link href="https://zhangdashuo.github.io/2018/08/03/redhat07/"/>
+    <id>https://zhangdashuo.github.io/2018/08/03/redhat07/</id>
+    <published>2018-08-03T02:09:36.000Z</published>
+    <updated>2018-08-03T02:24:10.244Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong> 小红帽第7集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>find命令、if语句、磁盘管理、文件系统管理<br><a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><h2 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h2></the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt; 小红帽第7集：&lt;/strong&gt; &lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;find命令、if语句、磁盘管理、文件系统管理&lt;br&gt;&lt;/excerpt&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="小红帽" scheme="https://zhangdashuo.github.io/categories/%E5%B0%8F%E7%BA%A2%E5%B8%BD/"/>
+    
+    
+      <category term="Linux" scheme="https://zhangdashuo.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>小红帽第6集</title>
