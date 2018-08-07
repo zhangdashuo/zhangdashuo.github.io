@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhangdashuo.github.io/2018/07/27/redhat06/</loc>
+    
+    <lastmod>2018-08-07T09:40:59.121Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhangdashuo.github.io/2018/08/03/redhat07/</loc>
+    
+    <lastmod>2018-08-07T08:43:16.962Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhangdashuo.github.io/pdf/index.html</loc>
     
     <lastmod>2018-08-04T03:04:13.038Z</lastmod>
@@ -9,23 +23,9 @@
   </url>
   
   <url>
-    <loc>https://zhangdashuo.github.io/2018/08/03/redhat07/</loc>
-    
-    <lastmod>2018-08-03T02:24:10.244Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zhangdashuo.github.io/2018/08/03/redhat08/</loc>
     
     <lastmod>2018-08-03T02:23:32.320Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhangdashuo.github.io/2018/07/27/redhat06/</loc>
-    
-    <lastmod>2018-07-31T05:29:44.654Z</lastmod>
     
   </url>
   

@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第6集： egrep、bash环境配置及脚本、vim编辑器">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T05:29:44.654Z">
+<meta property="og:updated_time" content="2018-08-07T09:40:59.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第6集">
 <meta name="twitter:description" content="小红帽第6集： egrep、bash环境配置及脚本、vim编辑器">
@@ -300,370 +300,368 @@
       
           
         <p><strong> 小红帽第6集：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>egrep、bash环境配置及脚本、vim编辑器<br><a id="more"></a></excerpt></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2><h2 id="egrep及bash中的变量"><a href="#egrep及bash中的变量" class="headerlink" title="egrep及bash中的变量"></a>egrep及bash中的变量</h2><h3 id="egrep及扩展的正则表达式"><a href="#egrep及扩展的正则表达式" class="headerlink" title="egrep及扩展的正则表达式"></a>egrep及扩展的正则表达式</h3><p>​    egrep = grep -E</p>
-<p>​    egrep [OPTIONS] PATTERN [FILE…]</p>
-<p>​    fgrep：不支持正则表达式，而是直接搜索，这样速度较快</p>
-<p>​    扩展正则表达式的元字符：</p>
-<p>​        字符匹配：</p>
-<p>​            .，[]，[^]</p>
-<p>​        次数匹配：</p>
-<p>​            *，?，+，{m}，{m,}，{m,n}，{0,n}</p>
-<p>​        位置锚定：</p>
-<p>​            ^，$，\&lt;，\&gt;，\b，</p>
-<p>​        分组：</p>
-<p>​            ()，后向引用：\1，\2，…</p>
-<p>​        或者：</p>
-<p>​            a|b：C|cat 表示C或者cat而不是表示Cat或cat如果要表示这种需要：(C|c)at</p>
-<p>​        egrep举例如下：</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2><h2 id="egrep及bash中的变量"><a href="#egrep及bash中的变量" class="headerlink" title="egrep及bash中的变量"></a>egrep及bash中的变量</h2><h3 id="egrep及扩展的正则表达式"><a href="#egrep及扩展的正则表达式" class="headerlink" title="egrep及扩展的正则表达式"></a>egrep及扩展的正则表达式</h3><p>&emsp;&emsp;egrep = grep -E</p>
+<p>&emsp;&emsp;egrep [OPTIONS] PATTERN [FILE…]</p>
+<p>&emsp;&emsp;fgrep：不支持正则表达式，而是直接搜索，这样速度较快</p>
+<p>&emsp;&emsp;扩展正则表达式的元字符：</p>
+<p>&emsp;&emsp;&emsp;&emsp;字符匹配：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;.，[]，[^]</p>
+<p>&emsp;&emsp;&emsp;&emsp;次数匹配：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;*，?，+，{m}，{m,}，{m,n}，{0,n}</p>
+<p>&emsp;&emsp;&emsp;&emsp;位置锚定：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;^，$，\&lt;，\&gt;，\b，</p>
+<p>&emsp;&emsp;&emsp;&emsp;分组：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;()，后向引用：\1，\2，…</p>
+<p>&emsp;&emsp;&emsp;&emsp;或者：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;a|b：C|cat 表示C或者cat而不是表示Cat或cat如果要表示这种需要：(C|c)at</p>
+<p>&emsp;&emsp;&emsp;&emsp;egrep举例如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ #1、显示当前系统root，git，或zhangshuo用户的默认shell和UID</span><br><span class="line">[zhangshuo@localhost ~]$ egrep "^(root|git|zhangshuo)\&gt;" /etc/passwd | cut -d : -f 1,3,7</span><br><span class="line">root:0:/bin/bash</span><br><span class="line">zhangshuo:1000:/bin/bash</span><br><span class="line">[zhangshuo@localhost ~]$ #2、找出/etc/rc.d/init.d/functions文件中某单词后面跟一个小括号的行</span><br><span class="line">[zhangshuo@localhost ~]$ egrep "\&lt;[[:alpha:]]+\&gt;\(\)" /etc/rc.d/init.d/functions </span><br><span class="line">checkpid() &#123;</span><br><span class="line">daemon() &#123;</span><br><span class="line">killproc() &#123;</span><br><span class="line">[zhangshuo@localhost ~]$ #3、使用echo输出一路径，使用egrep取出其基名</span><br><span class="line">[zhangshuo@localhost ~]$ echo "/etc//passwd/" | egrep -o "[^/]+/?$" | cut -d / -f 1</span><br><span class="line">passwd</span><br><span class="line">[zhangshuo@localhost ~]$ echo "/etc//passwd/" | egrep -o "/[[:alpha:]]+/?$" | cut -d / -f 2</span><br><span class="line">passwd</span><br><span class="line">[zhangshuo@localhost ~]$ #4、找出ifconfig命令结果中1-255之间的数值</span><br><span class="line">[zhangshuo@localhost ~]$ ifconfig | egrep -o "\&lt;([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\&gt;"</span><br><span class="line">10</span><br><span class="line">2</span><br><span class="line">15</span><br><span class="line">255</span><br><span class="line">255</span><br><span class="line">[zhangshuo@localhost ~]$ #5、找出ifocnifg命令结果中的IP地址</span><br><span class="line">[zhangshuo@localhost ~]$ ifconfig | egrep -o "(\&lt;([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\&gt;.)&#123;3&#125;\&lt;([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\&gt;"</span><br><span class="line">10.8.76.166</span><br><span class="line">10.8.255.255</span><br><span class="line">192.168.122.1</span><br><span class="line">192.168.122.255</span><br></pre></td></tr></table></figure>
-<h3 id="bash的基础特性（4）"><a href="#bash的基础特性（4）" class="headerlink" title="bash的基础特性（4）"></a>bash的基础特性（4）</h3><p>​    变量类型：决定了数据存储格式，存储空间大小，参与运算种类</p>
-<p>​        字符型：</p>
-<p>​        数值型：数值型又包括</p>
-<p>​            整型：</p>
-<p>​            浮点型：</p>
-<p>​    对于强类型的语言：定义变量时必须指定类型，参与运算必须符合类型要求，调用未声明的变量会报错</p>
-<p>​    对于若类型的语言（shell）：无需指定类型，默认均为字符型，参与运算会自动进行隐式类型转换，变量无需事先定义可直接调用</p>
-<p>​    bash中的变量的种类：</p>
-<p>​        本地变量：生效范围为当前shell进程，对当前shell之外的其它shell进程包括当前shell的子进程均无效</p>
-<p>​        环境变量：生效范围为当前shell进程及其子进程</p>
-<p>​        局部变量：生效范围为当前shell进程中某代码片段（通常指函数）</p>
-<p>​        位置变量：$1，$2，…来表示用于让脚本代码中调用通过命令行传递给它的参数</p>
-<p>​        特殊变量：$?，$0，$#，$*，$@</p>
-<p>​    本地变量：</p>
-<p>​        变量赋值：name=”VALUE”</p>
-<p>​        对于VALUE可以使用引用：</p>
-<p>​            （1）：可以是直接字串：name=”username”</p>
-<p>​            （2）：变量引用：name=”$username”</p>
-<p>​            （3）：命令引用：name=`COMMAND`或name=$(COMMAND)</p>
-<p>​        变量引用：</p>
-<p>​            “”：弱引用，其中的变量引用会被替换为变量值</p>
-<p>​            ‘’：强引用，其中的变量引用不会被替换为变量值，而保持原字符串本身</p>
-<p>​        显示定义的所有变量：</p>
-<p>​            命令：set</p>
-<p>​        销毁变量：</p>
-<p>​            命令：unset name</p>
-<p>​    环境变量：</p>
-<p>​        变量声明和赋值</p>
-<p>​            export name=VALUE</p>
-<p>​            declare -x name=VALUE</p>
-<p>​        变量引用：$name，${name}</p>
-<p>​        显示所有的环境变量：</p>
-<p>​            命令：<code>export</code> <code>env</code> <code>printenv</code></p>
-<p>​        销毁变量： unset name</p>
-<p>​        bash中许多内建的环境变量：PATH,SHELL,UID,HISTSIZE,HISTFILE,HISTCONTROL,OLD,PWD,HOME,PS1等</p>
-<p>​    变量的命名法则：</p>
-<p>​        1、不能使用程序中的保留字：例如if，for等</p>
-<p>​        2、只能使用数字，字母及下划线，且不能以数字开头</p>
-<p>​        3、尽量做到见名知义</p>
-<p>​    只读变量：</p>
-<p>​        使用readonly name 来定义或</p>
-<p>​        declare -r name</p>
-<p>​        注意：只读变量只要被定义则再改shell进程结束之前禁止修改和撤销</p>
-<p>​    位置变量：</p>
-<p>​        在脚本代码中调用通过命令行传递给脚本的参数</p>
-<p>​        $1，$2，…对应调用第1个，第2个参数</p>
-<p>​    特殊变量：</p>
-<p>​        $?：命令执行状态返回值</p>
-<p>​        $0：命令本身</p>
-<p>​        $*：传递给脚本的所有参数当作一个字串</p>
-<p>​        $@：传递给脚本的所有参数，每一个当作一个字串</p>
-<p>​        $#：传递给脚本的参数的个数</p>
-<p>​        在脚本中可以使用shift [n]来进行轮换</p>
-<h2 id="bash环境配置及脚本"><a href="#bash环境配置及脚本" class="headerlink" title="bash环境配置及脚本"></a>bash环境配置及脚本</h2><h3 id="bansh环境配置"><a href="#bansh环境配置" class="headerlink" title="bansh环境配置"></a>bansh环境配置</h3><p>​    bash的配置文件</p>
-<p>​        按生效范围划分存在两类：</p>
-<p>​            全局配置：/etc/profile /etc/profile.d/*.sh /etc/bashrc</p>
-<p>​            个人配置：~/.bashrc ~/.bash_profile</p>
-<p>​        按功能划分：</p>
-<p>​            profile类：为交互式登陆的shell提供配置</p>
-<p>​                功用：</p>
-<p>​                    （1）、定义环境变量</p>
-<p>​                    （2）、运行命令或脚本</p>
-<p>​            bashrc类：为非交互式登陆的shell提供配置</p>
-<p>​                功用：</p>
-<p>​                    （1）、定义命令别名</p>
-<p>​                    （2）、定义本地变量</p>
-<p>​        shell登陆类别划分</p>
-<p>​            交互式登陆：</p>
-<p>​                直接通过终端输入账号密码登陆</p>
-<p>​                使用su - username或su -l username切换致的用户</p>
-<p>​            非交互式登陆</p>
-<p>​                su username</p>
-<p>​                图形界面下打开的终端</p>
-<p>​                执行脚本运行的终端</p>
-<p>​        登陆式shell获取配置文件次序</p>
-<p>​            /etc/profile–&gt;/etc/profile.d/*.sh–&gt;~/.bash_profile–&gt;~/.bashrc–&gt;/etc/bashrc</p>
-<p>​        非登陆式shell获取配置文件次序</p>
-<p>​            ~/.bashrc–&gt;/etc/bashrc–&gt;/etc/profile.d/*.sh</p>
-<h3 id="bash中的算数运算符"><a href="#bash中的算数运算符" class="headerlink" title="bash中的算数运算符"></a>bash中的算数运算符</h3><p>​    （1）、let var=算术表达式</p>
-<p>​    （2）、var=$[算术表达式]</p>
-<p>​    （3）、var=$((算术表达式))</p>
-<p>​    （4）、var=$(expr arg1 arg2 arg3 …)</p>
-<p>​    各算法运算表示如下</p>
+<h3 id="bash的基础特性（4）"><a href="#bash的基础特性（4）" class="headerlink" title="bash的基础特性（4）"></a>bash的基础特性（4）</h3><p>&emsp;&emsp;变量类型：决定了数据存储格式，存储空间大小，参与运算种类</p>
+<p>&emsp;&emsp;&emsp;&emsp;字符型：</p>
+<p>&emsp;&emsp;&emsp;&emsp;数值型：数值型又包括</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;整型：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;浮点型：</p>
+<p>&emsp;&emsp;对于强类型的语言：定义变量时必须指定类型，参与运算必须符合类型要求，调用未声明的变量会报错</p>
+<p>&emsp;&emsp;对于若类型的语言（shell）：无需指定类型，默认均为字符型，参与运算会自动进行隐式类型转换，变量无需事先定义可直接调用</p>
+<p>&emsp;&emsp;bash中的变量的种类：</p>
+<p>&emsp;&emsp;&emsp;&emsp;本地变量：生效范围为当前shell进程，对当前shell之外的其它shell进程包括当前shell的子进程均无效</p>
+<p>&emsp;&emsp;&emsp;&emsp;环境变量：生效范围为当前shell进程及其子进程</p>
+<p>&emsp;&emsp;&emsp;&emsp;局部变量：生效范围为当前shell进程中某代码片段（通常指函数）</p>
+<p>&emsp;&emsp;&emsp;&emsp;位置变量：$1，$2，…来表示用于让脚本代码中调用通过命令行传递给它的参数</p>
+<p>&emsp;&emsp;&emsp;&emsp;特殊变量：$?，$0，$#，$*，$@</p>
+<p>&emsp;&emsp;本地变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;变量赋值：name=”VALUE”</p>
+<p>&emsp;&emsp;&emsp;&emsp;对于VALUE可以使用引用：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（1）：可以是直接字串：name=”username”</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（2）：变量引用：name=”$username”</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（3）：命令引用：name=`COMMAND`或name=$(COMMAND)</p>
+<p>&emsp;&emsp;&emsp;&emsp;变量引用：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;””：弱引用，其中的变量引用会被替换为变量值</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;’’：强引用，其中的变量引用不会被替换为变量值，而保持原字符串本身</p>
+<p>&emsp;&emsp;&emsp;&emsp;显示定义的所有变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;命令：set</p>
+<p>&emsp;&emsp;&emsp;&emsp;销毁变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;命令：unset name</p>
+<p>&emsp;&emsp;环境变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;变量声明和赋值</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;export name=VALUE</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;declare -x name=VALUE</p>
+<p>&emsp;&emsp;&emsp;&emsp;变量引用：$name，${name}</p>
+<p>&emsp;&emsp;&emsp;&emsp;显示所有的环境变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;命令：<code>export</code> <code>env</code> <code>printenv</code></p>
+<p>&emsp;&emsp;&emsp;&emsp;销毁变量： unset name</p>
+<p>&emsp;&emsp;&emsp;&emsp;bash中许多内建的环境变量：PATH,SHELL,UID,HISTSIZE,HISTFILE,HISTCONTROL,OLD,PWD,HOME,PS1等</p>
+<p>&emsp;&emsp;变量的命名法则：</p>
+<p>&emsp;&emsp;&emsp;&emsp;1、不能使用程序中的保留字：例如if，for等</p>
+<p>&emsp;&emsp;&emsp;&emsp;2、只能使用数字，字母及下划线，且不能以数字开头</p>
+<p>&emsp;&emsp;&emsp;&emsp;3、尽量做到见名知义</p>
+<p>&emsp;&emsp;只读变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;使用readonly name 来定义或</p>
+<p>&emsp;&emsp;&emsp;&emsp;declare -r name</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：只读变量只要被定义则再改shell进程结束之前禁止修改和撤销</p>
+<p>&emsp;&emsp;位置变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;在脚本代码中调用通过命令行传递给脚本的参数</p>
+<p>&emsp;&emsp;&emsp;&emsp;$1，$2，…对应调用第1个，第2个参数</p>
+<p>&emsp;&emsp;特殊变量：</p>
+<p>&emsp;&emsp;&emsp;&emsp;$?：命令执行状态返回值</p>
+<p>&emsp;&emsp;&emsp;&emsp;$0：命令本身</p>
+<p>&emsp;&emsp;&emsp;&emsp;$*：传递给脚本的所有参数当作一个字串</p>
+<p>&emsp;&emsp;&emsp;&emsp;$@：传递给脚本的所有参数，每一个当作一个字串</p>
+<p>&emsp;&emsp;&emsp;&emsp;$#：传递给脚本的参数的个数</p>
+<p>&emsp;&emsp;&emsp;&emsp;在脚本中可以使用shift [n]来进行轮换</p>
+<h2 id="bash环境配置及脚本"><a href="#bash环境配置及脚本" class="headerlink" title="bash环境配置及脚本"></a>bash环境配置及脚本</h2><h3 id="bansh环境配置"><a href="#bansh环境配置" class="headerlink" title="bansh环境配置"></a>bansh环境配置</h3><p>&emsp;&emsp;bash的配置文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;按生效范围划分存在两类：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;全局配置：/etc/profile /etc/profile.d/*.sh /etc/bashrc</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;个人配置：~/.bashrc ~/.bash_profile</p>
+<p>&emsp;&emsp;&emsp;&emsp;按功能划分：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;profile类：为交互式登陆的shell提供配置</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;功用：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（1）、定义环境变量</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（2）、运行命令或脚本</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;bashrc类：为非交互式登陆的shell提供配置</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;功用：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（1）、定义命令别名</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（2）、定义本地变量</p>
+<p>&emsp;&emsp;&emsp;&emsp;shell登陆类别划分</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;交互式登陆：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;直接通过终端输入账号密码登陆</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;使用su - username或su -l username切换致的用户</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;非交互式登陆</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;su username</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;图形界面下打开的终端</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;执行脚本运行的终端</p>
+<p>&emsp;&emsp;&emsp;&emsp;登陆式shell获取配置文件次序</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;/etc/profile–&gt;/etc/profile.d/*.sh–&gt;~/.bash_profile–&gt;~/.bashrc–&gt;/etc/bashrc</p>
+<p>&emsp;&emsp;&emsp;&emsp;非登陆式shell获取配置文件次序</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;~/.bashrc–&gt;/etc/bashrc–&gt;/etc/profile.d/*.sh</p>
+<h3 id="bash中的算数运算符"><a href="#bash中的算数运算符" class="headerlink" title="bash中的算数运算符"></a>bash中的算数运算符</h3><p>&emsp;&emsp;（1）、let var=算术表达式</p>
+<p>&emsp;&emsp;（2）、var=$[算术表达式]</p>
+<p>&emsp;&emsp;（3）、var=$((算术表达式))</p>
+<p>&emsp;&emsp;（4）、var=$(expr arg1 arg2 arg3 …)</p>
+<p>&emsp;&emsp;各算法运算表示如下</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ A=3</span><br><span class="line">[zhangshuo@localhost ~]$ B=5</span><br><span class="line">[zhangshuo@localhost ~]$ let C=$A+$B</span><br><span class="line">[zhangshuo@localhost ~]$ echo $C</span><br><span class="line">8</span><br><span class="line">[zhangshuo@localhost ~]$ echo "$[$A+$B]"</span><br><span class="line">8</span><br><span class="line">[zhangshuo@localhost ~]$ echo "$(($A+$B))"</span><br><span class="line">8</span><br><span class="line">[zhangshuo@localhost ~]$ echo "$(expr $A \* $B)"</span><br><span class="line">15</span><br></pre></td></tr></table></figure>
-<p>​    注意：乘法符号有些场景中需要转义</p>
-<p>​    bash有内建的随机数生成器：$RANDOM 例如取出1-60中的随机数</p>
+<p>&emsp;&emsp;注意：乘法符号有些场景中需要转义</p>
+<p>&emsp;&emsp;bash有内建的随机数生成器：$RANDOM 例如取出1-60中的随机数</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ echo "$[$RANDOM%60+1]"</span><br><span class="line">35</span><br></pre></td></tr></table></figure>
-<p>​    增强型赋值：let count+=1 ，let count++ ，count=$[$count+1]可以实现变量自加一</p>
-<p>​    对于数值计算举例如下：</p>
-<p>​    </p>
+<p>&emsp;&emsp;增强型赋值：let count+=1 ，let count++ ，count=$[$count+1]可以实现变量自加一</p>
+<p>&emsp;&emsp;对于数值计算举例如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost bin]$ #1、写一个脚本，计算/etc/passwd文件中的第10个用户和第20个用户的id之和</span><br><span class="line">[zhangshuo@localhost bin]$ pwd</span><br><span class="line">/home/zhangshuo/bin</span><br><span class="line">[zhangshuo@localhost bin]$ vim sumid.sh</span><br><span class="line">[zhangshuo@localhost bin]$ cat sumid.sh </span><br><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by 张硕 20180731</span><br><span class="line">user10id=$(head -10 /etc/passwd | tail -1 | cut -d : -f 3)</span><br><span class="line">user20id=$(head -20 /etc/passwd | tail -1 | cut -d : -f 3)</span><br><span class="line">idsum1020=$[$user10id+$user20id]</span><br><span class="line">echo "id20 and id10 id sum is $idsum1020"</span><br><span class="line">[zhangshuo@localhost bin]$ chmod +x sumid.sh </span><br><span class="line">[zhangshuo@localhost bin]$ ./sumid.sh </span><br><span class="line">id20 and id10 id sum is 70</span><br><span class="line">[zhangshuo@localhost bin]$ #2、写一个脚本，传递两个文件路径作为参数给脚本，计算这两个文件中所有空白行之和</span><br><span class="line">[zhangshuo@localhost bin]$ vim blackline.sh</span><br><span class="line">[zhangshuo@localhost bin]$ cat blackline.sh </span><br><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by 张硕 20180731</span><br><span class="line">file1spacenum=$(grep "^[[:space:]]*$" $1 | wc -l)</span><br><span class="line">file2spacenum=$(grep "^[[:space:]]*$" $2 | wc -l)</span><br><span class="line">numsum=$[$file1spacenum+$file2spacenum]</span><br><span class="line">echo "space line num is $numsum"</span><br><span class="line">[zhangshuo@localhost bin]$ chmod +x blackline.sh </span><br><span class="line">[zhangshuo@localhost bin]$ ./blackline.sh /etc/passwd /etc/rc.d/init.d/functions </span><br><span class="line">space line num is 90</span><br><span class="line">[zhangshuo@localhost bin]$ #3、统计/etc/，/var/，/usr目录共有多少个一级子目录和文件</span><br><span class="line">[zhangshuo@localhost bin]$ vim gitline.sh</span><br><span class="line">[zhangshuo@localhost bin]$ cat gitline.sh </span><br><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by 张硕 20180731</span><br><span class="line">etclines=$(ls /etc | wc -l)</span><br><span class="line">varlines=$(ls /var | wc -l)</span><br><span class="line">usrlines=$(ls /usr | wc -l)</span><br><span class="line">linesnum=$[$etclines + $varlines + $usrlines]</span><br><span class="line">echo "lines sum is $linesnum"</span><br><span class="line">[zhangshuo@localhost bin]$ chmod +x gitline.sh </span><br><span class="line">[zhangshuo@localhost bin]$ ./gitline.sh </span><br><span class="line">lines sum is 324</span><br></pre></td></tr></table></figure>
-<h3 id="bash中的条件测试"><a href="#bash中的条件测试" class="headerlink" title="bash中的条件测试"></a>bash中的条件测试</h3><p>​    判断某需求是否满足，需要由测试机制来实现</p>
-<p>​    注意：专用的测试表达式需要由测试命令辅助完成测试过程</p>
-<p>​    测试命令：</p>
-<p>​        test EXPRESSION</p>
-<p>​        [ EXPRESSION ]</p>
-<p>​        [[ EXPRESSION ]]</p>
-<p>​        注意：EXPRESSION前后必须有空白字符</p>
-<p>​    bash的测试类型：</p>
-<p>​        数值测试：</p>
-<p>​        字符串测试：</p>
-<p>​        文件测试：</p>
-<p>​    数值测试：</p>
-<p>​        -gt：是否大于</p>
-<p>​        -le：是否小于等于</p>
-<p>​        -ge：是否大于等于</p>
-<p>​        -eq：是否相等</p>
-<p>​        -ne：是否不想等</p>
-<p>​        -lt：是否小于</p>
-<p>​    字符串测试：</p>
-<p>​        ==：是否等于</p>
-<p>​        &gt;：是否大于</p>
-<p>​        &lt;：是否小于</p>
-<p>​        !=：是否不等于</p>
-<p>​        =~：左侧字符串是否能够被右侧的PATTERN所匹配到</p>
-<p>​            注意：此表达式一般用于[[]]测试符号中</p>
-<p>​        -z “STRING”：测试字符串是否为空，空则为真，不空则为假</p>
-<p>​        -n “STRING”：测试字符串是否不空，不空则为真，空则为假</p>
-<p>​    bash自定义退出状态码</p>
-<p>​        在脚本中需要退出的位置使用命令<code>exit [n]</code>即可自定义退出状态码</p>
-<p>​            注意：脚本中一旦遇到exit命令，脚本会立即终止，终止退出状态取决于exit命令后面的数字</p>
-<p>​        注意：如果未给脚本指定退出状态码，整个脚本的退出状态码取决于脚本中执行的最后一条命令的状态码</p>
-<p>​        脚本中自定义错误码举例如下：</p>
+<h3 id="bash中的条件测试"><a href="#bash中的条件测试" class="headerlink" title="bash中的条件测试"></a>bash中的条件测试</h3><p>&emsp;&emsp;判断某需求是否满足，需要由测试机制来实现</p>
+<p>&emsp;&emsp;注意：专用的测试表达式需要由测试命令辅助完成测试过程</p>
+<p>&emsp;&emsp;测试命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;test EXPRESSION</p>
+<p>&emsp;&emsp;&emsp;&emsp;[ EXPRESSION ]</p>
+<p>&emsp;&emsp;&emsp;&emsp;[[ EXPRESSION ]]</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：EXPRESSION前后必须有空白字符</p>
+<p>&emsp;&emsp;bash的测试类型：</p>
+<p>&emsp;&emsp;&emsp;&emsp;数值测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;字符串测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;文件测试：</p>
+<p>&emsp;&emsp;数值测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;-gt：是否大于</p>
+<p>&emsp;&emsp;&emsp;&emsp;-le：是否小于等于</p>
+<p>&emsp;&emsp;&emsp;&emsp;-ge：是否大于等于</p>
+<p>&emsp;&emsp;&emsp;&emsp;-eq：是否相等</p>
+<p>&emsp;&emsp;&emsp;&emsp;-ne：是否不想等</p>
+<p>&emsp;&emsp;&emsp;&emsp;-lt：是否小于</p>
+<p>&emsp;&emsp;字符串测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;==：是否等于</p>
+<p>&emsp;&emsp;&emsp;&emsp;&gt;：是否大于</p>
+<p>&emsp;&emsp;&emsp;&emsp;&lt;：是否小于</p>
+<p>&emsp;&emsp;&emsp;&emsp;!=：是否不等于</p>
+<p>&emsp;&emsp;&emsp;&emsp;=~：左侧字符串是否能够被右侧的PATTERN所匹配到</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;注意：此表达式一般用于[[]]测试符号中</p>
+<p>&emsp;&emsp;&emsp;&emsp;-z “STRING”：测试字符串是否为空，空则为真，不空则为假</p>
+<p>&emsp;&emsp;&emsp;&emsp;-n “STRING”：测试字符串是否不空，不空则为真，空则为假</p>
+<p>&emsp;&emsp;bash自定义退出状态码</p>
+<p>&emsp;&emsp;&emsp;&emsp;在脚本中需要退出的位置使用命令<code>exit [n]</code>即可自定义退出状态码</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;注意：脚本中一旦遇到exit命令，脚本会立即终止，终止退出状态取决于exit命令后面的数字</p>
+<p>&emsp;&emsp;&emsp;&emsp;注意：如果未给脚本指定退出状态码，整个脚本的退出状态码取决于脚本中执行的最后一条命令的状态码</p>
+<p>&emsp;&emsp;&emsp;&emsp;脚本中自定义错误码举例如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost bin]$ #写一个脚本，接受一个文件路径作为参数，如果参数个数小于1，则提示用户至少应给一个参 数，并立即退出，如果参数个数不小于1，则显示第一个参数所指向的文件中的空白行数</span><br><span class="line">[zhangshuo@localhost bin]$ vim myexit.sh</span><br><span class="line">[zhangshuo@localhost bin]$ cat myexit.sh </span><br><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by zhangshuo 20180731</span><br><span class="line">[ $# -lt 1 ] &amp;&amp; echo "至少应给一个参数" &amp;&amp; exit 2</span><br><span class="line">spacelinenum=$(grep "^[[:space:]]*$" $1 | wc -l)</span><br><span class="line">echo "first file space line num is $spacelinenum"</span><br><span class="line">[zhangshuo@localhost bin]$ chmod +x myexit.sh </span><br><span class="line">[zhangshuo@localhost bin]$ ./myexit.sh </span><br><span class="line">至少应给一个参数</span><br><span class="line">[zhangshuo@localhost bin]$ echo $?</span><br><span class="line">2</span><br><span class="line">[zhangshuo@localhost bin]$ ./myexit.sh /etc/rc.d/init.d/functions </span><br><span class="line">first file space line num is 90</span><br></pre></td></tr></table></figure>
 <h2 id="vim编辑器"><a href="#vim编辑器" class="headerlink" title="vim编辑器"></a>vim编辑器</h2><p>vim简单介绍</p>
-<p>​    vi：Visual Interface 可视化接口编辑器</p>
-<p>​    文本编辑器种类：</p>
-<p>​        行编辑器：sed</p>
-<p>​        全屏编辑器：nano，vi等</p>
-<p>​    vim：vi iMproved ：模式化编辑器</p>
-<p>​        基本模式：</p>
-<p>​            编辑模式，命令模式：</p>
-<p>​            输入模式：</p>
-<p>​            末行模式：</p>
-<p>​                内置的命令行接口</p>
-<p>​    打开文件：</p>
-<p>​        vim [OPTION]…FILE…</p>
-<p>​            +#：打开文件后，直接让光标处于第#行的行首</p>
-<p>​            +/PATTERN：打开文件后，直接让光标处于第一个被PATTERN匹配到的行首</p>
-<p>​            +：直接到文件末尾</p>
-<p>​    模式转换：</p>
-<p>​        编辑模式–&gt;输入模式</p>
-<p>​            i：insert，在光标所在处转为输入模式</p>
-<p>​            a：append，在光标所在处后面转为输入模式</p>
-<p>​            o：在当前光标所在行的下方打开一个新行转为输入模式</p>
-<p>​            I：在当前光标所在行的行首转为输入模式</p>
-<p>​            A：在当前光标所在行的行尾转为输入模式</p>
-<p>​            O：在当前光标所在行的上方打开一个新行转为输入模式</p>
-<p>​        输入模式–&gt;编辑模式</p>
-<p>​            按ESC键即可</p>
-<p>​        编辑模式–&gt;末行模式</p>
-<p>​            :</p>
-<p>​        末行模式–&gt;编辑模式</p>
-<p>​            按ESC键，一次不行就多按几次</p>
-<p>​    关闭文件：</p>
-<p>​        在末行模式下：</p>
-<p>​            :q 退出</p>
-<p>​            :q! 强制退出，丢弃做出的修改</p>
-<p>​            :wq 保存退出</p>
-<p>​            :x 保存退出</p>
-<p>​            :w /PATH/TO/SOMEWHERE 保存文件内容到其他文件，相当于office下的另存为</p>
-<p>​        在编辑模式下：</p>
-<p>​            ZZ 按两次大写的Z直接保存退出</p>
-<p>​    光标跳转：</p>
-<p>​        字符间跳转：</p>
-<p>​            h：光标向左移动一个字符</p>
-<p>​            j：光标向上移动一行</p>
-<p>​            k：光标向下移动一行</p>
-<p>​            l：光标向右移动一个字符</p>
-<p>​            以上命令还可以和数字组合：# COMMAND 跳转由#指定的个数的字符</p>
-<p>​        单词间跳转：</p>
-<p>​            w：移动到下一个单次的词首</p>
-<p>​            e：移动到下一个单次的词尾</p>
-<p>​            b：移动到上一个单次的词首</p>
-<p>​        行首行尾跳转：</p>
-<p>​            ^：跳转至行首的第一个非空白字符</p>
-<p>​            0：跳转至绝对行首</p>
-<p>​            $：跳转至行尾</p>
-<p>​        行间跳转：</p>
-<p>​            # G：跳转至由#指定行</p>
-<p>​            G：跳转至文件最后一行</p>
-<p>​            gg，或1G：跳转至文件第一行</p>
-<p>​        句间移动：</p>
-<p>​            )：跳转至下一句句首</p>
-<p>​            (：跳转至上一句的句首</p>
-<p>​        段落间移动：</p>
-<p>​            {：移动到段首</p>
-<p>​            }：移动到段尾</p>
-<p>​    vim的编辑命令：</p>
-<p>​        字符编辑：</p>
-<p>​            x：删除光标处的字符</p>
-<p>​            # x：删除光标处起始的#个字符</p>
-<p>​            xp：交换光标所在处的字符及其后面字符的位置</p>
-<p>​        删除命令：</p>
-<p>​            d：删除命令，可结合光标跳转字符，实现范围删除</p>
-<p>​            d$，d^，d0，dw，dw，de，db</p>
-<p>​            也可以和数字键组合使用：# COMMAND</p>
-<p>​            dd：删除一整行</p>
-<p>​                #dd：实现多行删除</p>
-<p>​        粘贴命令：</p>
-<p>​            p：缓冲区保存的如果为整行，则粘贴至当前光标所在行的下方，否则则粘贴至当前光标所在处的后面</p>
-<p>​            P：缓冲区保存的如果为整行，则粘贴至当前光标所在行的上方，否则则粘贴至当前光标所在处的前面</p>
-<p>​        复制命令：</p>
-<p>​            y：复制，使用同d一样</p>
-<p>​        改变命令：</p>
-<p>​            c：修改，相当于d命令后再进行输入，使用该命令也可以实现从编辑模式到输入模式的转换</p>
-<p>​        替换命令：</p>
-<p>​            r：替换光标所在处的字符</p>
-<p>​        可视化模式：</p>
-<p>​            v：按字符选定</p>
-<p>​            V：按行选定</p>
-<p>​            注意：可视化模式选定范围后通常会和d，c，y命令进行组合</p>
-<p>​    撤销此前的编辑：</p>
-<p>​        u（undo）：撤销此前的操作</p>
-<p>​            #u：撤销指定次数的操作</p>
-<p>​    撤销此前的撤销：</p>
-<p>​        Ctrl+r</p>
-<p>​    重复前一个编辑操作：</p>
-<p>​        .</p>
-<p>​    翻屏操作：</p>
-<p>​        Ctrl+f：向文件尾部翻一屏</p>
-<p>​        Ctrl+b：向文件首部翻一屏</p>
-<p>​        Ctrl+d：向文件尾部翻半屏</p>
-<p>​        Ctrl+u：向文件首部翻半屏</p>
-<p>​    vim自带的练习教程</p>
-<p>​        vimtutor</p>
-<p>​    vim中的末行模式：</p>
-<p>​        内建的命令行接口</p>
-<p>​        （1）地址定界</p>
-<p>​            :start_pos,end_pos</p>
-<p>​                #：具体第#行，例如2表示第2行</p>
-<p>​                #,#：从左侧#表示行起始，到右侧#表示行结尾</p>
-<p>​                #,+#：从左侧#表示的行起始，加上右侧#表示的行数</p>
-<p>​                .：表示当前行</p>
-<p>​                $：表示到最后一行</p>
-<p>​                    .,$-1：表示从当前行到倒数第二行</p>
-<p>​                %：全文，相当于1,$</p>
-<p>​                /pat1/,/pat2/：从第一次被pat1模式匹配到的行开始一直到第一次被pat2匹配到的行结束</p>
-<p>​                使用方式：</p>
-<p>​                    后跟一个编辑命令：</p>
-<p>​                    d，y，w，/path/to/somewhere</p>
-<p>​                    r /path/from/somefile：在指定位置插入指定文件中的所有内容</p>
-<p>​        （2）查找</p>
-<p>​            和less命令的用法类似</p>
-<p>​            /PATTERN</p>
-<p>​            ?PATTERN</p>
-<p>​                n：与命令查找方向相同来查找下一个</p>
-<p>​                N：与命令查找方向相反来查找下一个</p>
-<p>​        （3）查找并替换</p>
-<p>​            s：在末行模式下完成查找替换操作</p>
-<p>​            s/要查找的内容/替换为的内容/修饰符</p>
-<p>​                要查找的内容：可使用模式进行匹配</p>
-<p>​                替换为的内容：不能使用模式，但可以使用\1，\2，等后向引用符号，还可以使用”&amp;”引用前面查找时查找到的整个内容</p>
-<p>​                修饰符：</p>
-<p>​                    i：忽略大小写</p>
-<p>​                    g：全局替换，默认情况下，每一行只替换第一次出现</p>
-<p>​            例如：</p>
-<p>​                .,$s/r\(..\)t/R\1t/g</p>
-<p>​                %s/l…x/&amp;er/g</p>
-<p>​                1,10s/how/HOW/g</p>
-<p>​            查找替换中的分隔符/可替换为其它字符，例如</p>
-<p>​                s@@@ ,s###</p>
-<p>​            查找替换举例如下：</p>
+<p>&emsp;&emsp;vi：Visual Interface 可视化接口编辑器</p>
+<p>&emsp;&emsp;文本编辑器种类：</p>
+<p>&emsp;&emsp;&emsp;&emsp;行编辑器：sed</p>
+<p>&emsp;&emsp;&emsp;&emsp;全屏编辑器：nano，vi等</p>
+<p>&emsp;&emsp;vim：vi iMproved ：模式化编辑器</p>
+<p>&emsp;&emsp;&emsp;&emsp;基本模式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;编辑模式，命令模式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;输入模式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;末行模式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;内置的命令行接口</p>
+<p>&emsp;&emsp;打开文件：</p>
+<p>&emsp;&emsp;&emsp;&emsp;vim [OPTION]…FILE…</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;+#：打开文件后，直接让光标处于第#行的行首</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;+/PATTERN：打开文件后，直接让光标处于第一个被PATTERN匹配到的行首</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;+：直接到文件末尾</p>
+<p>&emsp;&emsp;模式转换：</p>
+<p>&emsp;&emsp;&emsp;&emsp;编辑模式–&gt;输入模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;i：insert，在光标所在处转为输入模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;a：append，在光标所在处后面转为输入模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;o：在当前光标所在行的下方打开一个新行转为输入模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;I：在当前光标所在行的行首转为输入模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;A：在当前光标所在行的行尾转为输入模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;O：在当前光标所在行的上方打开一个新行转为输入模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;输入模式–&gt;编辑模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;按ESC键即可</p>
+<p>&emsp;&emsp;&emsp;&emsp;编辑模式–&gt;末行模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:</p>
+<p>&emsp;&emsp;&emsp;&emsp;末行模式–&gt;编辑模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;按ESC键，一次不行就多按几次</p>
+<p>&emsp;&emsp;关闭文件：</p>
+<p>&emsp;&emsp;&emsp;&emsp;在末行模式下：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:q 退出</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:q! 强制退出，丢弃做出的修改</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:wq 保存退出</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:x 保存退出</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:w /PATH/TO/SOMEWHERE 保存文件内容到其他文件，相当于office下的另存为</p>
+<p>&emsp;&emsp;&emsp;&emsp;在编辑模式下：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ZZ 按两次大写的Z直接保存退出</p>
+<p>&emsp;&emsp;光标跳转：</p>
+<p>&emsp;&emsp;&emsp;&emsp;字符间跳转：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;h：光标向左移动一个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;j：光标向上移动一行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;k：光标向下移动一行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;l：光标向右移动一个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;以上命令还可以和数字组合：# COMMAND 跳转由#指定的个数的字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;单词间跳转：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;w：移动到下一个单次的词首</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;e：移动到下一个单次的词尾</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;b：移动到上一个单次的词首</p>
+<p>&emsp;&emsp;&emsp;&emsp;行首行尾跳转：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;^：跳转至行首的第一个非空白字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;0：跳转至绝对行首</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$：跳转至行尾</p>
+<p>&emsp;&emsp;&emsp;&emsp;行间跳转：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# G：跳转至由#指定行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;G：跳转至文件最后一行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;gg，或1G：跳转至文件第一行</p>
+<p>&emsp;&emsp;&emsp;&emsp;句间移动：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;)：跳转至下一句句首</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(：跳转至上一句的句首</p>
+<p>&emsp;&emsp;&emsp;&emsp;段落间移动：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{：移动到段首</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}：移动到段尾</p>
+<p>&emsp;&emsp;vim的编辑命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;字符编辑：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;x：删除光标处的字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# x：删除光标处起始的#个字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;xp：交换光标所在处的字符及其后面字符的位置</p>
+<p>&emsp;&emsp;&emsp;&emsp;删除命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;d：删除命令，可结合光标跳转字符，实现范围删除</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;d$，d^，d0，dw，dw，de，db</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;也可以和数字键组合使用：# COMMAND</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;dd：删除一整行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;#dd：实现多行删除</p>
+<p>&emsp;&emsp;&emsp;&emsp;粘贴命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;p：缓冲区保存的如果为整行，则粘贴至当前光标所在行的下方，否则则粘贴至当前光标所在处的后面</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;P：缓冲区保存的如果为整行，则粘贴至当前光标所在行的上方，否则则粘贴至当前光标所在处的前面</p>
+<p>&emsp;&emsp;&emsp;&emsp;复制命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;y：复制，使用同d一样</p>
+<p>&emsp;&emsp;&emsp;&emsp;改变命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;c：修改，相当于d命令后再进行输入，使用该命令也可以实现从编辑模式到输入模式的转换</p>
+<p>&emsp;&emsp;&emsp;&emsp;替换命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;r：替换光标所在处的字符</p>
+<p>&emsp;&emsp;&emsp;&emsp;可视化模式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;v：按字符选定</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;V：按行选定</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;注意：可视化模式选定范围后通常会和d，c，y命令进行组合</p>
+<p>&emsp;&emsp;撤销此前的编辑：</p>
+<p>&emsp;&emsp;&emsp;&emsp;u（undo）：撤销此前的操作</p>
+<p>&emsp;&emsp;&emsp;&emsp;#u：撤销指定次数的操作</p>
+<p>&emsp;&emsp;撤销此前的撤销：</p>
+<p>&emsp;&emsp;&emsp;&emsp;Ctrl+r</p>
+<p>&emsp;&emsp;重复前一个编辑操作：</p>
+<p>&emsp;&emsp;&emsp;&emsp;.</p>
+<p>&emsp;&emsp;翻屏操作：</p>
+<p>&emsp;&emsp;&emsp;&emsp;Ctrl+f：向文件尾部翻一屏</p>
+<p>&emsp;&emsp;&emsp;&emsp;Ctrl+b：向文件首部翻一屏</p>
+<p>&emsp;&emsp;&emsp;&emsp;Ctrl+d：向文件尾部翻半屏</p>
+<p>&emsp;&emsp;&emsp;&emsp;Ctrl+u：向文件首部翻半屏</p>
+<p>&emsp;&emsp;vim自带的练习教程</p>
+<p>&emsp;&emsp;&emsp;&emsp;vimtutor</p>
+<p>&emsp;&emsp;vim中的末行模式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;内建的命令行接口</p>
+<p>&emsp;&emsp;&emsp;&emsp;（1）地址定界</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:start_pos,end_pos</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;#：具体第#行，例如2表示第2行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;#,#：从左侧#表示行起始，到右侧#表示行结尾</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;#,+#：从左侧#表示的行起始，加上右侧#表示的行数</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;.：表示当前行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$：表示到最后一行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;.,$-1：表示从当前行到倒数第二行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;%：全文，相当于1,$</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;/pat1/,/pat2/：从第一次被pat1模式匹配到的行开始一直到第一次被pat2匹配到的行结束</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;使用方式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;后跟一个编辑命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;d，y，w，/path/to/somewhere</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;r /path/from/somefile：在指定位置插入指定文件中的所有内容</p>
+<p>&emsp;&emsp;&emsp;&emsp;（2）查找</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;和less命令的用法类似</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;/PATTERN</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;?PATTERN</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;n：与命令查找方向相同来查找下一个</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;N：与命令查找方向相反来查找下一个</p>
+<p>&emsp;&emsp;&emsp;&emsp;（3）查找并替换</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s：在末行模式下完成查找替换操作</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s/要查找的内容/替换为的内容/修饰符</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;要查找的内容：可使用模式进行匹配</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;替换为的内容：不能使用模式，但可以使用\1，\2，等后向引用符号，还可以使用”&amp;”引用前面查找时查找到的整个内容</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;修饰符：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;i：忽略大小写</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;g：全局替换，默认情况下，每一行只替换第一次出现</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;例如：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;.,$s/r\(..\)t/R\1t/g</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;%s/l…x/&amp;er/g</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1,10s/how/HOW/g</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;查找替换中的分隔符/可替换为其它字符，例如</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;s@@@ ,s###</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;查找替换举例如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ #1、复制/etc/grub2.cfg至/tmp/下，用查找替换命令删除/tmp/grub2.cfg文件中的行首的空白字符</span><br><span class="line">[zhangshuo@localhost ~]$ :%s/^[[:space:]]\+//g</span><br><span class="line">[zhangshuo@localhost ~]$ #2、复制/etc/rc.d/init.d/functions文件至/tpm目录，用查找替换命令为/tmp/functions的每 行开头为空白字符的行首添加一个#号</span><br><span class="line">[zhangshuo@localhost ~]$ :%s/^[[:space:]]\+/#&amp;/g</span><br></pre></td></tr></table></figure>
-<h2 id="vim编辑器和bash条件测试"><a href="#vim编辑器和bash条件测试" class="headerlink" title="vim编辑器和bash条件测试"></a>vim编辑器和bash条件测试</h2><h3 id="vim的多文件模式"><a href="#vim的多文件模式" class="headerlink" title="vim的多文件模式"></a>vim的多文件模式</h3><p>​    vim打开多个文件方式</p>
-<p>​        vim FILE1 FILE2 FILE3：使用vim同时打开多个文件可以在这多个文件之间进行复制粘贴等操作</p>
-<p>​            ：next下一个    ：prev上一个    ：first第一个    ：last最后一个    </p>
-<p>​            ：wall保存所有    ：qall退处所有    ：wqall保存退出所有</p>
-<p>​    窗口分割模式</p>
-<p>​        vim -o|O FILE1 FILE2</p>
-<p>​            -o：水平分割</p>
-<p>​            -O：垂直分割</p>
-<p>​            在窗口间切换：Ctrl+w，ARROW</p>
-<p>​    单文件窗口分割</p>
-<p>​        Ctrl+w，s：水平分割窗口</p>
-<p>​        Ctrl+w，v：垂直分割窗口</p>
-<p>​    定制vim的工作特性</p>
-<p>​        配置文件：永久有效</p>
-<p>​            全局配置：/etc/vimrc</p>
-<p>​            个人配置：~/.vimrc该文件通常不存在需要自己手动建立</p>
-<p>​        末行模式下配置：对当前vim有效</p>
-<p>​        配置命令：</p>
-<p>​            （1）、显示行号：set number，set nu</p>
-<p>​                     取消显示行号：set nonumber，set nonu</p>
-<p>​            （2）、括号匹配高亮显示：set showmatch，set sm</p>
-<p>​                     取消括号匹配高亮显示：set nosm</p>
-<p>​            （3）、自动缩进：set ai，取消自动缩进：set noai</p>
-<p>​            （4）、高亮搜索：set hlsearch，取消高亮搜索：set nohlsearch</p>
-<p>​            （5）、忽略字符的大小写：set ic，取消：set noic</p>
-<p>​    vim应用举例：</p>
+<h2 id="vim编辑器和bash条件测试"><a href="#vim编辑器和bash条件测试" class="headerlink" title="vim编辑器和bash条件测试"></a>vim编辑器和bash条件测试</h2><h3 id="vim的多文件模式"><a href="#vim的多文件模式" class="headerlink" title="vim的多文件模式"></a>vim的多文件模式</h3><p>&emsp;&emsp;vim打开多个文件方式</p>
+<p>&emsp;&emsp;&emsp;&emsp;vim FILE1 FILE2 FILE3：使用vim同时打开多个文件可以在这多个文件之间进行复制粘贴等操作</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：next下一个    ：prev上一个    ：first第一个    ：last最后一个    </p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;：wall保存所有    ：qall退处所有    ：wqall保存退出所有</p>
+<p>&emsp;&emsp;窗口分割模式</p>
+<p>&emsp;&emsp;&emsp;&emsp;vim -o|O FILE1 FILE2</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-o：水平分割</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-O：垂直分割</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;在窗口间切换：Ctrl+w，ARROW</p>
+<p>&emsp;&emsp;单文件窗口分割</p>
+<p>&emsp;&emsp;&emsp;&emsp;Ctrl+w，s：水平分割窗口</p>
+<p>&emsp;&emsp;&emsp;&emsp;Ctrl+w，v：垂直分割窗口</p>
+<p>&emsp;&emsp;定制vim的工作特性</p>
+<p>&emsp;&emsp;&emsp;&emsp;配置文件：永久有效</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;全局配置：/etc/vimrc</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;个人配置：~/.vimrc该文件通常不存在需要自己手动建立</p>
+<p>&emsp;&emsp;&emsp;&emsp;末行模式下配置：对当前vim有效</p>
+<p>&emsp;&emsp;&emsp;&emsp;配置命令：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（1）、显示行号：set number，set nu</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;取消显示行号：set nonumber，set nonu</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（2）、括号匹配高亮显示：set showmatch，set sm</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;取消括号匹配高亮显示：set nosm</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（3）、自动缩进：set ai，取消自动缩进：set noai</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（4）、高亮搜索：set hlsearch，取消高亮搜索：set nohlsearch</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;（5）、忽略字符的大小写：set ic，取消：set noic</p>
+<p>&emsp;&emsp;vim应用举例：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ #1、复制/etc/rc.d/functions 文件至/tmp目录,替换/tmp/functions文件中的/etc/sysconfig/init为/var/log</span><br><span class="line">[zhangshuo@localhost ~]$ vim /tmp/functions</span><br><span class="line">:%s@/etc/sysconfig/init@/var/log@g</span><br><span class="line">[zhangshuo@localhost ~]$ #2、删除/tmp/functions文件中所有以#开头，且#后面至少有一个空白字符的行的行首的#号</span><br><span class="line">[zhangshuo@localhost ~]$ vim /tmp/functions</span><br><span class="line">:%s/^#\([[:space:]]\+\)/\1/g</span><br></pre></td></tr></table></figure>
-<p>​                </p>
-<h3 id="bash条件测试"><a href="#bash条件测试" class="headerlink" title="bash条件测试"></a>bash条件测试</h3><p>​    测试方法：</p>
-<p>​        test EXPRESSION</p>
-<p>​        [ EXPRESSION ]</p>
-<p>​        [[ EXPRESSION ]]</p>
-<p>​    测试表达式的类别：</p>
-<p>​        数值比较：（上面提到过了）</p>
-<p>​        字符串比较：（上面提到过了）</p>
-<p>​        文件测试：</p>
-<p>​            存在性测试：</p>
-<p>​                -a FILE：</p>
-<p>​                -e FILE：文件存在性测试，存在为真，否则为假</p>
-<p>​            存在及类别测试：</p>
-<p>​                -b FILE：被测文件是否存在且为块设备文件</p>
-<p>​                -c FILE：被测文件是否存在且为字符设备文件</p>
-<p>​                -d FILE：被测文件是否存在且为目录文件</p>
-<p>​                -f FILE：被测文件是否存在且为普通文件</p>
-<p>​                -h FILE 或 -L FILE ：被测文件是否存在且为符号链接文件</p>
-<p>​                -p FILE：被测文件是否存在且为管道文件</p>
-<p>​                -S FILE：被测文件是否存在且为套接字文件</p>
-<p>​            文件特殊权限测试：</p>
-<p>​                -g FILE：被测文件是否存在且拥有sgid权限</p>
-<p>​                -u FILE：被测文件是否存在且拥有suid权限</p>
-<p>​                -k FILE：被测文件是否存在且拥有sticky权限</p>
-<p>​            文件权限测试：</p>
-<p>​                -r FILE：被测文件是否拥有读权限</p>
-<p>​                -w FILE：被测文件是否拥有写权限</p>
-<p>​                -x FILE：被测文件是否拥有可执行权限</p>
-<p>​            文件大小测试：</p>
-<p>​                -s FILE：被测文件是否存在且非空</p>
-<p>​            文件是否打开：</p>
-<p>​                -t fd：fd表示文件描述符是否已经打开且与某终端相关</p>
-<p>​                -N FILE：文件自从上一次被读取之后是否被修改过</p>
-<p>​                -O FILE：当前有效用户是否为该文件的属主</p>
-<p>​                -G FILE：当前有效用户是否为改文件的属组</p>
-<p>​            双目测试：</p>
-<p>​                FILE1 -ef FILE2：FILE1与FILE2是否指向同一个设备上的相同的inode</p>
-<p>​                FILE1 -nt FILE2：FILE1是否新与FILE2</p>
-<p>​                FILE1 -ot FILE2：FILE1是否旧与FILE2</p>
-<p>​    组合测试条件：</p>
-<p>​    是基于逻辑运算来实现的</p>
-<p>​    两种方式：</p>
-<p>​        第一种方式：</p>
-<p>​            COMMAND1 &amp;&amp; COMMAND2</p>
-<p>​            COMMAND2 || COMMAND2</p>
-<p>​            !COMMAND</p>
-<p>​            比如：</p>
-<p>​                [ -e FILE ] &amp;&amp; [ -r FILE]</p>
-<p>​        第二种方式：</p>
-<p>​            &amp;&amp;：EXPRESSION1 -a EXPRESSION2</p>
-<p>​            ||：EXPRESSION1 -o EXPRESSION2</p>
-<p>​            !EXPRESSION</p>
-<p>​            注意这种方式必须使用测试命令进行</p>
-<p>​            比如：</p>
-<p>​                [ -z “$hostName” ] || [ “$hostName”==”localhost.localdomain” ]也可以用第二种方式：</p>
-<p>​                [ -z “$hostName” -o “$hostName”==”localhost.localdomain” ]</p>
-<p>​                [ -f /bin/cat -a -x /bin/cat ] &amp;&amp; cat /etc/fstab</p>
+<h3 id="bash条件测试"><a href="#bash条件测试" class="headerlink" title="bash条件测试"></a>bash条件测试</h3><p>&emsp;&emsp;测试方法：</p>
+<p>&emsp;&emsp;&emsp;&emsp;test EXPRESSION</p>
+<p>&emsp;&emsp;&emsp;&emsp;[ EXPRESSION ]</p>
+<p>&emsp;&emsp;&emsp;&emsp;[[ EXPRESSION ]]</p>
+<p>&emsp;&emsp;测试表达式的类别：</p>
+<p>&emsp;&emsp;&emsp;&emsp;数值比较：（上面提到过了）</p>
+<p>&emsp;&emsp;&emsp;&emsp;字符串比较：（上面提到过了）</p>
+<p>&emsp;&emsp;&emsp;&emsp;文件测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;存在性测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-a FILE：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-e FILE：文件存在性测试，存在为真，否则为假</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;存在及类别测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-b FILE：被测文件是否存在且为块设备文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-c FILE：被测文件是否存在且为字符设备文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-d FILE：被测文件是否存在且为目录文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-f FILE：被测文件是否存在且为普通文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-h FILE 或 -L FILE ：被测文件是否存在且为符号链接文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-p FILE：被测文件是否存在且为管道文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-S FILE：被测文件是否存在且为套接字文件</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;文件特殊权限测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-g FILE：被测文件是否存在且拥有sgid权限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-u FILE：被测文件是否存在且拥有suid权限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-k FILE：被测文件是否存在且拥有sticky权限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;文件权限测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-r FILE：被测文件是否拥有读权限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-w FILE：被测文件是否拥有写权限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-x FILE：被测文件是否拥有可执行权限</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;文件大小测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-s FILE：被测文件是否存在且非空</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;文件是否打开：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-t fd：fd表示文件描述符是否已经打开且与某终端相关</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-N FILE：文件自从上一次被读取之后是否被修改过</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-O FILE：当前有效用户是否为该文件的属主</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-G FILE：当前有效用户是否为改文件的属组</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;双目测试：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FILE1 -ef FILE2：FILE1与FILE2是否指向同一个设备上的相同的inode</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FILE1 -nt FILE2：FILE1是否新与FILE2</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FILE1 -ot FILE2：FILE1是否旧与FILE2</p>
+<p>&emsp;&emsp;组合测试条件：</p>
+<p>&emsp;&emsp;是基于逻辑运算来实现的</p>
+<p>&emsp;&emsp;两种方式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;第一种方式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;COMMAND1 &amp;&amp; COMMAND2</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;COMMAND2 || COMMAND2</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;!COMMAND</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;比如：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[ -e FILE ] &amp;&amp; [ -r FILE]</p>
+<p>&emsp;&emsp;&emsp;&emsp;第二种方式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&amp;&amp;：EXPRESSION1 -a EXPRESSION2</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;||：EXPRESSION1 -o EXPRESSION2</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;!EXPRESSION</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;注意这种方式必须使用测试命令进行</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;比如：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[ -z “$hostName” ] || [ “$hostName”==”localhost.localdomain” ]也可以用第二种方式：</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[ -z “$hostName” -o “$hostName”==”localhost.localdomain” ]</p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[ -f /bin/cat -a -x /bin/cat ] &amp;&amp; cat /etc/fstab</p>
 <p>-EOF</p>
 
       
@@ -677,7 +675,7 @@
         <p><span>本文标题:</span><a href="/2018/07/27/redhat06/">小红帽第6集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年07月27日 - 21时30分</p>
-        <p><span>最后更新:</span>2018年07月31日 - 13时29分</p>
+        <p><span>最后更新:</span>2018年08月07日 - 17时40分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/07/27/redhat06/" title="小红帽第6集">https://zhangdashuo.github.io/2018/07/27/redhat06/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/07/27/redhat06/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -864,7 +862,7 @@
                     </span>
                 
 		<span>, </span>
-		<span class="post-count">  本站文章总字数: <font color="#FFF">27.2k</span>
+		<span class="post-count">  本站文章总字数: <font color="#FFF">30.8k</span>
             </div>
         
     </div>

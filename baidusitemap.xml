@@ -3,10 +3,29 @@
 
 
     
+  <url>
+    <loc>https://zhangdashuo.github.io/2018/07/27/redhat06/</loc>
+    <lastmod>2018-08-07T09:40:59.121Z</lastmod>
+    <data>
+        <display>
+        <title>小红帽第6集</title>
+        <pubTime>2018-07-27T13:30:20.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="小红帽" url="https://zhangdashuo.github.io/categories/%E5%B0%8F%E7%BA%A2%E5%B8%BD/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>https://zhangdashuo.github.io/2018/08/03/redhat07/</loc>
-    <lastmod>2018-08-03T02:24:10.244Z</lastmod>
+    <lastmod>2018-08-07T08:43:16.962Z</lastmod>
     <data>
         <display>
         <title>小红帽第7集</title>
@@ -24,6 +43,7 @@
     </url>
 
     
+    
   <url>
     <loc>https://zhangdashuo.github.io/2018/08/03/redhat08/</loc>
     <lastmod>2018-08-03T02:23:32.320Z</lastmod>
@@ -31,26 +51,6 @@
         <display>
         <title>小红帽第8集</title>
         <pubTime>2018-08-03T02:09:42.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="小红帽" url="https://zhangdashuo.github.io/categories/%E5%B0%8F%E7%BA%A2%E5%B8%BD/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://zhangdashuo.github.io/2018/07/27/redhat06/</loc>
-    <lastmod>2018-07-31T05:29:44.654Z</lastmod>
-    <data>
-        <display>
-        <title>小红帽第6集</title>
-        <pubTime>2018-07-27T13:30:20.000Z</pubTime>
         
         <tag>Linux</tag>
          
