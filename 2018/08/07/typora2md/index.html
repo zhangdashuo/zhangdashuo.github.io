@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/08/07/typora2md/tab.jpg">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/08/07/typora2md/vimtab.jpg">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/08/07/typora2md/vimtab2.jpg">
-<meta property="og:updated_time" content="2018-08-07T15:25:50.436Z">
+<meta property="og:updated_time" content="2018-08-07T15:32:20.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="脚本处理Typora中的tab字符">
 <meta name="twitter:description" content="脚本处理Typora中的tab字符： 用脚本自动处理Typora中的tab字符为makedown标准的tab制表符">
@@ -265,7 +265,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">988字</span>
+	<span class="post-count">987字</span>
       </span>
     </span>
 										
@@ -324,11 +324,11 @@
 <p>但是在vim下打开就会看到如下的诡异的制表符：</p>
 <p><img src="/2018/08/07/typora2md/vimtab.jpg" alt=""></p>
 <p>但是对于makedown中标准的缩进方式应该是使用<code>&amp;emsp;&amp;emsp;</code>这两个符号表示缩进两个字符</p>
-<h3 id="脚本处理Typora中的tab符"><a href="#脚本处理Typora中的tab符" class="headerlink" title="脚本处理Typora中的tab符"></a>脚本处理Typora中的tab符</h3><p>我是用Typora的目的是为了博客的编写，所以我希望的是用Typora编辑完的makedown直接替换博客源文件中的文章即可，但是由于tab制表符的比匹配到网页下所有的缩进都没有了，因为makedown不识别Typora格式的制表符，所以以前的做法是用vim编辑器一行一行的改，通常如果一篇博客要写两个小时的话，改格式还需要最少半个小时，这还需要手速非常快的情况下（使用vim的各种快捷键，不使用鼠标），所以对于这个我就很是苦恼所以打算写一个脚本来自动处理。</p>
+<h3 id="脚本处理Typora中的tab符"><a href="#脚本处理Typora中的tab符" class="headerlink" title="脚本处理Typora中的tab符"></a>脚本处理Typora中的tab符</h3><p>我用Typora的目的是为了博客的编写，所以我希望的是用Typora编辑完的makedown直接替换博客源文件中的文章即可，但是由于tab制表符的比匹配到网页下所有的缩进都没有了，因为makedown不识别Typora格式的制表符，所以以前的做法是用vim编辑器一行一行的改，通常如果一篇博客要写两个小时的话，改格式还需要最少半个小时，这还需要手速非常快的情况下（使用vim的各种快捷键，不使用鼠标），所以对于这个我就很是苦恼所以打算写一个脚本来自动处理。</p>
 <p>其实对于前面的文章一直都是手动改的格式，之所以这样是因为如果要进行文档的编辑，就需要使用sed命令再配合regex表达式（正则表达式），来进行模式的匹配和文本的处理。而我对于grep和sed这两个命令很是心虚，不敢轻易使用（我只想，grep虐我千百遍，我待grep如初恋）。但是这样手动实在是太麻烦所以还是决定写一个脚本。脚本内容如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>Version:0.0.1</span><br><span class="line"><span class="meta">#</span>Author:zhangshuo</span><br><span class="line"><span class="meta">#</span>Description:处理Typora编辑的MakeDown中的tab符，将tab替换为makedown的制表符&amp;emsp;&amp;emsp;</span><br><span class="line"></span><br><span class="line">[ $# -lt 1 ] &amp;&amp; echo "Are you a pig?Can't you give a file?" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sed -i 's@\xe2\x80\x8b@@g' $1 #清除文本中&lt;200b&gt;</span><br><span class="line">sed -i "s/\t/\&amp;emsp;\&amp;emsp;/g" $1 #将所有的制表符用&amp;emsp;&amp;emsp;进行替换</span><br></pre></td></tr></table></figure>
 <p>用法：</p>
-<p>该脚本需要传递一个参数，参数即为你要处理的文档，注意改操作会在文档中直接修改，如果需要请先备份再使用改脚本进行处理。</p>
+<p>该脚本需要传递一个参数，参数即为你要处理的文档，注意该操作会在文档中直接修改，如果需要请先备份再使用改脚本进行处理。</p>
 <p>例如：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ ./blogrmtab.sh #如果不跟要处理的文章则会报错</span><br><span class="line">Are you a pig?Can't you give a file?</span><br><span class="line">[zhangshuo@localhost ~]$ ./blogrmtab.sh test.md #命令的使用方法</span><br></pre></td></tr></table></figure>
 <p>此时处理完毕，可以看到处理的效果如下：</p>
@@ -347,7 +347,7 @@
         <p><span>本文标题:</span><a href="/2018/08/07/typora2md/">脚本处理Typora中的tab字符</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年08月07日 - 22时27分</p>
-        <p><span>最后更新:</span>2018年08月07日 - 23时25分</p>
+        <p><span>最后更新:</span>2018年08月07日 - 23时32分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/08/07/typora2md/" title="脚本处理Typora中的tab字符">https://zhangdashuo.github.io/2018/08/07/typora2md/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/08/07/typora2md/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
