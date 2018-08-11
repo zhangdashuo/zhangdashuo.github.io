@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="张硕&#39;s Blogs">
 <meta property="og:description" content="小红帽第8集： 文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-11T03:57:14.365Z">
+<meta property="og:updated_time" content="2018-08-11T04:05:12.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小红帽第8集">
 <meta name="twitter:description" content="小红帽第8集： 文件系统挂载、ext文件系统及read命令、Linux RAID、lvm应用">
@@ -258,7 +258,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">3,970字</span>
+	<span class="post-count">3,948字</span>
       </span>
     </span>
 										
@@ -268,7 +268,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">17分</span>
+	<span class="post-count">16分</span>
       </span>
     </span>
 </div>
@@ -413,7 +413,7 @@
 <p>练习：写一个脚本，完成如下功能</p>
 <p>&emsp;&emsp;（1）、列出当前系统识别到的所有磁盘设备</p>
 <p>&emsp;&emsp;（2）、如果磁盘数量为1，则显示其空间使用信息，否则，显示最后一个磁盘上的空间使用信息</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by zhangshuo 2018/08/10</span><br><span class="line">[ ! $UID -eq 0 ] &amp;&amp; echo "not root" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line">DiskNumber=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2 | wc -l)</span><br><span class="line"></span><br><span class="line">echo "your disk number is $DiskNumber"</span><br><span class="line"></span><br><span class="line">if [ $DiskNumber -eq 1 ];then</span><br><span class="line">&amp;emsp;&amp;emsp;fistdisk=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2)</span><br><span class="line">&amp;emsp;&amp;emsp;echo "you only have one disk is $fistdisk"</span><br><span class="line">&amp;emsp;&amp;emsp;echo "the disk used is ..."</span><br><span class="line">&amp;emsp;&amp;emsp;df -h $fistdisk</span><br><span class="line">else</span><br><span class="line">&amp;emsp;&amp;emsp;lastdisk=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2 | tail -1) </span><br><span class="line">&amp;emsp;&amp;emsp;echo "the last disk is $lastdisk"</span><br><span class="line">&amp;emsp;&amp;emsp;echo "the disk used is ..."</span><br><span class="line">&amp;emsp;&amp;emsp;df -h $lastdisk</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by zhangshuo 2018/08/10</span><br><span class="line">[ ! $UID -eq 0 ] &amp;&amp; echo "not root" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line">DiskNumber=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2 | wc -l)</span><br><span class="line"></span><br><span class="line">echo "your disk number is $DiskNumber"</span><br><span class="line"></span><br><span class="line">if [ $DiskNumber -eq 1 ];then</span><br><span class="line">	fistdisk=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2)</span><br><span class="line">	echo "you only have one disk is $fistdisk"</span><br><span class="line">	echo "the disk used is ..."</span><br><span class="line">	df -h $fistdisk</span><br><span class="line">else</span><br><span class="line">	lastdisk=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2 | tail -1) </span><br><span class="line">	echo "the last disk is $lastdisk"</span><br><span class="line">	echo "the disk used is ..."</span><br><span class="line">	df -h $lastdisk</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;这里在付一个创建脚本的脚本，这样很多重复的内容就可以不用每次书写了：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by zhangshuo 2018/08/10</span><br><span class="line"></span><br><span class="line">[ $# -eq 0 ] &amp;&amp; echo "no scripts name" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line">echo "#!/bin/bash</span><br><span class="line"><span class="meta">#</span>Version:0.0.1</span><br><span class="line"><span class="meta">#</span>Author:zhangshuo</span><br><span class="line"><span class="meta">#</span>Date:$(date +%F)</span><br><span class="line"><span class="meta">#</span>Description:</span><br><span class="line"><span class="meta">#</span>BUG REPORTS:2292650292@qq.com" &gt;&gt; $1</span><br><span class="line"></span><br><span class="line">chmod +x $1</span><br></pre></td></tr></table></figure>
 <p>bash脚本编程之用户交互</p>
@@ -427,7 +427,7 @@
 <p>&emsp;&emsp;&emsp;&emsp;bash -x /path/to/some_script</p>
 <p>练习：</p>
 <p>&emsp;&emsp;接受用户给定的一个磁盘，然后输出磁盘的分区信息</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by zhangshuo 2018/08/10</span><br><span class="line"></span><br><span class="line">[ ! $UID -eq 0 ] &amp;&amp; echo "not root" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line">DiskNumber=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2 | wc -l)</span><br><span class="line"></span><br><span class="line">echo "your disk number is $DiskNumber"</span><br><span class="line">echo "your all disk is :"</span><br><span class="line">fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2</span><br><span class="line"></span><br><span class="line">read -p "enter a disk:" diskname</span><br><span class="line"></span><br><span class="line">[ -z "$diskname" ] &amp;&amp; echo "no disk name" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line">if fdisk -l | grep "^Disk $diskname" &amp;&gt; /dev/null;then</span><br><span class="line">&amp;emsp;&amp;emsp;echo "the $diskname mesages is :"</span><br><span class="line">&amp;emsp;&amp;emsp;fdisk -l $diskname</span><br><span class="line">else</span><br><span class="line">&amp;emsp;&amp;emsp;echo "no such disk"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>by zhangshuo 2018/08/10</span><br><span class="line"></span><br><span class="line">[ ! $UID -eq 0 ] &amp;&amp; echo "not root" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line">DiskNumber=$(fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2 | wc -l)</span><br><span class="line"></span><br><span class="line">echo "your disk number is $DiskNumber"</span><br><span class="line">echo "your all disk is :"</span><br><span class="line">fdisk -l | grep -o "^Disk /dev/[sh]d[a-z]" | cut -d " " -f 2</span><br><span class="line"></span><br><span class="line">read -p "enter a disk:" diskname</span><br><span class="line"></span><br><span class="line">[ -z "$diskname" ] &amp;&amp; echo "no disk name" &amp;&amp; exit 2</span><br><span class="line"></span><br><span class="line">if fdisk -l | grep "^Disk $diskname" &amp;&gt; /dev/null;then</span><br><span class="line">	echo "the $diskname mesages is :"</span><br><span class="line">	fdisk -l $diskname</span><br><span class="line">else</span><br><span class="line">	echo "no such disk"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;</p>
 <h2 id="Linux-RAID"><a href="#Linux-RAID" class="headerlink" title="Linux RAID"></a>Linux RAID</h2><p>RAID：Redundant Arrays of Independent Disks 独立冗余磁盘阵列</p>
 <p>&emsp;&emsp;优点：磁盘并行读写，有的硬件RAID设备自带内存和CPU，提高IO能力，提高耐用性，和数据的安全性，该方式是通过磁盘冗余来实现的。</p>
@@ -684,7 +684,7 @@
         <p><span>本文标题:</span><a href="/2018/08/03/redhat08/">小红帽第8集</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年08月03日 - 10时09分</p>
-        <p><span>最后更新:</span>2018年08月11日 - 11时57分</p>
+        <p><span>最后更新:</span>2018年08月11日 - 12时05分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/08/03/redhat08/" title="小红帽第8集">https://zhangdashuo.github.io/2018/08/03/redhat08/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/08/03/redhat08/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -800,7 +800,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/typora2md/">脚本处理Typora中的tab字符</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/redhat08/">小红帽第8集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/redhat07/">小红帽第7集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat06/">小红帽第6集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat05/">小红帽第5集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/redhat04/">小红帽第4集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/redhat03/">小红帽第3集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/redhat02/">小红帽第2集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/redhat01/">小红帽第1集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/hello-world/">新的环境，新的博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/11/redhat09/">小红帽第9集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/typora2md/">脚本处理Typora中的tab字符</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/redhat08/">小红帽第8集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/03/redhat07/">小红帽第7集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat06/">小红帽第6集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/27/redhat05/">小红帽第5集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/21/redhat04/">小红帽第4集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/20/redhat03/">小红帽第3集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/18/redhat02/">小红帽第2集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/17/redhat01/">小红帽第1集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/13/hello-world/">新的环境，新的博客</a></li></ul>
     <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
     <script>
         $(".post-list").addClass("toc-article");
