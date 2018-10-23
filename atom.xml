@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdashuo.github.io/"/>
-  <updated>2018-10-23T09:28:17.402Z</updated>
+  <updated>2018-10-23T09:37:47.120Z</updated>
   <id>https://zhangdashuo.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ngrok内网穿透</title>
+    <link href="https://zhangdashuo.github.io/2018/10/23/ngrokser/"/>
+    <id>https://zhangdashuo.github.io/2018/10/23/ngrokser/</id>
+    <published>2018-10-23T09:34:48.000Z</published>
+    <updated>2018-10-23T09:37:47.120Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong> ngrok内网穿透：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>通过外网IP访问内网web服务器<br><a id="more"></a></excerpt></p><h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt; ngrok内网穿透：&lt;/strong&gt; &lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;通过外网IP访问内网web服务器&lt;br&gt;&lt;/excerpt&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="小红帽" scheme="https://zhangdashuo.github.io/categories/%E5%B0%8F%E7%BA%A2%E5%B8%BD/"/>
+    
+    
+      <category term="ngrok" scheme="https://zhangdashuo.github.io/tags/ngrok/"/>
+    
+  </entry>
   
   <entry>
     <title>关于不蒜子域名更改</title>
