@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdashuo.github.io/"/>
-  <updated>2018-08-11T04:09:26.521Z</updated>
+  <updated>2018-10-23T09:22:45.544Z</updated>
   <id>https://zhangdashuo.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于不蒜子域名更改</title>
+    <link href="https://zhangdashuo.github.io/2018/10/23/busuanzi/"/>
+    <id>https://zhangdashuo.github.io/2018/10/23/busuanzi/</id>
+    <published>2018-10-23T09:00:27.000Z</published>
+    <updated>2018-10-23T09:22:45.544Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong> 关于不蒜子域名更改：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>不蒜子只是以前的域名过期了，并不是不能用了！！！！！<br><a id="more"></a></excerpt></p><h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2><p>登陆博客时发现底部的统计数据没有了，当时以为只是不蒜子系统暂时出错，就没有在意，但是过了几天通过多个终端登陆发现博客的统计数据还是没有，此时应该查找原因了。这段时间并没有对博客的源码进行过更改，所以我就怀疑是不蒜子自己的问题，所以登陆不蒜子官网发现果然是，看到原因莫名的同情和无奈。</p><p><img src="/2018/10/23/busuanzi/tongzhi.jpg" alt=""></p><p>所以只需要将不蒜子的引用域名进行替换即可。</p><p>这里以hexo博客系统为例：</p><p>进入hexo博客系统的跟目录查找dn-lbstatics.qbox.me代码段：</p><p>grep dn-lbstatics.qbox.me  ./ -r</p><p>查找之后将域名更换即可</p><p>我是用的主题为spfk，经过查找需要更改的文件为：</p><p>/home/zhangshuo/hexo/themes/spfk/layout/_partial/after-footer.ejs</p><p>更改以后的文件为：</p><p><img src="/2018/10/23/busuanzi/daima.jpg" alt=""></p><p>此时不蒜子可以正常工作：</p><p><img src="/2018/10/23/busuanzi/tongji.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt; 关于不蒜子域名更改：&lt;/strong&gt; &lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot; 首页摘要=&quot;&quot;&gt;&lt;br&gt;不蒜子只是以前的域名过期了，并不是不能用了！！！！！&lt;br&gt;&lt;/excerpt&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="小红帽" scheme="https://zhangdashuo.github.io/categories/%E5%B0%8F%E7%BA%A2%E5%B8%BD/"/>
+    
+    
+      <category term="hexo" scheme="https://zhangdashuo.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>小红帽第9集</title>
