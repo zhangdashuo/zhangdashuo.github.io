@@ -417,7 +417,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost ~]$ tr [a-z] [A-Z] &lt; /etc/passwd | tail -2</span><br><span class="line">VBOXADD:X:987:1::/VAR/RUN/VBOXADD:/BIN/FALSE</span><br><span class="line">GLUSTER:X:986:980:GLUSTERFS DAEMONS:/VAR/RUN/GLUSTER:/SBIN/NOLOGIN</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;Here documentation：&lt;&lt; 该符号不是表示追加输入重定向，而是表示在此处生成文档。</p>
 <p>&emsp;&emsp;对于cat命令默认为标准输入读去数据，这里使用cat命令进行文档生成和保存文件，用法如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost test]$ pwd</span><br><span class="line">/tmp/test</span><br><span class="line">[zhangshuo@localhost test]$ cat &gt;&gt; ./cattest.txt &lt;&lt;EOF</span><br><span class="line"><span class="meta">&gt;</span> how are you</span><br><span class="line"><span class="meta">&gt;</span> how old are you</span><br><span class="line"><span class="meta">&gt;</span> EOF</span><br><span class="line">[zhangshuo@localhost test]$ cat cattest.txt </span><br><span class="line">how are you</span><br><span class="line">how old are you</span><br><span class="line">[zhangshuo@localhost test]$</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[zhangshuo@localhost test]$ pwd</span><br><span class="line">/tmp/test</span><br><span class="line">[zhangshuo@localhost test]$ cat &gt;&gt; ./cattest.txt &lt;&lt;EOF</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> how are you</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> how old are you</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> EOF</span></span><br><span class="line">[zhangshuo@localhost test]$ cat cattest.txt </span><br><span class="line">how are you</span><br><span class="line">how old are you</span><br><span class="line">[zhangshuo@localhost test]$</span><br></pre></td></tr></table></figure>
 <h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3><p>对于管道又体现了Linux的哲学思想之一，那就是可实现组合小程序来完成复杂任务。</p>
 <p>用法：COMMAND 1| COMMAND 2 | COMMAND 3 | …：前一个命令的输出，作为后一个命令的输入</p>
 <p>Note：最后一个命令会在当前shell进程的子进程中执行，比如：</p>
@@ -819,7 +819,7 @@
                     </span>
                 
 		<span>, </span>
-		<span class="post-count">  本站文章总字数: <font color="#FFF">36.1k</span>
+		<span class="post-count">  本站文章总字数: <font color="#FFF">37.6k</span>
             </div>
         
     </div>

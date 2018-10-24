@@ -5,18 +5,24 @@
   
   <title>ngrok内网穿透 | 张硕&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ngrok内网穿透： 通过外网IP访问内网web服务器">
+  <meta name="description" content="ngrok内网穿透： 通过ngrok实现外网I访问内网web服务器">
 <meta name="keywords" content="ngrok">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ngrok内网穿透">
 <meta property="og:url" content="https://zhangdashuo.github.io/2018/10/23/ngrokser/index.html">
 <meta property="og:site_name" content="张硕&#39;s Blogs">
-<meta property="og:description" content="ngrok内网穿透： 通过外网IP访问内网web服务器">
+<meta property="og:description" content="ngrok内网穿透： 通过ngrok实现外网I访问内网web服务器">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-23T09:37:47.120Z">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/10/23/ngrokser/ubuntu.jpg">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/10/23/ngrokser/ngrokser.jpg">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/10/23/ngrokser/ngrokcli.jpg">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/10/23/ngrokser/jiexi.jpg">
+<meta property="og:image" content="https://zhangdashuo.github.io/2018/10/23/ngrokser/centos.jpg">
+<meta property="og:updated_time" content="2018-10-24T03:15:43.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ngrok内网穿透">
-<meta name="twitter:description" content="ngrok内网穿透： 通过外网IP访问内网web服务器">
+<meta name="twitter:description" content="ngrok内网穿透： 通过ngrok实现外网I访问内网web服务器">
+<meta name="twitter:image" content="https://zhangdashuo.github.io/2018/10/23/ngrokser/ubuntu.jpg">
   
     <link rel="alternative" href="/atom.xml" title="张硕&#39;s Blogs" type="application/atom+xml">
   
@@ -258,7 +264,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">17字</span>
+	<span class="post-count">1,527字</span>
       </span>
     </span>
 										
@@ -268,7 +274,7 @@
       <span class="post-meta-item-icon">
 	<i class="fa fa-hourglass-half"></i>
 	<span class="post-meta-item-text"> 阅读时长: </span>
-	<span class="post-count">1分</span>
+	<span class="post-count">6分</span>
       </span>
     </span>
 </div>
@@ -299,8 +305,61 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong> ngrok内网穿透：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>通过外网IP访问内网web服务器<br><a id="more"></a></excerpt></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2>
+        <p><strong> ngrok内网穿透：</strong> <excerpt in="" index="" |="" 首页摘要=""><br>通过ngrok实现外网I访问内网web服务器<br><a id="more"></a></excerpt></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2><h2 id="内网穿透的需求"><a href="#内网穿透的需求" class="headerlink" title="内网穿透的需求"></a>内网穿透的需求</h2><p>最近一直想实现校园内网之间的资源共享和分享校园生活，数据共享采用p2p的方式，这样可以减小服务器的压力，而且下载速度是随着下载人数的增加而上升的。如果通过FTP，C/S架构的方式会随着下载量的增加而减小，因为服务器的总出口带宽是一定的，所以很容易理解。这样就解决了数据共享。</p>
+<p>对于分享校园生活，最好的方式就是建立论坛，每个人可以通过发帖来进行交流。所以CAUC-OB就这样诞生了。该服务器搭建与内网中，所以内网访问可以免流同时速度还更快。但是搭建与内网的缺点就是外网无法访问，很容易理解，该服务器的地址为10.5.42.11很明显为A类IP地址的内网IP段所以外网肯定无法访问。所以此时就有实现内网穿透的需求。</p>
+<h2 id="ngrok实现内网穿透"><a href="#ngrok实现内网穿透" class="headerlink" title="ngrok实现内网穿透"></a>ngrok实现内网穿透</h2><p>对于内网穿透有很多其它的方式，这里就不一一介绍，其它的方式有收费的，有限定免费的，对于我当然想用完全自主的方式来实现，所以这里选择了ngrok开源项目来实现内网穿透。ngrok需要内网客户端连接外网服务端来实现内网穿透。</p>
+<h3 id="ngrok个平台系统版本"><a href="#ngrok个平台系统版本" class="headerlink" title="ngrok个平台系统版本"></a>ngrok个平台系统版本</h3><p>我这里使用的win10自带的ubuntu来实现对于客户端和服务端的编译的，对于Linux环境，可以通过安装双系统（这种方式我不是很推荐，因为两个系统如果想实现数据交换linux需要支持NTFS文件系统，在众多的文件系统中linux偏偏对NTFS的支持不是很好（毕竟NTFS是一个闭源的商业系统）），或是安装虚拟机，在虚拟机中运行Linux系统即可。</p>
+<p>我的Linux环境如下：</p>
+<p>​    系统：Ubuntu18.04</p>
+<p><img src="/2018/10/23/ngrokser/ubuntu.jpg" alt=""></p>
+<p>外网服务器版本：</p>
+<p>​    系统：CentOS7</p>
+<p><img src="/2018/10/23/ngrokser/ngrokser.jpg" alt=""></p>
+<p>内网服务器版本：</p>
+<p>​    硬件平台：树莓派3</p>
+<p>​    系统：Raspberry</p>
+<p><img src="/2018/10/23/ngrokser/ngrokcli.jpg" alt=""></p>
+<h3 id="编译ngrok服务端与客户端"><a href="#编译ngrok服务端与客户端" class="headerlink" title="编译ngrok服务端与客户端"></a>编译ngrok服务端与客户端</h3><p>克隆ngrok源码：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/inconshreveable/ngrok.git <span class="comment">#将ngrok源代码克隆回本地</span></span><br></pre></td></tr></table></figure>
+<p>克隆好的目录结构如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">zhangshuo@DESKTOP-2AKT8V3:~/ngrok2$ pwd #显示当前目录路径</span><br><span class="line">/home/zhangshuo/ngrok2</span><br><span class="line">zhangshuo@DESKTOP-2AKT8V3:~/ngrok2$ ls #克隆好的目录结构</span><br><span class="line">CONTRIBUTORS  Makefile   assets  contrib    src</span><br><span class="line">LICENSE       README.md  bin     docs</span><br></pre></td></tr></table></figure>
+<p>安装go语言环境：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get update #更新库</span><br><span class="line">sudo apt-get install golang #安装go语言</span><br></pre></td></tr></table></figure>
+<p>设置环境变量：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export GOPATH=/usr/local/ngrok/  #设置环境变量，Go语言的安装位置</span><br><span class="line">export NGROK_DOMAIN="ngrok.yourdomain.com"  #设置环境变量，ngrok域名</span><br></pre></td></tr></table></figure>
+<p>为域名生成证书：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">openssl genrsa -out rootCA.key 2048</span><br><span class="line">openssl req -x509 -new -nodes -key rootCA.key -subj "/CN=$NGROK_DOMAIN" -days 5000 -out rootCA.pem</span><br><span class="line">openssl genrsa -out server.key 2048</span><br><span class="line">openssl req -new -key server.key -subj "/CN=$NGROK_DOMAIN" -out server.csr</span><br><span class="line">openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 5000</span><br></pre></td></tr></table></figure>
+<p>生成的证书如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">zhangshuo@DESKTOP-2AKT8V3:~/ngrok2$ ls</span><br><span class="line">CONTRIBUTORS  Makefile   assets  contrib  rootCA.key  rootCA.srl  server.csr  src</span><br><span class="line">LICENSE       README.md  bin     docs     rootCA.pem  server.crt  server.key</span><br></pre></td></tr></table></figure>
+<p>拷贝证书到指定位置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp rootCA.pem assets/client/tls/ngrokroot.crt  #复制rootCA.pem到assets/client/tls/并更名为ngrokroot.crt</span><br><span class="line">cp server.crt assets/server/tls/snakeoil.crt #复制server.crt到assets/server/tls/并更名为snakeoil.crt</span><br><span class="line">cp server.key assets/server/tls/snakeoil.key #复制server.key到assets/server/tls/并更名为snakeoil.key</span><br></pre></td></tr></table></figure>
+<p>进行编译：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#linux服务端</span><br><span class="line">GOOS=linux GOARCH=386 make release-server</span><br><span class="line">#linux客户端</span><br><span class="line">GOOS=linux GOARCH=386 make release-client</span><br><span class="line">#树莓派客户端</span><br><span class="line">GOOS=linux GOARCH=ram make release-client</span><br></pre></td></tr></table></figure>
+<p>生成完成后，在工作目录的bin文件夹下，产生对应的文件。以编译linux平台为例，会产生“ngrok”与“ngrokd”这两个文件，前者客户端，后者需要运行在公网服务器上。</p>
+<p>如下结构所示：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">zhangshuo@DESKTOP-2AKT8V3:~/ngrok2$ tree bin/</span><br><span class="line">bin/</span><br><span class="line">├── go-bindata</span><br><span class="line">├── linux_386</span><br><span class="line">│   ├── ngrok</span><br><span class="line">│   └── ngrokd</span><br><span class="line">└── linux_arm</span><br><span class="line">    └── ngrok</span><br><span class="line"></span><br><span class="line">2 directories, 4 files</span><br></pre></td></tr></table></figure>
+<p>此时定制的客户端和服务端以准备就绪。</p>
+<h2 id="添加域名解析"><a href="#添加域名解析" class="headerlink" title="添加域名解析"></a>添加域名解析</h2><p>在自己的域名解析中将*.ngrok与ngrok都指向您的主机IP，我的域名为腾讯云负责解析的：</p>
+<p><img src="/2018/10/23/ngrokser/jiexi.jpg" alt=""></p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><p>将bin/linux_386/ngrokd，snakeoil.key，snakeoil.crt三个文件上传至服务器，在服务器端运行ngrok服务程序。</p>
+<p>我这里使用xshell连接centos进行配置，服务器中的文件格式为：</p>
+<p><img src="/2018/10/23/ngrokser/centos.jpg" alt=""></p>
+<p>因为使用的是xshell登陆的服务器，所以如果在终端中启动服务的话当终端关闭之后进程也会结束所以要使用screen命令进行程序的后台运行。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> zhangshuo @ VM_0_7_centos <span class="keyword">in</span> ~/ngrok [10:56:23] <span class="comment">#使用screen命令打开一个屏幕</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> screen</span></span><br></pre></td></tr></table></figure>
+<p>然后启动服务端程序：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> zhangshuo @ VM_0_7_centos <span class="keyword">in</span> ~/ngrok [10:57:01] C:1 <span class="comment">#注意该目录下必须包含ngrokd运行程序，且该程序要给执行权限，和snakeoil.key，snakeoil.crt这两个文件</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ./ngrokd -tlsKey=<span class="string">"snakeoil.key"</span> -tlsCrt=<span class="string">"snakeoil.crt"</span> -domain=<span class="string">"ngrok.zhangshuocauc.cn"</span> -httpAddr=<span class="string">":801"</span> -httpsAddr=<span class="string">":802"</span> &amp;</span></span><br></pre></td></tr></table></figure>
+<p>启动服务后将screen送入后台运行即可：</p>
+<p>将该screen送入后台的命令为：Ctrl+a,d。此时服务端配置完毕</p>
+<h2 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h2><p>同样的将bin/linux_arm/ngrok文件拷贝到树莓派客户端中家目录下。</p>
+<p>在家目录下建立ngrok配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">touch ngrok.cfg #建立ngrok的配置文件</span><br><span class="line">vim ngrok.cfg #使用vim编辑器进行编辑</span><br><span class="line">在该文件中写入如下配置</span><br><span class="line">server_addr: "ngrok.你的域名.com:4443"</span><br><span class="line">trust_host_root_certs: false</span><br></pre></td></tr></table></figure>
+<p>在树莓派客户端中加入开机启动程序即在/etc/rc.local文件中加入客户端启动的命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/rc.local #使用管理员权限编辑rc.loal文件，并在exit0前面加入</span><br><span class="line">/home/pi/ngrok -subdomain kyt -config=/home/pi/ngrok.cfg 80 &amp;&gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line">上面的命令即为启动ngrok客户端的配置命令，上面的命令采用绝对路径的方式</span><br></pre></td></tr></table></figure>
+<p>此时配置完毕将树莓派端重启即可通过访问：<a href="http://kyt.ngrok.zhangshuocauc.cn:801/" target="_blank" rel="noopener">http://kyt.ngrok.zhangshuocauc.cn:801/</a></p>
+<p>来实现外网访问内网的web服务。</p>
+<p>-EOF</p>
+
       
       
     </div>
@@ -312,7 +371,7 @@
         <p><span>本文标题:</span><a href="/2018/10/23/ngrokser/">ngrok内网穿透</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年10月23日 - 17时34分</p>
-        <p><span>最后更新:</span>2018年10月23日 - 17时37分</p>
+        <p><span>最后更新:</span>2018年10月24日 - 11时15分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/10/23/ngrokser/" title="ngrok内网穿透">https://zhangdashuo.github.io/2018/10/23/ngrokser/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/10/23/ngrokser/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -341,7 +400,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内网穿透的需求"><span class="toc-number">2.</span> <span class="toc-text">内网穿透的需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ngrok实现内网穿透"><span class="toc-number">3.</span> <span class="toc-text">ngrok实现内网穿透</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ngrok个平台系统版本"><span class="toc-number">3.1.</span> <span class="toc-text">ngrok个平台系统版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译ngrok服务端与客户端"><span class="toc-number">3.2.</span> <span class="toc-text">编译ngrok服务端与客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加域名解析"><span class="toc-number">4.</span> <span class="toc-text">添加域名解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端配置"><span class="toc-number">5.</span> <span class="toc-text">服务端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端配置"><span class="toc-number">6.</span> <span class="toc-text">客户端配置</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -488,7 +547,7 @@
                     </span>
                 
 		<span>, </span>
-		<span class="post-count">  本站文章总字数: <font color="#FFF">36.1k</span>
+		<span class="post-count">  本站文章总字数: <font color="#FFF">37.6k</span>
             </div>
         
     </div>
