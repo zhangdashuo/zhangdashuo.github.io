@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/11/15/intranetuse/1542277015.jpg">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/11/15/intranetuse/1542277176.jpg">
 <meta property="og:image" content="https://zhangdashuo.github.io/2018/11/15/intranetuse/1542277275.jpg">
-<meta property="og:updated_time" content="2018-11-15T10:57:06.919Z">
+<meta property="og:updated_time" content="2018-11-15T11:04:37.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一种内网资源分享方式">
 <meta name="twitter:description" content="一种内网资源分享方式：  通过Discuz，nextcloud，和Empirecms实现校园网资源共享">
@@ -275,7 +275,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
 	<span class="post-meta-item-text">  字数统计: </span>
-	<span class="post-count">2,025字</span>
+	<span class="post-count">2,027字</span>
       </span>
     </span>
 										
@@ -320,7 +320,7 @@
 <h2 id=""><a href="#" class="headerlink" title=""></a><the rest="" of="" contents="" |="" 余下全文=""></the></h2><p>最近一直在忙校园网资源共享，今天做个总结，主要介绍利用Discuz，Empirecms，Nextclous来实现共享的方式，和如何使用这三个软件实现校园生活交流和资源共享。在网页中如果要插入一张图片可以通过取得该图片的绝对网络地址，来使用标签进行调用，这里使用相同的方式。即利用Nextcloud云盘为上传的所有文件提供绝对网络地址，然后通过交互式的平台这里利用Discuz和Empirecms来实现资源的展示。</p>
 <h2 id="Nextcloud使用方式的介绍"><a href="#Nextcloud使用方式的介绍" class="headerlink" title="Nextcloud使用方式的介绍"></a>Nextcloud使用方式的介绍</h2><p><a href="http://10.5.42.14/" target="_blank" rel="noopener">登录网盘点击这里(需要连接航大校园网)</a></p>
 <p>Nextcloud是一个国外的开源云网盘项目，它的前身是owncloud，Nextcloud相对owncloud功能更强大和具有更高的稳定性，所以这里采用的是Nextcloud来作为内网网盘和提供一系列共享方式。并通过在Nextcloud上传的文件获得该文件的URL。通过URL便可以在Discuz和Empirecms实现展示。</p>
-<h3 id="如何注册Nextcloud账户"><a href="#如何注册Nextcloud账户" class="headerlink" title="如何注册Nextcloud账户"></a>如何注册Nextcloud账户</h3><p>在浏览器中输入<a href="http://10.5.42.14(需要连接航大校园网)或是登录论坛网址http://10.5.42.11(需要连接航大校园网)在论坛的导航页面即可看到网盘的登录入口。" target="_blank" rel="noopener">http://10.5.42.14(需要连接航大校园网)或是登录论坛网址http://10.5.42.11(需要连接航大校园网)在论坛的导航页面即可看到网盘的登录入口。</a></p>
+<h3 id="如何注册Nextcloud账户"><a href="#如何注册Nextcloud账户" class="headerlink" title="如何注册Nextcloud账户"></a>如何注册Nextcloud账户</h3><p>在浏览器中输入<code>http://10.5.42.14</code>(需要连接航大校园网)或是登录论坛网址<code>http://10.5.42.11</code>(需要连接航大校园网)在论坛的导航页面即可看到网盘的登录入口。</p>
 <p>登录入口如下所示：</p>
 <p><img src="/2018/11/15/intranetuse/nextcloudlogo.jpg" alt=""></p>
 <p>然后点击注册选项按着提示输入注册信息即可进行账号的注册，但是注意！每个账号注册之后默认空间为10G，如果有需要更大的空间的可以和我联系。</p>
@@ -337,8 +337,7 @@
 <p><img src="/2018/11/15/intranetuse/1542271078.jpg" alt=""></p>
 <p>这里是利用该网盘实现的网络共享的方式，内网文件分享还是比较方便的。</p>
 <h4 id="使用Nextclous获得文件的外链接"><a href="#使用Nextclous获得文件的外链接" class="headerlink" title="使用Nextclous获得文件的外链接"></a>使用Nextclous获得文件的外链接</h4><p>外链接其实就是一个文件的绝对网络位置，利用该链接可以访问到文件的方式。下面介绍使用Nextcloud获得存储在Nextcloud中文件的外链接，该外链接很重要，Discuz和Empirecms中需要获得该链接来实现资源的投稿。</p>
-<p>还是以Nextcloud.mp4为例，该文件的外链接为：<a href="http://10.5.42.14/data/redhat/files/Nextcloud.mp4" target="_blank" rel="noopener">http://10.5.42.14/data/redhat/files/Nextcloud.mp4</a> 这个链接的获得方式如下：（1）Nextcloud.mp4是要分享的文件的名字。（2）<a href="http://10.5.42.14/data/redhat/files/这一段为用户的根目录。（3）不同的用户只需要将/files/前面的用户名换成自己的即可。再比如获得Photos/Nut.jpg文件的外链接为：" target="_blank" rel="noopener">http://10.5.42.14/data/redhat/files/这一段为用户的根目录。（3）不同的用户只需要将/files/前面的用户名换成自己的即可。再比如获得Photos/Nut.jpg文件的外链接为：</a></p>
-<p><a href="http://10.5.42.14/data/redhat/files/Photos/Nut.jpg。在强调一次这个外链接很重要。获取完外链接记得测试一下，测试的方法是将做好的外链接输入到浏览器中如果可以显示则外链接就是对的。Nut.jpg的外链接的查看如下：" target="_blank" rel="noopener">http://10.5.42.14/data/redhat/files/Photos/Nut.jpg。在强调一次这个外链接很重要。获取完外链接记得测试一下，测试的方法是将做好的外链接输入到浏览器中如果可以显示则外链接就是对的。Nut.jpg的外链接的查看如下：</a></p>
+<p>还是以Nextcloud.mp4为例，该文件的外链接为：<a href="http://10.5.42.14/data/redhat/files/Nextcloud.mp4" target="_blank" rel="noopener">http://10.5.42.14/data/redhat/files/Nextcloud.mp4</a> 这个链接的获得方式如下：<br>（1）Nextcloud.mp4是要分享的文件的名字。<br>（2）对于<a href="http://10.5.42.14/data/redhat/files/这一段为用户的根目录。" target="_blank" rel="noopener">http://10.5.42.14/data/redhat/files/这一段为用户的根目录。</a><br>（3）不同的用户只需要将/files/前面的用户名换成自己的即可。<br>再比如获得Photos/Nut.jpg文件的外链接为:<a href="http://10.5.42.14/data/redhat/files/Photos/Nut.jpg。在强调一次这个外链接很重要。获取完外链接记得测试一下，测试的方法是将做好的外链接输入到浏览器中如果可以显示则外链接就是对的。Nut.jpg的外链接的查看如下：" target="_blank" rel="noopener">http://10.5.42.14/data/redhat/files/Photos/Nut.jpg。在强调一次这个外链接很重要。获取完外链接记得测试一下，测试的方法是将做好的外链接输入到浏览器中如果可以显示则外链接就是对的。Nut.jpg的外链接的查看如下：</a></p>
 <p><img src="/2018/11/15/intranetuse/1542272157.jpg" alt=""></p>
 <h4 id="Nextcloud总结"><a href="#Nextcloud总结" class="headerlink" title="Nextcloud总结"></a>Nextcloud总结</h4><p>应用实例，比如要去打印店打印东西，带优盘进去担心中病毒，每次打印完回来都要格式化优盘很是麻烦，此时可以将要打印的文件放到这个网盘中，在打印店里不用登录校园网认证账号就可以登录云盘进行下载。方便安全的同时还不消耗流量。</p>
 <h2 id="论坛使用介绍"><a href="#论坛使用介绍" class="headerlink" title="论坛使用介绍"></a>论坛使用介绍</h2><p><a href="http://10.5.42.11/portal.php" target="_blank" rel="noopener">登录论坛点击这里(需要连接航大校园网)</a></p>
@@ -384,7 +383,7 @@
         <p><span>本文标题:</span><a href="/2018/11/15/intranetuse/">一种内网资源分享方式</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 业余Linux管理员 的个人博客">业余Linux管理员</a></p>
         <p><span>发布时间:</span>2018年11月15日 - 10时43分</p>
-        <p><span>最后更新:</span>2018年11月15日 - 18时57分</p>
+        <p><span>最后更新:</span>2018年11月15日 - 19时04分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/11/15/intranetuse/" title="一种内网资源分享方式">https://zhangdashuo.github.io/2018/11/15/intranetuse/</a>
             <span class="copy-path" data-clipboard-text="原文: https://zhangdashuo.github.io/2018/11/15/intranetuse/　　作者: 业余Linux管理员" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
