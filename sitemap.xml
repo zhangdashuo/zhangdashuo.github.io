@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhangdashuo.github.io/about/index.html</loc>
+    
+    <lastmod>2019-06-24T01:39:24.634Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhangdashuo.github.io/kms/index.html</loc>
     
     <lastmod>2019-06-06T01:46:10.376Z</lastmod>
@@ -145,13 +152,6 @@
     <loc>https://zhangdashuo.github.io//404.html</loc>
     
     <lastmod>2018-07-22T04:56:39.330Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhangdashuo.github.io/about/index.html</loc>
-    
-    <lastmod>2018-07-18T06:29:13.774Z</lastmod>
     
   </url>
   
